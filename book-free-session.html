@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Book a Free Session — EPM Wealth</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+:root{
+  --cream:#f5ede0;--cream2:#ede4d6;--cream3:#faf4ec;
+  --warm:#8b6342;--warm2:#c49a5a;--warm3:#e2c47a;
+  --char:#1c2540;--navy:#0d1f3c;
+  --gold:#c49a5a;--gold2:#d4aa6a;
+  --border:#e0d4c0;--border2:#cfc3ad;
+  --muted:#5a4e3a;--muted2:#7a6a54;
+  --white:#ffffff;--blush:#f5ede0;
+  --color-accent:#b8965a;
+  --font-display:'Cormorant Garamond',Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:17px;scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;color:var(--char);background:var(--blush);overflow-x:hidden;line-height:1.65}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* ══ UTILS ══ */
+.label{font-size:9px;letter-spacing:3.5px;text-transform:uppercase;font-weight:600;color:var(--warm);display:block;margin-bottom:14px}
+.h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4.5vw,58px);font-weight:400;line-height:1.1;color:var(--char)}
+.h2 em{font-style:italic;color:var(--warm)}
+.body-text{font-size:14px;color:var(--muted);line-height:1.9}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-26px);transition:opacity .75s ease,transform .75s ease}
+.reveal-left.visible{opacity:1;transform:none}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+
+/* ══ NAV ══ */
+.nav-outer{position:relative;z-index:600;padding:10px 32px;margin-bottom:0;}
+nav{
+  background:rgba(240,232,218,0.96);backdrop-filter:blur(14px);
+  border:1px solid rgba(180,162,138,.5);border-radius:6px;
+  height:52px;padding:0 24px;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  box-shadow:0 2px 24px rgba(0,0,0,.1);transition:box-shadow .3s;
+}
+nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.18)}
+.nav-left{display:flex;align-items:center;gap:34px}
+.nav-center{display:flex;align-items:center;justify-content:center}
+.nav-right{display:flex;align-items:center;justify-content:flex-end;gap:20px}
+.nav-a{font-family:'Cormorant Garamond',serif;font-size:15.5px;color:var(--char);font-weight:400;transition:color .2s;white-space:nowrap;}
+.nav-a:hover,.nav-a.active{color:var(--warm)}
+.nav-logo-img{height:32px;width:auto;object-fit:contain;display:block;}
+.nav-logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;letter-spacing:3px;color:var(--char);text-transform:uppercase;}
+.nav-badge{background:var(--warm);color:#fff;font-size:8px;letter-spacing:.8px;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:20px;margin-right:4px;}
+.nav-uhnw{display:flex;align-items:center;gap:5px;font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--char);transition:color .2s;white-space:nowrap;}
+.nav-uhnw:hover{color:var(--warm)}
+.nav-contact{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--char);transition:color .2s;}
+.nav-contact:hover{color:var(--warm)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.nav-hamburger span{width:22px;height:1.5px;background:var(--char)}
+
+/* ══ PAGE HERO ══ */
+.page-hero{
+  background:var(--char);position:relative;overflow:hidden;
+  padding:80px 7% 72px;min-height:320px;display:flex;align-items:center;
+}
+.page-hero::before{
+  content:'';position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1551434678-e076c223a692?w=1400&q=80') center/cover;
+  opacity:0.18;
+}
+.page-hero::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(28,37,64,0.92) 0%,rgba(28,37,64,0.75) 60%,rgba(140,99,66,0.45) 100%);
+}
+.page-hero-content{position:relative;z-index:2;max-width:640px;}
+.page-hero-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:22px;
+  opacity:0;transform:translateY(12px);animation:fadeUp 0.7s 0.15s cubic-bezier(0.22,1,0.36,1) forwards;}
+.page-hero-line{flex:0 0 40px;height:1px;background:rgba(196,154,90,0.6);}
+.page-hero-eyebrow-text{font-size:10px;letter-spacing:3.5px;text-transform:uppercase;font-weight:600;color:var(--gold2);}
+.page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,76px);font-weight:300;color:#fff;line-height:1.05;letter-spacing:0.02em;
+  opacity:0;transform:translateY(16px);animation:fadeUp 0.8s 0.28s cubic-bezier(0.22,1,0.36,1) forwards;}
+.page-hero h1 em{font-style:italic;color:var(--gold2);}
+.page-hero-sub{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.8;margin-top:20px;max-width:500px;
+  opacity:0;transform:translateY(12px);animation:fadeUp 0.7s 0.42s cubic-bezier(0.22,1,0.36,1) forwards;}
+
+/* ══ MAIN CONTENT GRID ══ */
+.main-section{background:#fff;padding:80px 7%;}
+.main-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:72px;align-items:start;max-width:1200px;margin:0 auto;}
+
+/* ══ LEFT PANEL — info ══ */
+.info-panel{}
+.info-panel-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,46px);font-weight:400;line-height:1.15;color:var(--char);margin-bottom:18px;}
+.info-panel-title em{font-style:italic;color:var(--warm);}
+.info-panel p{font-size:14px;color:var(--muted);line-height:1.9;margin-bottom:28px;}
+
+/* Sessions list */
+.sessions-list{display:flex;flex-direction:column;gap:2px;background:var(--border2);margin:32px 0;}
+.session-item{background:#fff;padding:22px 24px;display:flex;align-items:center;gap:18px;cursor:pointer;transition:background .2s;border-left:3px solid transparent;}
+.session-item.active,.session-item:hover{background:var(--cream2);border-left-color:var(--warm);}
+.session-icon{width:48px;height:48px;background:var(--cream2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;transition:background .2s;}
+.session-item.active .session-icon,.session-item:hover .session-icon{background:var(--warm);color:#fff;}
+.session-text-block{}
+.session-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--char);margin-bottom:3px;}
+.session-desc{font-size:12px;color:var(--muted2);line-height:1.6;}
+
+/* Trust badges */
+.trust-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border2);margin-top:32px;}
+.trust-item{background:var(--cream3);padding:20px 16px;text-align:center;}
+.trust-num{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--char);}
+.trust-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--warm);font-weight:600;margin-top:4px;}
+
+/* ══ RIGHT PANEL — form ══ */
+.form-panel{background:var(--char);padding:48px 44px;}
+.form-panel-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:#fff;margin-bottom:6px;}
+.form-panel-sub{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:32px;line-height:1.7;}
+
+.form-group{margin-bottom:16px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:600;display:block;margin-bottom:6px;}
+.form-inp,.form-textarea,.form-select{
+  width:100%;padding:12px 14px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  color:#fff;font-family:'Jost',sans-serif;font-size:13px;outline:none;
+  transition:border-color .2s;appearance:none;border-radius:2px;
+}
+.form-inp::placeholder,.form-textarea::placeholder{color:rgba(255,255,255,.25);}
+.form-inp:focus,.form-textarea:focus,.form-select:focus{border-color:var(--gold2);}
+.form-select option{background:var(--char);color:#fff;}
+.form-textarea{min-height:100px;resize:vertical;}
+
+/* Session type radio */
+.session-radio-group{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;}
+.session-radio{position:relative;}
+.session-radio input{position:absolute;opacity:0;width:0;height:0;}
+.session-radio label{
+  display:flex;align-items:center;gap:8px;
+  padding:12px 14px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  cursor:pointer;font-size:12px;color:rgba(255,255,255,.65);
+  transition:all .2s;border-radius:2px;
+}
+.session-radio input:checked + label{background:rgba(196,154,90,.15);border-color:var(--gold2);color:#fff;}
+.session-radio label span{font-size:16px;}
+
+.form-submit{
+  width:100%;padding:16px;
+  background:var(--warm);color:#fff;border:none;cursor:pointer;
+  font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;
+  margin-top:8px;transition:background .2s;border-radius:2px;
+}
+.form-submit:hover{background:var(--warm2);}
+
+.form-success{
+  display:none;text-align:center;padding:40px 20px;
+}
+.form-success.show{display:block;}
+.form-success-icon{font-size:48px;margin-bottom:16px;}
+.form-success h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:#fff;margin-bottom:12px;}
+.form-success p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;}
+
+.form-note{font-size:10px;color:rgba(255,255,255,.25);margin-top:14px;line-height:1.7;font-style:italic;}
+
+/* ══ PROCESS SECTION ══ */
+.process-section{background:var(--blush);padding:88px 7%;}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:1200px;margin:48px auto 0;position:relative;}
+.process-steps::before{
+  content:'';position:absolute;top:28px;left:calc(12.5% + 28px);right:calc(12.5% + 28px);
+  height:1px;background:linear-gradient(90deg,var(--border),var(--warm2),var(--border));
+  z-index:0;
+}
+.process-step{text-align:center;padding:0 20px;position:relative;z-index:1;}
+.process-num{width:56px;height:56px;border-radius:50%;background:#fff;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--warm);transition:all .3s;}
+.process-step:hover .process-num{background:var(--warm);border-color:var(--warm);color:#fff;}
+.process-step-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--char);margin-bottom:10px;}
+.process-step-text{font-size:12.5px;color:var(--muted);line-height:1.75;}
+
+/* ══ TOPICS SECTION ══ */
+.topics-section{background:#fff;padding:88px 7%;}
+.topics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border2);max-width:1200px;margin:40px auto 0;}
+.topic-card{background:#fff;padding:36px 28px;text-align:center;cursor:pointer;transition:box-shadow .25s,background .25s;position:relative;overflow:hidden;}
+.topic-card:hover{box-shadow:0 8px 40px rgba(0,0,0,.08);}
+.topic-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--gold);transform:scaleX(0);transition:transform .35s;transform-origin:left;}
+.topic-card:hover::after{transform:scaleX(1);}
+.topic-icon-wrap{width:72px;height:72px;border-radius:50%;background:var(--cream2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px;transition:all .3s;}
+.topic-card:hover .topic-icon-wrap{background:var(--warm);color:#fff;}
+.topic-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--char);margin-bottom:10px;}
+.topic-text{font-size:12.5px;color:var(--muted);line-height:1.8;}
+
+/* ══ FOOTER ══ */
+footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--border)}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--char);margin-bottom:8px;letter-spacing:1px}
+.footer-brand span{font-style:italic;color:var(--warm)}
+.footer-tagline{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted2);margin-bottom:14px}
+.footer-about{font-size:12.5px;color:var(--muted2);line-height:1.9;max-width:240px}
+.footer-badges{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.footer-badge{padding:4px 10px;border:1px solid var(--border2);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);font-weight:600}
+.footer-socials{display:flex;gap:8px;margin-top:16px}
+.footer-soc{width:34px;height:34px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--muted2);transition:border-color .2s,color .2s}
+.footer-soc:hover{border-color:var(--warm);color:var(--warm)}
+.footer-col h4{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted2);margin-bottom:18px;font-weight:600}
+.footer-col a{display:block;color:var(--muted2);font-size:12.5px;margin-bottom:10px;transition:all .2s}
+.footer-col a:hover{color:var(--warm);padding-left:4px}
+.footer-rule{height:1px;background:var(--border);margin-bottom:22px}
+.footer-legal{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;margin-bottom:28px;font-size:10px;color:var(--muted2);line-height:1.9}
+.footer-legal-head{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted2);flex-wrap:wrap;gap:16px}
+.footer-bottom a{color:var(--muted2);margin-left:16px;transition:color .2s}
+.footer-bottom a:hover{color:var(--warm)}
+
+/* ══ FLOATING ══ */
+.sf{position:fixed;left:16px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;z-index:200}
+.sf a{width:32px;height:32px;border:1px solid var(--border);background:rgba(245,237,224,.9);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);box-shadow:0 2px 10px rgba(0,0,0,.06);transition:border-color .2s,color .2s}
+.sf a:hover{border-color:var(--warm);color:var(--warm)}
+.wa-btn{position:fixed;bottom:22px;left:16px;width:44px;height:44px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;z-index:200;box-shadow:0 4px 16px rgba(37,211,102,.3);transition:transform .2s}
+.wa-btn:hover{transform:scale(1.08)}
+
+/* ══ MOBILE MENU ══ */
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--white);z-index:700;flex-direction:column;padding:24px 5%}
+.mobile-menu.open{display:flex}
+.mobile-menu-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
+.mobile-menu a{font-size:28px;font-family:'Cormorant Garamond',serif;font-weight:400;color:var(--char);padding:16px 0;border-bottom:1px solid var(--border);display:block}
+.mobile-close{font-size:22px;cursor:pointer;color:var(--muted)}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1100px){.footer-top{grid-template-columns:1fr 1fr}.topics-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){
+  .main-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:repeat(2,1fr)}
+  .process-steps::before{display:none}
+  .topics-grid{grid-template-columns:repeat(2,1fr)}
+  .trust-strip{grid-template-columns:1fr}
+}
+@media(max-width:768px){.nav-left,.nav-right .nav-uhnw,.nav-right .nav-contact{display:none}.nav-hamburger{display:flex}.sf,.wa-btn{display:none}}
+@media(max-width:480px){.form-row,.session-radio-group,.topics-grid,.footer-top,.footer-legal,.process-steps{grid-template-columns:1fr}.form-panel{padding:32px 24px}}
+</style>
+</head>
+<body>
+
+<!-- FLOATING SOCIAL -->
+<div class="sf">
+  <a href="https://www.instagram.com/epm_wealth/" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.youtube.com/@epmwealth101" target="_blank"><i class="fab fa-youtube"></i></a>
+  <a href="https://www.linkedin.com/company/epm-wealth/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+  <a href="https://www.facebook.com/epmwealthadvisor" target="_blank"><i class="fab fa-facebook-f"></i></a>
+</div>
+<a href="https://wa.me/919999939333" class="wa-btn" target="_blank" title="WhatsApp">💬</a>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-head">
+    <span style="font-family:'Cormorant Garamond',serif;font-size:20px;letter-spacing:2px;text-transform:uppercase;color:var(--char)">EPM Wealth</span>
+    <span class="mobile-close" onclick="closeMobileMenu()"><i class="fa fa-times"></i></span>
+  </div>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="seminar-webinar.html">Seminar &amp; Webinar</a>
+  <a href="book-free-session.html" style="color:var(--warm)">Book Free Session</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
+<!-- ══ NAV ══ -->
+<div class="nav-outer" id="navOuter">
+  <nav id="mainNav">
+ 
+    <!-- LEFT -->
+    <div class="nav-left">
+ 
+      <!-- About — no dropdown -->
+      <div class="nav-item">
+        <b><a href="index.html" class="nav-a">Home</a></b>
+      </div>
+ 
+     <!-- About — no dropdown -->
+      <div class="nav-item">
+        <b><a href="About.html" class="nav-a">About</a></b>
+      </div>
+ 
+      <!-- Wealth Management ▾ -->
+      <div class="nav-item">
+        <b><a href="#" class="nav-a">
+          Solution
+          <svg class="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a></b>
+        <div class="nav-dropdown">
+          <a href="wealth-creation.html">Wealth Creation</a>
+          <a href="portfolio-consultation.html">Portfolio Consultation</a>
+          <a href="wealth-protection.html">Wealth Protection</a>
+          <a href="other-services.html">Other Services</a>
+        </div>
+      </div>
+ 
+      <!-- Asset Management ▾ -->
+      
+   <div class="nav-item">
+        <b><a href="#" class="nav-a">
+          Financial Literacy
+          <svg class="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a></b>
+        <div class="nav-dropdown">
+          <a href="seminar-webinar.html">Seminar & Webinar</a>
+         
+          <a href="book-free-session.html">Book A Free Session</a>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- CENTER -->
+    <div class="nav-center">
+      <a href="#home" class="nav-logo-wrap">
+        <img class="nav-logo-img" src="logo-emp.png" alt="EPM Wealth"
+             onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';"/>
+        <span id="logoFallback" style="display:none;align-items:center;gap:8px;">
+          <svg viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="30">
+            <path d="M4 8 L12 32 L24 16 L36 32 L44 8" stroke="#1c2540" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="4" y1="8" x2="44" y2="8" stroke="#1c2540" stroke-width="1.2" opacity="0.4"/>
+          </svg>
+          <span class="nav-logo-text">EPM Wealth</span>
+        </span>
+      </a>
+    </div>
+ 
+    <!-- RIGHT -->
+    <div class="nav-right">
+      <a href="#vault" class="nav-uhnw">
+        <span class="nav-badge"><b>New</b></span>
+        <b>UHNW Event Calendar 2026</b>
+      </a>
+      <a href="#contact" class="nav-contact"><b>Contact</b></a>
+      <div class="nav-hamburger" id="hamburger" onclick="EPM.openMobileMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+ 
+  </nav>
+</div>
+
+<!-- ══ PAGE HERO ══ -->
+<section class="page-hero">
+  <div class="page-hero-content">
+    <div class="page-hero-eyebrow">
+      <span class="page-hero-line"></span>
+      <span class="page-hero-eyebrow-text">Providing Financial Literacy &amp; Empowerment</span>
+    </div>
+    <h1>Book a <em>Free Session</em></h1>
+    <p class="page-hero-sub">So everyone can access a better financial future. Choose your session type and get started — zero cost, complete value.</p>
+  </div>
+</section>
+
+<!-- ══ MAIN BOOKING SECTION ══ -->
+<section class="main-section">
+  <div class="main-grid">
+
+    <!-- LEFT: Info -->
+    <div class="info-panel reveal-left">
+      <span class="label">Start Your Journey</span>
+      <h2 class="info-panel-title">Choose the <em>session</em> that's right for you</h2>
+      <p>Whether you're an individual looking to take control of your finances, or an organisation seeking to empower your workforce — we have a session designed for you.</p>
+
+      <div class="sessions-list">
+        <div class="session-item active" onclick="selectSession(this, 'Financial Basics')">
+          <div class="session-icon">🐷</div>
+          <div class="session-text-block">
+            <div class="session-title">Financial Basics</div>
+            <div class="session-desc">Budgeting, savings instruments, emergency funds, and investment fundamentals</div>
+          </div>
+        </div>
+        <div class="session-item" onclick="selectSession(this, 'Financial Advance')">
+          <div class="session-icon">💰</div>
+          <div class="session-text-block">
+            <div class="session-title">Financial Advance</div>
+            <div class="session-desc">Mutual funds, equity, debt instruments, and building a diversified portfolio</div>
+          </div>
+        </div>
+        <div class="session-item" onclick="selectSession(this, 'Portfolio Building')">
+          <div class="session-icon">📈</div>
+          <div class="session-text-block">
+            <div class="session-title">Portfolio Building</div>
+            <div class="session-desc">Asset allocation, risk profiling, rebalancing, and long-term wealth creation</div>
+          </div>
+        </div>
+        <div class="session-item" onclick="selectSession(this, 'Futures And Options')">
+          <div class="session-icon">⚡</div>
+          <div class="session-text-block">
+            <div class="session-title">Futures &amp; Options</div>
+            <div class="session-desc">Derivatives, hedging, F&amp;O strategies, and responsible participation</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="trust-strip">
+        <div class="trust-item">
+          <div class="trust-num">150+</div>
+          <div class="trust-lbl">Sessions Conducted</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">50K+</div>
+          <div class="trust-lbl">Participants</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">Free</div>
+          <div class="trust-lbl">Zero Cost</div>
+        </div>
+      </div>
+
+      <div style="margin-top:32px;padding:24px;background:var(--cream2);border:1px solid var(--border);border-left:3px solid var(--warm);">
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--warm);font-weight:600;margin-bottom:8px;">Corporate Booking</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.75;">Want to book a dedicated session for your entire organisation? We'll come to your office or run a company-wide webinar — completely free of charge.</p>
+        <a href="mailto:info@epmwealth.com" style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--warm);font-weight:600;border-bottom:1px solid var(--warm);padding-bottom:2px;">Email Us <i class="fa fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="form-panel reveal">
+      <div id="formContent">
+        <div class="form-panel-title">Book Your <em style="font-style:italic;color:var(--gold2);">Free Session</em></div>
+        <p class="form-panel-sub">Fill in your details below and our team will confirm your session within 24 hours.</p>
+
+        <form id="bookingForm" onsubmit="submitBooking(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First Name *</label>
+              <input class="form-inp" type="text" placeholder="Your first name" required/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name *</label>
+              <input class="form-inp" type="text" placeholder="Your last name" required/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email Address *</label>
+            <input class="form-inp" type="email" placeholder="you@example.com" required/>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Phone Number *</label>
+            <input class="form-inp" type="tel" placeholder="+91 XXXXX XXXXX" required/>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">City *</label>
+              <input class="form-inp" type="text" placeholder="Your city" required/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Organisation</label>
+              <input class="form-inp" type="text" placeholder="Company name (optional)"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Session Topic *</label>
+            <select class="form-select" id="sessionTopic" required>
+              <option value="" disabled selected>Select a session topic</option>
+              <option value="Financial Basics">Financial Basics</option>
+              <option value="Financial Advance">Financial Advance</option>
+              <option value="Portfolio Building">Portfolio Building</option>
+              <option value="Futures And Options">Futures &amp; Options</option>
+              <option value="Custom / Corporate">Custom / Corporate Programme</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Preferred Format *</label>
+            <div class="session-radio-group">
+              <div class="session-radio">
+                <input type="radio" name="format" id="fmtOnline" value="Online Webinar" checked/>
+                <label for="fmtOnline"><span>🌐</span> Online Webinar</label>
+              </div>
+              <div class="session-radio">
+                <input type="radio" name="format" id="fmtInPerson" value="In-Person Seminar"/>
+                <label for="fmtInPerson"><span>🏢</span> In-Person Seminar</label>
+              </div>
+              <div class="session-radio">
+                <input type="radio" name="format" id="fmtCorporate" value="Corporate Programme"/>
+                <label for="fmtCorporate"><span>👥</span> Corporate Programme</label>
+              </div>
+              <div class="session-radio">
+                <input type="radio" name="format" id="fmtEither" value="Either"/>
+                <label for="fmtEither"><span>✅</span> Either / Flexible</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Preferred Date / Time</label>
+            <input class="form-inp" type="text" placeholder="e.g. Any weekday morning, April 2026"/>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Additional Notes</label>
+            <textarea class="form-textarea" placeholder="Tell us about your team size, specific topics, or any questions..."></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">Start Your Journey →</button>
+          <p class="form-note">* This is a completely free service. No hidden charges. By submitting you agree to be contacted by an EPM Wealth advisor.</p>
+        </form>
+      </div>
+
+      <!-- Success state -->
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-icon">✅</div>
+        <h3>You're on your way!</h3>
+        <p>Thank you for booking. Our team will reach out within <strong style="color:var(--gold2)">24 hours</strong> to confirm your session details. In the meantime, explore our resources in the Vault.</p>
+        <a href="seminar-webinar.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold2);border-bottom:1px solid rgba(196,154,90,.4);padding-bottom:2px;">View Upcoming Events <i class="fa fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="process-section">
+  <div style="text-align:center;max-width:640px;margin:0 auto;" class="reveal">
+    <span class="label" style="display:block;text-align:center;">Simple Process</span>
+    <h2 class="h2" style="text-align:center;">How it <em>works</em></h2>
+  </div>
+  <div class="process-steps reveal">
+    <div class="process-step">
+      <div class="process-num">1</div>
+      <div class="process-step-title">Fill the Form</div>
+      <p class="process-step-text">Submit your details, preferred topic, and format using the booking form above.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-num">2</div>
+      <div class="process-step-title">We Confirm</div>
+      <p class="process-step-text">Our team reviews your request and confirms session details within 24 hours.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-num">3</div>
+      <div class="process-step-title">Attend Session</div>
+      <p class="process-step-text">Join your online webinar or in-person seminar at your confirmed date and time.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-num">4</div>
+      <div class="process-step-title">Start Growing</div>
+      <p class="process-step-text">Apply your new knowledge with our post-session resources and expert follow-up support.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHAT YOU LEARN ══ -->
+<section class="topics-section">
+  <div style="max-width:1200px;margin:0 auto;" class="reveal">
+    <span class="label">Session Content</span>
+    <h2 class="h2" style="margin-bottom:8px;">What you'll <em>learn</em></h2>
+    <p class="body-text" style="max-width:520px;margin-top:12px;">Each session is packed with practical, actionable financial knowledge delivered by SEBI-registered advisors.</p>
+  </div>
+  <div class="topics-grid reveal">
+    <div class="topic-card">
+      <div class="topic-icon-wrap">🐷</div>
+      <div class="topic-title">Financial Basics</div>
+      <p class="topic-text">Budgeting, saving habits, emergency funds, insurance essentials, and understanding the fundamental instruments of wealth.</p>
+    </div>
+    <div class="topic-card">
+      <div class="topic-icon-wrap">💰</div>
+      <div class="topic-title">Financial Advance</div>
+      <p class="topic-text">Mutual funds, direct equity investing, fixed income instruments, and constructing a diversified investment strategy.</p>
+    </div>
+    <div class="topic-card">
+      <div class="topic-icon-wrap">📊</div>
+      <div class="topic-title">Portfolio Building</div>
+      <p class="topic-text">Asset allocation frameworks, risk profiling, portfolio rebalancing, and systematic approaches to long-term wealth creation.</p>
+    </div>
+    <div class="topic-card">
+      <div class="topic-icon-wrap">⚡</div>
+      <div class="topic-title">Futures &amp; Options</div>
+      <p class="topic-text">Understanding derivatives markets, hedging strategies, options pricing, and responsible F&amp;O participation for sophisticated investors.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <img class="nav-logo-img" src="logo-emp.png" alt="EPM Wealth" style="height:32px;width:auto;"/>
+      </div>
+      <div class="footer-brand">EPM <span>Wealth</span></div>
+      <div class="footer-tagline">Insight with integrity</div>
+      <p class="footer-about">AMFI &amp; BSE registered wealth management firm helping India's most prominent families since 2011.</p>
+      <div class="footer-badges"><div class="footer-badge">AMFI 100255</div><div class="footer-badge">BSE 1197501</div><div class="footer-badge">SEBI Reg.</div></div>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/epm_wealth/" class="footer-soc" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@epmwealth101" class="footer-soc" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.linkedin.com/company/epm-wealth/" class="footer-soc" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.facebook.com/epmwealthadvisor" class="footer-soc" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/919999939333" class="footer-soc" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>About</h4><a href="about.html">Overview</a><a href="about.html">Leadership</a><a href="index.html#contact">ESG</a></div>
+    <div class="footer-col"><h4>Wealth Management</h4><a href="index.html#wealth">Family Business</a><a href="index.html#wealth">Professionals</a><a href="index.html#wealth">Founders</a><a href="index.html#wealth">Women</a></div>
+    <div class="footer-col"><h4>Financial Literacy</h4><a href="seminar-webinar.html">Seminars &amp; Webinars</a><a href="book-free-session.html">Book Free Session</a><a href="seminar-webinar.html">Upcoming Events</a></div>
+    <div class="footer-col"><h4>Navigate</h4><a href="index.html#vault">Vault</a><a href="index.html#careers">Careers</a><a href="index.html#contact">Contact</a><a href="tel:+911204264717">+91 0120 426 4717</a><a href="mailto:info@epmwealth.com">info@epmwealth.com</a></div>
+  </div>
+  <div class="footer-rule"></div>
+  <div class="footer-legal">
+    <div><div class="footer-legal-head">EPM Financial &amp; Investment Advisors Pvt Ltd</div>SEBI Registration No: INA000001811<br>CIN No: U74900MH2012PTC234921<br>PMS Registration No: INP000007818</div>
+    <div><div class="footer-legal-head">EPM Fund Managers Pvt Ltd</div>CIN No: U65990MH2020PTC340389<br>FOF I — IN/AIF2/21-22/0876 (Category 2 AIF)</div>
+    <div><div class="footer-legal-head">Status of Complaints</div>Beginning of the month: Nil<br>Received this month: Nil<br>Resolved during the month: Nil<br>Pending at end of month: Nil</div>
+  </div>
+  <div class="footer-rule"></div>
+  <div class="footer-bottom">
+    <span>© 2026 EPM Wealth. All Rights Reserved. AMFI Reg. 100255 | BSE Reg. 1197501</span>
+    <div><a href="#">Privacy Policy</a><a href="#">Disclaimer</a><a href="#">Regulatory Information</a></div>
+  </div>
+</footer>
+
+<script>
+/* NAV */
+var nav = document.getElementById('mainNav');
+var navOuter = document.getElementById('navOuter');
+window.addEventListener('scroll', function() {
+  var scrolled = window.scrollY > 60;
+  nav.classList.toggle('scrolled', scrolled);
+  navOuter.style.cssText = scrolled
+    ? 'position:fixed;top:0;left:0;right:0;z-index:600;padding:8px 28px;margin-bottom:0'
+    : 'position:relative;z-index:600;padding:10px 32px;margin-bottom:0';
+}, { passive: true });
+
+/* Scroll reveal */
+var io = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal, .reveal-left').forEach(function(el) { io.observe(el); });
+
+/* Mobile menu */
+function openMobileMenu()  { document.getElementById('mobileMenu').classList.add('open');    document.body.style.overflow='hidden'; }
+function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); document.body.style.overflow=''; }
+
+/* Session selector */
+function selectSession(el, topicName) {
+  document.querySelectorAll('.session-item').forEach(function(s) { s.classList.remove('active'); });
+  el.classList.add('active');
+  var sel = document.getElementById('sessionTopic');
+  if (sel) {
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value === topicName) { sel.selectedIndex = i; break; }
+    }
+  }
+}
+
+/* Form submission */
+function submitBooking(e) {
+  e.preventDefault();
+  document.getElementById('formContent').style.display = 'none';
+  document.getElementById('formSuccess').classList.add('show');
+  window.scrollTo({ top: document.querySelector('.main-section').offsetTop - 80, behavior: 'smooth' });
+}
+</script>
+<script src="shared.js"></script>
+
+</body>
+</html>

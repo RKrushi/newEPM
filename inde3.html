@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AURUM — Private Wealth Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07060a; --ink:#f2ead8; --ink2:#c8bc9e; --muted:#4a4438;
+  --gold:#c9a84c; --gold2:#e8d5a3; --gold3:#7a5c1e;
+  --platinum:#b8bcc4; --emerald2:#2ec47a; --sapphire2:#4d9de0; --ruby2:#e05c7a;
+  --serif:'Cormorant Garamond',serif; --display:'Cinzel',serif; --mono:'DM Mono',monospace;
+}
+html{scroll-behavior:auto}
+body{background:#07060a;color:var(--ink);font-family:var(--serif);overflow-x:hidden;cursor:none;}
+#cur{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;}
+#cur-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(201,168,76,0.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .15s ease-out;}
+#prog{position:fixed;top:0;left:0;height:1px;background:linear-gradient(90deg,var(--gold3),var(--gold),var(--gold2));z-index:1000;width:0%;box-shadow:0 0 8px rgba(201,168,76,0.6);}
+#bg-canvas{position:fixed;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;}
+#morph-stage{position:fixed;inset:0;z-index:2;pointer-events:none;}
+#morph-canvas{display:block;width:100vw;height:100vh;}
+#grain{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:0.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:2rem 4rem;background:linear-gradient(180deg,rgba(7,6,10,0.85)0%,transparent 100%);}
+.nav-logo{font-family:var(--display);font-size:1.3rem;letter-spacing:0.35em;color:var(--gold);font-weight:600;}
+.nav-logo sub{font-family:var(--mono);font-size:0.45rem;letter-spacing:0.2em;color:rgba(242,234,216,0.4);display:block;margin-top:0.2rem;text-transform:uppercase;}
+.nav-links{display:flex;gap:3rem;list-style:none;}
+.nav-links a{font-family:var(--display);font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{font-family:var(--display);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,0.3);background:transparent;padding:.65rem 1.8rem;cursor:pointer;transition:background .3s,border-color .3s;}
+.nav-cta:hover{background:rgba(201,168,76,0.08);border-color:var(--gold);}
+#frame-label{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;text-align:center;pointer-events:none;width:88vw;}
+#frame-title{font-family:var(--display);font-size:clamp(2.5rem,6vw,5.5rem);font-weight:400;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold2);opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;text-shadow:0 0 60px rgba(201,168,76,0.25);}
+#frame-divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1rem auto;opacity:0;transition:opacity .6s .15s ease;}
+#frame-sub{font-family:var(--mono);font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,168,76,0.4);opacity:0;transition:opacity .6s .2s ease;}
+#frame-label.visible #frame-title,#frame-label.visible #frame-divider,#frame-label.visible #frame-sub{opacity:1;transform:translateY(0);}
+#frame-dots{position:fixed;right:3rem;top:50%;transform:translateY(-50%);z-index:500;display:flex;flex-direction:column;gap:1.2rem;align-items:center;}
+.fdot-wrap{display:flex;align-items:center;gap:.8rem;cursor:pointer;}
+.fdot-label{font-family:var(--mono);font-size:.55rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;opacity:0;transform:translateX(8px);transition:opacity .3s,transform .3s;text-align:right;}
+.fdot-wrap:hover .fdot-label,.fdot-wrap.active .fdot-label{opacity:1;transform:translateX(0);}
+.fdot{width:5px;height:5px;border-radius:50%;background:var(--muted);transition:background .4s,transform .4s,height .4s;}
+.fdot-wrap.active .fdot{background:var(--gold);transform:scale(1.4);height:16px;border-radius:3px;}
+#scroll-driver{position:relative;height:600vh;z-index:4;pointer-events:none;}
+#panels-wrap{position:relative;z-index:5;}
+.scroll-panel{min-height:100vh;display:flex;align-items:center;position:relative;padding:0 8vw;}
+.panel-text{max-width:440px;opacity:0;transform:translateX(-24px);transition:opacity .8s ease,transform .8s ease;}
+.panel-text.right{margin-left:auto;transform:translateX(24px);}
+.panel-text.visible{opacity:1;transform:translateX(0);}
+.pt-roman{font-family:var(--display);font-size:.58rem;letter-spacing:.35em;color:var(--gold3);text-transform:uppercase;margin-bottom:1.4rem;display:flex;align-items:center;gap:1rem;}
+.pt-roman::before{content:'';display:block;width:28px;height:1px;background:var(--gold3);}
+.pt-heading{font-family:var(--display);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:400;letter-spacing:.08em;line-height:1.15;margin-bottom:1.4rem;color:var(--ink);}
+.pt-heading em{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--gold2);display:block;font-size:1.15em;letter-spacing:.02em;}
+.pt-body{font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--ink2);line-height:2;max-width:360px;}
+.pt-stat{margin-top:2rem;display:flex;gap:2rem;}
+.stat-num{font-family:var(--display);font-size:1.6rem;letter-spacing:.05em;color:var(--gold);display:block;}
+.stat-label{font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;}
+.pt-badge{display:inline-flex;align-items:center;gap:.6rem;margin-top:2rem;font-family:var(--display);font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid;}
+.badge-gold{border-color:rgba(201,168,76,.3);color:var(--gold);}
+.badge-em{border-color:rgba(46,196,122,.25);color:var(--emerald2);}
+.badge-sa{border-color:rgba(77,157,224,.25);color:var(--sapphire2);}
+.badge-pl{border-color:rgba(184,188,196,.2);color:var(--platinum);}
+.badge-ru{border-color:rgba(224,92,122,.25);color:var(--ruby2);}
+.ornament{text-align:center;padding:3rem 0;font-family:var(--display);letter-spacing:.5em;color:var(--gold3);font-size:.6rem;position:relative;z-index:5;}
+#services{position:relative;z-index:5;padding:8rem 4rem;background:linear-gradient(180deg,transparent,rgba(7,6,10,.97) 8%,rgba(7,6,10,.97) 92%,transparent);}
+.sec-eyebrow{font-family:var(--display);font-size:.58rem;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-bottom:.8rem;display:flex;align-items:center;gap:1rem;}
+.sec-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--gold);}
+#services h2{font-family:var(--display);font-size:clamp(2rem,4vw,3.5rem);font-weight:400;letter-spacing:.12em;margin-bottom:.5rem;color:var(--ink);}
+#services h2 em{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--gold2);}
+.sec-sub{font-family:var(--serif);font-size:1rem;color:var(--muted);font-weight:300;margin-bottom:4rem;max-width:520px;line-height:1.9;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.06);}
+.svc-card{background:rgba(10,8,14,0.97);padding:3rem 2.4rem;position:relative;overflow:hidden;transition:background .4s;}
+.svc-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transform-origin:center;transition:transform .5s ease;}
+.svc-card:hover{background:rgba(16,13,20,0.99);}.svc-card:hover::before{transform:scaleX(1);}
+.svc-num{font-family:var(--display);font-size:.5rem;letter-spacing:.3em;color:var(--gold3);margin-bottom:2rem;display:flex;align-items:center;gap:.8rem;}
+.svc-num::before{content:'';display:block;width:20px;height:1px;background:var(--gold3);}
+.svc-icon{font-size:1.6rem;margin-bottom:1.2rem;}
+.svc-title{font-family:var(--display);font-size:1rem;letter-spacing:.12em;font-weight:600;margin-bottom:1rem;color:var(--ink);}
+.svc-desc{font-family:var(--serif);font-size:.95rem;color:var(--muted);line-height:1.9;font-weight:300;}
+.svc-badge{display:inline-block;margin-top:1.8rem;font-family:var(--mono);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);padding:.3rem .8rem;border:1px solid rgba(201,168,76,.2);}
+#numbers{position:relative;z-index:5;padding:5rem 4rem;background:rgba(7,6,10,.97);border-top:1px solid rgba(201,168,76,.06);border-bottom:1px solid rgba(201,168,76,.06);display:grid;grid-template-columns:repeat(4,1fr);gap:1px;}
+.num-item{text-align:center;padding:2.5rem 1rem;}
+.num-item span{font-family:var(--display);font-size:clamp(2rem,3.5vw,3rem);letter-spacing:.06em;color:var(--gold);display:block;margin-bottom:.5rem;}
+.num-item p{font-family:var(--mono);font-size:.6rem;letter-spacing:.25em;color:var(--muted);text-transform:uppercase;}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform .9s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}.rd4{transition-delay:.4s}.rd5{transition-delay:.5s}.rd6{transition-delay:.6s}
+#final{position:relative;z-index:5;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 2rem;background:linear-gradient(180deg,rgba(7,6,10,.97),rgba(7,6,10,0.88)60%);}
+#final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(201,168,76,.06)0%,transparent 65%);}
+.final-ornament{font-family:var(--display);font-size:clamp(10rem,22vw,20rem);color:rgba(201,168,76,.03);position:absolute;letter-spacing:-.05em;user-select:none;line-height:1;top:50%;transform:translateY(-50%);}
+#final h2{position:relative;font-family:var(--display);font-size:clamp(2rem,4.5vw,4rem);font-weight:400;letter-spacing:.18em;text-transform:uppercase;line-height:1.3;margin-bottom:.8rem;color:var(--ink);}
+#final h2 em{font-family:var(--serif);font-style:italic;font-weight:300;display:block;font-size:1.3em;letter-spacing:.04em;color:var(--gold2);}
+#final .final-line{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1.5rem auto;position:relative;}
+#final p{position:relative;font-family:var(--serif);font-size:1.05rem;color:var(--muted);max-width:460px;line-height:2;font-weight:300;margin-bottom:3.5rem;}
+.btn-row{position:relative;display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+.btn-gold{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:1.1rem 3.2rem;font-family:var(--display);font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;transition:background .3s,color .3s,box-shadow .3s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));}
+.btn-gold:hover{background:var(--gold);color:#07060a;box-shadow:0 12px 48px rgba(201,168,76,.25);}
+.btn-outline{background:transparent;border:1px solid rgba(201,168,76,.15);color:var(--ink2);padding:1.1rem 2.8rem;font-family:var(--display);font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;transition:border-color .3s;}
+.btn-outline:hover{border-color:rgba(201,168,76,.4);}
+footer{position:relative;z-index:5;background:rgba(4,3,7,0.99);padding:3rem 4rem;border-top:1px solid rgba(201,168,76,.08);}
+.foot-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2.5rem;}
+.foot-logo{font-family:var(--display);font-size:1.1rem;letter-spacing:.4em;color:var(--gold);}
+.foot-logo p{font-family:var(--mono);font-size:.55rem;letter-spacing:.2em;color:var(--muted);margin-top:.4rem;}
+.foot-links{display:flex;gap:3rem;}
+.foot-col h4{font-family:var(--display);font-size:.58rem;letter-spacing:.25em;color:var(--gold);margin-bottom:1.2rem;}
+.foot-col a{display:block;font-family:var(--serif);font-size:.88rem;color:var(--muted);text-decoration:none;margin-bottom:.6rem;transition:color .3s;font-weight:300;}
+.foot-col a:hover{color:var(--ink2);}
+.foot-bottom{border-top:1px solid rgba(201,168,76,.05);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;}
+.foot-bottom p{font-family:var(--mono);font-size:.58rem;letter-spacing:.15em;color:var(--muted);}
+#scroll-indicator{position:fixed;bottom:2.5rem;left:4rem;z-index:500;display:flex;align-items:center;gap:.8rem;}
+#scroll-indicator span{font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease-in-out infinite;}
+@keyframes scrollPulse{0%,100%{opacity:.3;height:36px}50%{opacity:1;height:48px}}
+@media(max-width:900px){nav{padding:1.4rem 2rem;}.nav-links{display:none;}.services-grid{grid-template-columns:1fr;}#numbers{grid-template-columns:repeat(2,1fr);}.foot-links{display:none;}#services,#final{padding:6rem 2rem;}#frame-dots{right:1rem;}#scroll-indicator{left:2rem;}footer{padding:2.5rem 2rem;}.foot-top{flex-direction:column;gap:2rem;}}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="cur-ring"></div><div id="prog"></div>
+<canvas id="bg-canvas"></canvas>
+<div id="morph-stage"><canvas id="morph-canvas"></canvas></div>
+<div id="grain"></div>
+
+<nav>
+  <div class="nav-logo">AURUM<sub>Private Wealth Management</sub></div>
+  <ul class="nav-links"><li><a href="#services">Services</a></li><li><a href="#numbers">Performance</a></li><li><a href="#final">Contact</a></li></ul>
+  <button class="nav-cta">Private Access</button>
+</nav>
+<div id="scroll-indicator"><div class="scroll-line"></div><span>Scroll</span></div>
+<div id="frame-label"><div id="frame-title">Wealth</div><div id="frame-divider"></div><div id="frame-sub">I · The Foundation</div></div>
+<div id="frame-dots">
+  <div class="fdot-wrap active" data-f="0"><span class="fdot-label">Gold</span><div class="fdot"></div></div>
+  <div class="fdot-wrap" data-f="1"><span class="fdot-label">Growth</span><div class="fdot"></div></div>
+  <div class="fdot-wrap" data-f="2"><span class="fdot-label">Capital</span><div class="fdot"></div></div>
+  <div class="fdot-wrap" data-f="3"><span class="fdot-label">Legacy</span><div class="fdot"></div></div>
+  <div class="fdot-wrap" data-f="4"><span class="fdot-label">Estate</span><div class="fdot"></div></div>
+</div>
+<div id="scroll-driver"></div>
+<div id="panels-wrap">
+  <div class="scroll-panel"><div class="panel-text" id="pt1"><p class="pt-roman">I · Foundation</p><h2 class="pt-heading">Where<br><em>Wealth Begins</em></h2><p class="pt-body">Every great fortune starts with a single, irreducible truth: gold endures. Our foundation strategy preserves purchasing power across generations, immune to inflation and uncertainty.</p><div class="pt-stat"><div class="stat-item"><span class="stat-num">XXX</span><span class="stat-label">Years Proven</span></div><div class="stat-item"><span class="stat-num">I</span><span class="stat-label">Core Mandate</span></div></div><span class="pt-badge badge-gold">Store of Value · Hard Assets</span></div></div>
+  <div class="scroll-panel"><div class="panel-text right" id="pt2"><p class="pt-roman">II · Growth</p><h2 class="pt-heading">Capital<br><em>That Compounds</em></h2><p class="pt-body">Growth is not speculation — it is the disciplined deployment of capital into compounding systems. We identify asymmetric opportunities before they are priced into the market.</p><div class="pt-stat"><div class="stat-item"><span class="stat-num">18%</span><span class="stat-label">Avg. Annual Return</span></div><div class="stat-item"><span class="stat-num">12yr</span><span class="stat-label">Track Record</span></div></div><span class="pt-badge badge-em">Equity · Private Markets</span></div></div>
+  <div class="scroll-panel"><div class="panel-text" id="pt3"><p class="pt-roman">III · Preservation</p><h2 class="pt-heading">Protecting<br><em>What You Built</em></h2><p class="pt-body">Capital preservation is the most sophisticated act in finance. Our liquid strategies maintain purchasing power while navigating volatility — calm when markets are not.</p><div class="pt-stat"><div class="stat-item"><span class="stat-num">0.3</span><span class="stat-label">Max Drawdown</span></div><div class="stat-item"><span class="stat-num">AAA</span><span class="stat-label">Credit Profile</span></div></div><span class="pt-badge badge-sa">Fixed Income · Alternatives</span></div></div>
+  <div class="scroll-panel"><div class="panel-text right" id="pt4"><p class="pt-roman">IV · Legacy</p><h2 class="pt-heading">Wealth Across<br><em>Generations</em></h2><p class="pt-body">True wealth is measured not in years but in dynasties. Our legacy planning structures your assets through trust architecture, family offices, and generational transfer.</p><div class="pt-stat"><div class="stat-item"><span class="stat-num">3</span><span class="stat-label">Generations Served</span></div><div class="stat-item"><span class="stat-num">$2B+</span><span class="stat-label">Assets Transferred</span></div></div><span class="pt-badge badge-pl">Trust · Estate · Family Office</span></div></div>
+  <div class="scroll-panel"><div class="panel-text" id="pt5"><p class="pt-roman">V · Global Estate</p><h2 class="pt-heading">Borders Are<br><em>Irrelevant</em></h2><p class="pt-body">Wealth has no nationality. Our global estate division manages international real assets, cross-border structures, and residency strategies across 40 jurisdictions.</p><div class="pt-stat"><div class="stat-item"><span class="stat-num">40</span><span class="stat-label">Jurisdictions</span></div><div class="stat-item"><span class="stat-num">6</span><span class="stat-label">Continents Active</span></div></div><span class="pt-badge badge-ru">Real Assets · Global Structures</span></div></div>
+</div>
+<div class="ornament reveal">✦ &nbsp;&nbsp; AURUM &nbsp;&nbsp; ✦</div>
+<section id="services">
+  <p class="sec-eyebrow reveal">Our Mandate</p><h2 class="reveal rd1">Private <em>Wealth Services</em></h2>
+  <p class="sec-sub reveal rd2">Six pillars of comprehensive wealth stewardship, designed for individuals and families with assets above $10 million.</p>
+  <div class="services-grid">
+    <div class="svc-card reveal rd1"><div class="svc-num">I</div><div class="svc-icon">⬡</div><div class="svc-title">Portfolio Architecture</div><p class="svc-desc">Bespoke multi-asset portfolios constructed around your risk profile, time horizon, and legacy objectives.</p><span class="svc-badge">Bespoke Allocation</span></div>
+    <div class="svc-card reveal rd2"><div class="svc-num">II</div><div class="svc-icon">◈</div><div class="svc-title">Tax Optimisation</div><p class="svc-desc">Sophisticated tax-loss harvesting, structure planning, and cross-border compliance strategies.</p><span class="svc-badge">Efficiency · Compliance</span></div>
+    <div class="svc-card reveal rd3"><div class="svc-num">III</div><div class="svc-icon">◇</div><div class="svc-title">Alternative Investments</div><p class="svc-desc">Exclusive access to private equity, hedge funds, infrastructure, and direct real estate.</p><span class="svc-badge">Private Markets</span></div>
+    <div class="svc-card reveal rd4"><div class="svc-num">IV</div><div class="svc-icon">⬙</div><div class="svc-title">Family Office</div><p class="svc-desc">Full-service family office infrastructure: governance, education, philanthropy coordination.</p><span class="svc-badge">Full Service</span></div>
+    <div class="svc-card reveal rd5"><div class="svc-num">V</div><div class="svc-icon">✦</div><div class="svc-title">Estate & Succession</div><p class="svc-desc">Multi-generational transfer strategies, trust structures, and succession planning.</p><span class="svc-badge">Legacy Planning</span></div>
+    <div class="svc-card reveal rd6"><div class="svc-num">VI</div><div class="svc-icon">⬟</div><div class="svc-title">Risk Intelligence</div><p class="svc-desc">Proprietary risk modelling, geopolitical analysis, and stress-testing anticipating threats.</p><span class="svc-badge">Macro · Geopolitical</span></div>
+  </div>
+</section>
+<div id="numbers">
+  <div class="num-item reveal"><span>$14B</span><p>Assets Under Management</p></div>
+  <div class="num-item reveal rd1"><span>1,200+</span><p>Ultra-High-Net-Worth Clients</p></div>
+  <div class="num-item reveal rd2"><span>94%</span><p>Client Retention Rate</p></div>
+  <div class="num-item reveal rd3"><span>1986</span><p>Year Established</p></div>
+</div>
+<section id="final">
+  <div class="final-ornament">A</div>
+  <h2 class="reveal">Begin Your<br><em>Private Relationship</em></h2>
+  <div class="final-line reveal rd1"></div>
+  <p class="reveal rd2">We accept a limited number of new client relationships each year. Introductions are by referral or direct application.</p>
+  <div class="btn-row reveal rd3"><button class="btn-gold">Request Introduction</button><button class="btn-outline">View Philosophy →</button></div>
+</section>
+<footer>
+  <div class="foot-top">
+    <div class="foot-logo">AURUM<p>Private Wealth Management · Est. 1986</p></div>
+    <div class="foot-links">
+      <div class="foot-col"><h4>Services</h4><a href="#">Portfolio Management</a><a href="#">Tax Optimisation</a><a href="#">Alternatives</a><a href="#">Family Office</a></div>
+      <div class="foot-col"><h4>Company</h4><a href="#">Philosophy</a><a href="#">Team</a><a href="#">Performance</a><a href="#">Stewardship</a></div>
+      <div class="foot-col"><h4>Contact</h4><a href="#">London</a><a href="#">Zurich</a><a href="#">Singapore</a><a href="#">New York</a></div>
+    </div>
+  </div>
+  <div class="foot-bottom"><p>© 2025 Aurum Wealth Management Ltd. All rights reserved.</p><p>Regulated · Authorised · Confidential</p><p>Past performance does not guarantee future results.</p></div>
+</footer>
+
+<script>
+// ── CURSOR ──
+const cur=document.getElementById('cur'),curRing=document.getElementById('cur-ring');
+let mx=0,my=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';curRing.style.left=mx+'px';curRing.style.top=my+'px';});
+
+const TAU=Math.PI*2;
+const lerp=(a,b,t)=>a+(b-a)*t;
+function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
+
+// ── BACKGROUND CANVAS ──
+const bgC=document.getElementById('bg-canvas');
+const B=bgC.getContext('2d');
+function resizeBg(){bgC.width=innerWidth;bgC.height=innerHeight;}
+resizeBg();
+window.addEventListener('resize',resizeBg);
+
+// Frame color palettes
+const PALS=[
+  {dark:'#080500',deep:'#150e00',c1:'rgba(201,168,76,',c2:'rgba(240,210,100,'},
+  {dark:'#010a04',deep:'#051808',c1:'rgba(40,180,100,',c2:'rgba(100,230,150,'},
+  {dark:'#010308',deep:'#030818',c1:'rgba(60,140,220,',c2:'rgba(120,190,255,'},
+  {dark:'#060608',deep:'#0d0d16',c1:'rgba(160,165,185,',c2:'rgba(210,220,240,'},
+  {dark:'#0a0103',deep:'#180308',c1:'rgba(210,70,100,',c2:'rgba(255,130,160,'},
+];
+
+// ════════════════════════════════════════════
+//  WEALTH VISUAL DRAWERS
+//  Each takes (ctx, alpha) and draws at origin
+// ════════════════════════════════════════════
+
+// 1. DOLLAR BILL — unmistakably a banknote
+function drawDollarBill(c,a,col){
+  const W=110,H=48;
+  c.save();
+  // Main body
+  const bg=c.createLinearGradient(-W/2,-H/2,W/2,H/2);
+  bg.addColorStop(0,'rgba(20,60,25,'+a*0.85+')');
+  bg.addColorStop(0.5,'rgba(28,75,32,'+a*0.9+')');
+  bg.addColorStop(1,'rgba(15,50,20,'+a*0.8+')');
+  c.beginPath();c.roundRect(-W/2,-H/2,W,H,3);
+  c.fillStyle=bg;c.fill();
+  // Border
+  c.strokeStyle=col+'0.5)';c.lineWidth=0.8;c.stroke();
+  // Inner border frame
+  c.beginPath();c.roundRect(-W/2+4,-H/2+4,W-8,H-8,2);
+  c.strokeStyle='rgba(80,160,60,'+a*0.4+')';c.lineWidth=0.4;c.stroke();
+  // Green security strip (vertical)
+  c.fillStyle='rgba(40,120,50,'+a*0.5+')';
+  c.fillRect(-2,-H/2+5,4,H-10);
+  // Portrait oval
+  c.beginPath();c.ellipse(-20,0,14,18,0,0,TAU);
+  c.strokeStyle='rgba(100,190,80,'+a*0.35+')';c.lineWidth=0.6;c.stroke();
+  c.fillStyle='rgba(30,80,30,'+a*0.4+')';c.fill();
+  // "100" large numerals
+  c.globalAlpha=a*0.7;c.fillStyle='rgba(180,240,160,0.9)';
+  c.font='bold 22px serif';c.textAlign='center';c.textBaseline='middle';
+  c.fillText('100',28,2);
+  // "ONE HUNDRED DOLLARS" text
+  c.globalAlpha=a*0.35;c.font='bold 5px sans-serif';
+  c.fillText('THE UNITED STATES OF AMERICA',0,H/2-10);
+  // Corner numbers
+  c.globalAlpha=a*0.5;c.font='bold 8px monospace';
+  c.textAlign='left';c.fillText('100',-W/2+8,-H/2+14);
+  c.textAlign='right';c.fillText('100',W/2-8,H/2-7);
+  // Micro lines pattern
+  c.globalAlpha=a*0.06;
+  for(let i=0;i<12;i++){
+    c.beginPath();c.moveTo(-W/2,(-H/2)+i*(H/12));c.lineTo(W/2,(-H/2)+i*(H/12)+3);
+    c.strokeStyle='rgba(150,255,100,1)';c.lineWidth=0.3;c.stroke();
+  }
+  // Serial number
+  c.globalAlpha=a*0.3;c.font='5px monospace';c.textAlign='left';
+  c.fillStyle='rgba(100,200,80,1)';c.fillText('HB 73829104 A',-W/2+8,H/2-14);
+  c.restore();
+}
+
+// 2. GOLD BAR — clear 3D ingot with stamping
+function drawGoldIngot(c,a,col){
+  c.save();
+  // Isometric gold bar
+  const W=80,H=36,D=12;
+  // Top face (lightest)
+  c.beginPath();c.moveTo(-W/2+D,-H/2-D);c.lineTo(W/2,-H/2-D);c.lineTo(W/2-D,-H/2);c.lineTo(-W/2,-H/2);c.closePath();
+  const tg=c.createLinearGradient(-W/2,-H/2-D,W/2,-H/2);
+  tg.addColorStop(0,'rgba(255,240,140,'+a*0.9+')');tg.addColorStop(0.5,'rgba(220,185,70,'+a*0.85+')');tg.addColorStop(1,'rgba(190,155,50,'+a*0.8+')');
+  c.fillStyle=tg;c.fill();
+  c.strokeStyle=col+'0.6)';c.lineWidth=0.7;c.stroke();
+  // Front face
+  c.beginPath();c.moveTo(-W/2,-H/2);c.lineTo(W/2-D,-H/2);c.lineTo(W/2-D,H/2);c.lineTo(-W/2,H/2);c.closePath();
+  const fg=c.createLinearGradient(0,-H/2,0,H/2);
+  fg.addColorStop(0,'rgba(210,170,55,'+a*0.85+')');fg.addColorStop(1,'rgba(130,90,15,'+a*0.8+')');
+  c.fillStyle=fg;c.fill();c.strokeStyle=col+'0.5)';c.stroke();
+  // Right side face
+  c.beginPath();c.moveTo(W/2-D,-H/2);c.lineTo(W/2,-H/2-D);c.lineTo(W/2,H/2-D);c.lineTo(W/2-D,H/2);c.closePath();
+  const rg=c.createLinearGradient(W/2-D,0,W/2,0);
+  rg.addColorStop(0,'rgba(180,140,40,'+a*0.8+')');rg.addColorStop(1,'rgba(100,70,10,'+a*0.75+')');
+  c.fillStyle=rg;c.fill();c.stroke();
+  // Stamp text on front
+  c.globalAlpha=a*0.7;c.fillStyle='rgba(80,40,5,0.8)';
+  c.font='bold 9px serif';c.textAlign='center';c.textBaseline='middle';c.fillText('Au 999.9',-D/2,0);
+  c.font='6px serif';c.fillText('1 KG',-D/2,10);
+  // Highlight reflection on top
+  c.globalAlpha=a*0.3;c.beginPath();c.moveTo(-W/2+D+5,-H/2-D+2);c.lineTo(W/2-8,-H/2-D+2);c.lineTo(W/2-D-3,-H/2+2);c.lineTo(-W/2+6,-H/2+2);c.closePath();
+  c.fillStyle='rgba(255,255,200,0.4)';c.fill();
+  c.restore();
+}
+
+// 3. GOLD COIN — detailed numismatic coin face
+function drawGoldCoin(c,a,col,t){
+  const r=26;c.save();
+  const flip=Math.abs(Math.cos(t*0.9));c.scale(flip,1);
+  // Coin body
+  const cg=c.createRadialGradient(-r*0.3,-r*0.35,0,0,0,r);
+  cg.addColorStop(0,'rgba(255,248,170,'+a*0.95+')');
+  cg.addColorStop(0.4,'rgba(218,175,55,'+a*0.9+')');
+  cg.addColorStop(0.75,'rgba(160,110,20,'+a*0.85+')');
+  cg.addColorStop(1,'rgba(100,65,8,'+a*0.8+')');
+  c.beginPath();c.arc(0,0,r,0,TAU);c.fillStyle=cg;c.fill();
+  // Milled edge (serrations)
+  c.strokeStyle=col+'0.5)';c.lineWidth=0.5;
+  for(let i=0;i<60;i++){
+    const ang=(i/60)*TAU,odd=i%2===0;
+    const r1=r-(odd?0:1.5),r2=r+(odd?0:0.5);
+    c.beginPath();c.moveTo(Math.cos(ang)*r1,Math.sin(ang)*r1);c.lineTo(Math.cos(ang)*r2,Math.sin(ang)*r2);c.stroke();
+  }
+  // Inner circle
+  c.beginPath();c.arc(0,0,r-4,0,TAU);c.strokeStyle=col+'0.35)';c.lineWidth=0.6;c.stroke();
+  // Dollar sign centre
+  c.globalAlpha=a*0.85;c.fillStyle='rgba(60,30,2,0.9)';
+  c.font=`bold ${r*0.85}px serif`;c.textAlign='center';c.textBaseline='middle';c.fillText('$',0,1.5);
+  // Stars around edge
+  c.globalAlpha=a*0.4;c.fillStyle='rgba(60,30,5,0.7)';c.font=`${r*0.22}px serif`;
+  for(let i=0;i<8;i++){const ang=(i/8)*TAU;c.fillText('★',Math.cos(ang)*(r-9),Math.sin(ang)*(r-9));}
+  // "UNITED STATES" arc text
+  c.globalAlpha=a*0.3;c.fillStyle='rgba(80,40,5,0.6)';c.font=`${4.5}px serif`;
+  c.fillText('LIBERTY  2024',0,-r+13);
+  // Shine
+  c.globalAlpha=a*0.45;const hg=c.createRadialGradient(-r*0.3,-r*0.35,0,-r*0.3,-r*0.35,r*0.6);
+  hg.addColorStop(0,'rgba(255,255,200,0.6)');hg.addColorStop(1,'rgba(255,255,200,0)');
+  c.fillStyle=hg;c.beginPath();c.arc(0,0,r,0,TAU);c.fill();
+  c.restore();
+}
+
+// 4. STACKED CASH BUNDLE — visible bills from side
+function drawCashBundle(c,a,col){
+  c.save();
+  const layers=10,bw=90,bh=40,spread=2.2;
+  for(let i=layers;i>=0;i--){
+    const yOff=-i*spread;
+    const shade=i/layers;
+    c.beginPath();c.roundRect(-bw/2,yOff-bh/2,bw,bh,2);
+    c.fillStyle=`rgba(${15+shade*8},${55+shade*15},${18+shade*8},${a*(0.75+shade*0.25)})`;
+    c.fill();
+    c.strokeStyle=`rgba(60,140,50,${a*0.3})`;c.lineWidth=0.5;c.stroke();
+    if(i===layers){
+      // Top bill face visible detail
+      c.globalAlpha=a*0.5;
+      c.fillStyle='rgba(150,230,120,0.7)';c.font='bold 18px serif';c.textAlign='center';c.textBaseline='middle';c.fillText('$100',10,yOff);
+      // Security strip
+      c.fillStyle='rgba(30,100,40,0.6)';c.fillRect(-bw/2+15,yOff-bh/2+3,3,bh-6);
+      // Watermark circle
+      c.strokeStyle='rgba(100,200,80,0.2)';c.lineWidth=0.5;c.beginPath();c.arc(-25,yOff,12,0,TAU);c.stroke();
+    }
+  }
+  // Belly band (paper wrapper)
+  c.globalAlpha=a*0.8;c.fillStyle='rgba(220,50,30,0.55)';c.strokeStyle='rgba(255,80,50,0.4)';c.lineWidth=0.6;
+  c.beginPath();c.roundRect(-bw/2+10,-6,bw-20,12,1);c.fill();c.stroke();
+  c.fillStyle='rgba(255,220,200,0.7)';c.font='bold 6px sans-serif';c.textAlign='center';c.textBaseline='middle';c.fillText('$10,000',0,0);
+  c.restore();
+}
+
+// 5. DIAMOND GEM — brilliant cut top view
+function drawDiamond(c,a,col){
+  c.save();const r=30;
+  // Outer girdle
+  const sides=8;
+  c.beginPath();
+  for(let i=0;i<sides;i++){const ang=(i/sides)*TAU-Math.PI/8;c.lineTo(Math.cos(ang)*r,Math.sin(ang)*r);}
+  c.closePath();c.strokeStyle=col+'0.5)';c.lineWidth=0.8;
+  const og=c.createRadialGradient(0,0,0,0,0,r);
+  og.addColorStop(0,'rgba(220,245,255,'+a*0.5+')');og.addColorStop(0.5,'rgba(180,230,250,'+a*0.3+')');og.addColorStop(1,'rgba(140,210,240,'+a*0.15+')');
+  c.fillStyle=og;c.fill();c.stroke();
+  // Inner table (top flat facet)
+  c.beginPath();
+  for(let i=0;i<sides;i++){const ang=(i/sides)*TAU-Math.PI/8;c.lineTo(Math.cos(ang)*r*0.5,Math.sin(ang)*r*0.5);}
+  c.closePath();c.fillStyle='rgba(240,252,255,'+a*0.65+')';c.fill();c.strokeStyle=col+'0.4)';c.lineWidth=0.5;c.stroke();
+  // Star facets lines from centre to girdle
+  c.globalAlpha=a*0.4;c.strokeStyle=col+'0.6)';c.lineWidth=0.4;
+  for(let i=0;i<sides;i++){
+    const ang=(i/sides)*TAU-Math.PI/8;
+    c.beginPath();c.moveTo(0,0);c.lineTo(Math.cos(ang)*r,Math.sin(ang)*r);c.stroke();
+  }
+  // Kite facets
+  for(let i=0;i<sides;i++){
+    const a1=(i/sides)*TAU-Math.PI/8,a2=((i+0.5)/sides)*TAU-Math.PI/8;
+    c.beginPath();c.moveTo(Math.cos(a1)*r*0.5,Math.sin(a1)*r*0.5);c.lineTo(Math.cos(a2)*r*0.85,Math.sin(a2)*r*0.85);c.lineTo(Math.cos(a1+TAU/sides)*r*0.5,Math.sin(a1+TAU/sides)*r*0.5);c.stroke();
+  }
+  // Sparkle center
+  c.globalAlpha=a*0.9;
+  const sg=c.createRadialGradient(0,0,0,0,0,r*0.35);
+  sg.addColorStop(0,'rgba(255,255,255,0.95)');sg.addColorStop(0.3,'rgba(200,240,255,0.6)');sg.addColorStop(1,'rgba(180,230,255,0)');
+  c.fillStyle=sg;c.beginPath();c.arc(0,0,r*0.35,0,TAU);c.fill();
+  // Cross sparkle rays
+  c.globalAlpha=a*0.6;c.strokeStyle='rgba(255,255,255,0.8)';c.lineWidth=0.5;
+  for(let i=0;i<4;i++){const ang=(i/4)*TAU;c.beginPath();c.moveTo(Math.cos(ang)*2,Math.sin(ang)*2);c.lineTo(Math.cos(ang)*r*0.65,Math.sin(ang)*r*0.65);c.stroke();}
+  c.restore();
+}
+
+// 6. RISING STOCK CHART — line & candles
+function drawStockChart(c,a,col,t){
+  c.save();
+  const W=100,H=55,bars=16;
+  // Background panel
+  c.fillStyle='rgba(5,20,8,'+a*0.6+')';c.strokeStyle=col+'0.2)';c.lineWidth=0.5;
+  c.beginPath();c.roundRect(-W/2,-H/2,W,H,3);c.fill();c.stroke();
+  // Grid lines
+  c.globalAlpha=a*0.12;c.strokeStyle=col+'0.6)';c.lineWidth=0.3;
+  for(let i=1;i<4;i++){c.beginPath();c.moveTo(-W/2,(-H/2)+(i*H/4));c.lineTo(W/2,(-H/2)+(i*H/4));c.stroke();}
+  // Candles
+  const candleW=(W-10)/bars*0.55;
+  const prices=[40,42,39,44,48,45,50,53,51,55,58,54,60,63,61,65];
+  const maxP=Math.max(...prices),minP=Math.min(...prices);
+  const mapY=v=>H/2-8-((v-minP)/(maxP-minP))*(H-18);
+  c.globalAlpha=a;
+  prices.forEach((p,i)=>{
+    const x=-W/2+6+(i*(W-10)/bars)+candleW/2;
+    const prev=i>0?prices[i-1]:p-1;
+    const bull=p>=prev;
+    const yO=mapY(prev),yC=mapY(p);
+    const yH=mapY(p+(Math.random()*3)),yL=mapY(prev-(Math.random()*3));
+    // Wick
+    c.strokeStyle=bull?'rgba(60,200,80,'+a*0.6+')':'rgba(220,60,60,'+a*0.6+')';c.lineWidth=0.5;
+    c.beginPath();c.moveTo(x,yH);c.lineTo(x,yL);c.stroke();
+    // Body
+    const top=Math.min(yO,yC),ht=Math.max(1,Math.abs(yO-yC));
+    c.fillStyle=bull?'rgba(40,190,70,'+a*0.7+')':'rgba(210,50,50,'+a*0.65+')';
+    c.fillRect(x-candleW/2,top,candleW,ht);
+  });
+  // Price line (glowing)
+  c.globalAlpha=a*0.8;c.strokeStyle='rgba(100,220,120,0.9)';c.lineWidth=1.2;c.shadowBlur=6;c.shadowColor='rgba(60,220,80,0.8)';
+  c.beginPath();prices.forEach((p,i)=>{const x=-W/2+6+(i*(W-10)/bars)+candleW/2,y=mapY(p);i===0?c.moveTo(x,y):c.lineTo(x,y);});c.stroke();
+  c.shadowBlur=0;
+  // % label
+  c.globalAlpha=a*0.9;c.fillStyle='rgba(80,230,100,0.9)';c.font='bold 9px monospace';c.textAlign='right';c.textBaseline='top';c.fillText('+18.4%',W/2-4,-H/2+4);
+  c.restore();
+}
+
+// 7. STACK OF COINS (multiple)
+function drawCoinStack(c,a,col){
+  c.save();
+  const r=16,layers=6,gap=5;
+  for(let i=layers;i>=0;i--){
+    const yOff=-i*gap;
+    // Side ellipse (coin edge)
+    if(i>0){
+      c.beginPath();c.ellipse(0,yOff+gap/2,r,gap/2*0.6,0,0,Math.PI);
+      c.fillStyle=`rgba(130,88,10,${a*0.7})`;c.fill();
+    }
+    // Front face
+    const cg=c.createRadialGradient(-r*0.25,yOff-r*0.3,0,0,yOff,r);
+    cg.addColorStop(0,`rgba(255,245,160,${a*0.92})`);
+    cg.addColorStop(0.45,`rgba(210,165,45,${a*0.88})`);
+    cg.addColorStop(1,`rgba(140,90,12,${a*0.82})`);
+    c.beginPath();c.ellipse(0,yOff,r,r*0.35,0,Math.PI,0);
+    if(i===0){c.ellipse(0,yOff,r,r*0.35,0,0,Math.PI);} // full circle for top
+    c.fillStyle=cg;c.fill();
+    c.strokeStyle=col+'0.4)';c.lineWidth=0.5;c.stroke();
+    // $ on top coin
+    if(i===layers){
+      c.globalAlpha=a*0.6;c.fillStyle='rgba(60,30,3,0.8)';c.font='bold 11px serif';c.textAlign='center';c.textBaseline='middle';c.fillText('$',0,yOff-1);
+    }
+  }
+  c.restore();
+}
+
+// 8. PIGGY BANK — classic money saver icon
+function drawPiggyBank(c,a,col){
+  c.save();
+  const gd='rgba(220,175,60,';
+  // Body
+  c.beginPath();c.ellipse(0,5,28,22,0,0,TAU);
+  const bg=c.createRadialGradient(-8,-5,0,0,5,30);
+  bg.addColorStop(0,'rgba(240,195,80,'+a*0.7+')');bg.addColorStop(0.6,'rgba(200,155,50,'+a*0.65+')');bg.addColorStop(1,'rgba(160,110,25,'+a*0.6+')');
+  c.fillStyle=bg;c.fill();c.strokeStyle=col+'0.35)';c.lineWidth=0.8;c.stroke();
+  // Head
+  c.beginPath();c.ellipse(22,-2,14,12,0.2,0,TAU);c.fillStyle=bg;c.fill();c.stroke();
+  // Snout
+  c.beginPath();c.ellipse(32,0,7,5,0,0,TAU);c.fillStyle='rgba(210,155,50,'+a*0.7+')';c.fill();c.stroke();
+  // Nostrils
+  c.globalAlpha=a*0.5;c.fillStyle='rgba(120,70,10,0.6)';
+  c.beginPath();c.arc(30,-1,1.5,0,TAU);c.fill();c.beginPath();c.arc(34,-1,1.5,0,TAU);c.fill();
+  // Eye
+  c.globalAlpha=a*0.7;c.fillStyle='rgba(40,20,5,0.8)';c.beginPath();c.arc(26,-6,2,0,TAU);c.fill();
+  c.fillStyle='rgba(255,255,255,0.6)';c.beginPath();c.arc(27,-7,0.8,0,TAU);c.fill();
+  // Ear
+  c.globalAlpha=a*0.6;c.beginPath();c.ellipse(18,-13,5,7,0.5,0,TAU);c.fillStyle='rgba(200,150,45,'+a*0.65+')';c.fill();c.stroke();
+  // Coin slot
+  c.globalAlpha=a*0.5;c.strokeStyle='rgba(120,80,10,0.7)';c.lineWidth=1.5;
+  c.beginPath();c.moveTo(-6,-25);c.lineTo(6,-25);c.stroke();
+  // Leg
+  c.globalAlpha=a*0.55;c.fillStyle='rgba(190,145,40,'+a*0.65+')';
+  [[-18,22],[-8,22],[8,22],[18,22]].forEach(([lx,ly])=>{c.beginPath();c.roundRect(lx-3,ly,7,10,2);c.fill();c.stroke();});
+  // Coin going in
+  c.globalAlpha=a*0.8;c.fillStyle='rgba(255,230,80,0.7)';c.strokeStyle=col+'0.5)';c.lineWidth=0.5;
+  c.beginPath();c.ellipse(0,-24,4,3,0,0,TAU);c.fill();c.stroke();
+  c.restore();
+}
+
+// 9. CREDIT / BLACK CARD
+function drawBlackCard(c,a,col){
+  c.save();
+  const W=86,H=54,R=5;
+  // Card body (matte black premium card)
+  c.beginPath();c.roundRect(-W/2,-H/2,W,H,R);
+  const cg=c.createLinearGradient(-W/2,-H/2,W/2,H/2);
+  cg.addColorStop(0,'rgba(22,18,8,'+a*0.92+')');cg.addColorStop(0.35,'rgba(38,30,12,'+a*0.9+')');
+  cg.addColorStop(0.7,'rgba(28,22,8,'+a*0.92+')');cg.addColorStop(1,'rgba(15,12,4,'+a*0.95+')');
+  c.fillStyle=cg;c.fill();
+  // Gold border
+  c.strokeStyle=col+'0.65)';c.lineWidth=1;c.stroke();
+  // Holographic stripe
+  const hs=c.createLinearGradient(-W/2,-H/2+8,W/2,-H/2+16);
+  hs.addColorStop(0,'rgba(180,140,40,'+a*0.3+')');hs.addColorStop(0.3,'rgba(220,200,80,'+a*0.4+')');
+  hs.addColorStop(0.6,'rgba(200,160,50,'+a*0.25+')');hs.addColorStop(1,'rgba(180,140,40,'+a*0.3+')');
+  c.fillStyle=hs;c.fillRect(-W/2,-H/2+8,W,8);
+  // EMV chip
+  c.globalAlpha=a*0.75;
+  const chg=c.createLinearGradient(-W/2+12,-H/2+20,-W/2+30,-H/2+34);
+  chg.addColorStop(0,'rgba(200,175,65,0.8)');chg.addColorStop(0.5,'rgba(230,200,80,0.9)');chg.addColorStop(1,'rgba(170,140,45,0.7)');
+  c.fillStyle=chg;c.beginPath();c.roundRect(-W/2+12,-H/2+20,20,15,2);c.fill();
+  c.strokeStyle='rgba(150,120,30,0.6)';c.lineWidth=0.5;c.stroke();
+  // Chip circuit lines
+  c.strokeStyle='rgba(100,80,20,0.5)';c.lineWidth=0.4;
+  [[0,3],[0,7],[4,0],[8,0],[4,11],[8,11]].forEach(([ox,oy])=>{c.strokeRect(-W/2+13+ox,-H/2+21+oy,3,3);});
+  // AURUM text
+  c.globalAlpha=a*0.55;c.fillStyle='rgba(220,185,60,0.8)';
+  c.font=`bold 7px 'Cinzel',serif`;c.textAlign='left';c.textBaseline='middle';
+  c.fillText('AURUM',-W/2+12,H/2-24);
+  // Card number (masked)
+  c.globalAlpha=a*0.45;c.font='7px monospace';c.fillText('•••• •••• •••• 7842',-W/2+12,H/2-14);
+  // Cardholder
+  c.globalAlpha=a*0.35;c.font='5px serif';c.fillText('PRIVATE CLIENT',-W/2+12,H/2-6);
+  // Network (double circle motif)
+  c.globalAlpha=a*0.4;c.strokeStyle=col+'0.5)';c.lineWidth=0.6;
+  c.beginPath();c.arc(W/2-18,4,9,0,TAU);c.stroke();
+  c.beginPath();c.arc(W/2-11,4,9,0,TAU);c.stroke();
+  // Shine sweep
+  c.globalAlpha=a*0.06;const sh=c.createLinearGradient(-W/2,-H/2,W/2,H/2);
+  sh.addColorStop(0,'rgba(255,240,180,0)');sh.addColorStop(0.4,'rgba(255,240,180,0.5)');sh.addColorStop(1,'rgba(255,240,180,0)');
+  c.fillStyle=sh;c.beginPath();c.roundRect(-W/2,-H/2,W,H,R);c.fill();
+  c.restore();
+}
+
+// 10. FALLING COINS RAIN (small coins scattered)
+function drawSmallCoin(c,a,col,size){
+  c.save();const r=size||10;
+  const cg=c.createRadialGradient(-r*0.25,-r*0.3,0,0,0,r);
+  cg.addColorStop(0,'rgba(255,242,140,'+a*0.9+')');cg.addColorStop(0.5,'rgba(210,165,45,'+a*0.85+')');cg.addColorStop(1,'rgba(140,90,12,'+a*0.75+')');
+  c.beginPath();c.arc(0,0,r,0,TAU);c.fillStyle=cg;c.fill();
+  c.strokeStyle=col+'0.45)';c.lineWidth=0.6;c.stroke();
+  c.globalAlpha=a*0.7;c.fillStyle='rgba(70,35,3,0.8)';c.font=`bold ${r}px serif`;
+  c.textAlign='center';c.textBaseline='middle';c.fillText('$',0,1);
+  c.restore();
+}
+
+// 11. MONEY BAG
+function drawMoneyBag(c,a,col){
+  c.save();
+  // Bag body
+  const bg=c.createRadialGradient(-8,-10,0,0,5,35);
+  bg.addColorStop(0,'rgba(210,170,55,'+a*0.75+')');bg.addColorStop(0.5,'rgba(175,130,35,'+a*0.7+')');bg.addColorStop(1,'rgba(120,80,15,'+a*0.65+')');
+  c.beginPath();c.arc(0,8,26,0,TAU);c.fillStyle=bg;c.fill();
+  c.strokeStyle=col+'0.35)';c.lineWidth=0.8;c.stroke();
+  // Neck/tie
+  c.beginPath();c.ellipse(0,-16,8,6,0,0,TAU);c.fillStyle='rgba(180,135,35,'+a*0.7+')';c.fill();c.stroke();
+  // Knot string
+  c.beginPath();c.arc(0,-22,5,0,Math.PI);c.strokeStyle=col+'0.4)';c.lineWidth=1.5;c.stroke();
+  // Dollar sign on bag
+  c.globalAlpha=a*0.7;c.fillStyle='rgba(80,45,5,0.85)';
+  c.font='bold 22px serif';c.textAlign='center';c.textBaseline='middle';c.fillText('$',0,8);
+  // Fold lines
+  c.globalAlpha=a*0.15;c.strokeStyle=col+'0.6)';c.lineWidth=0.6;
+  for(let i=-1;i<=1;i++){c.beginPath();c.arc(i*8,8,14,0.3,Math.PI-0.3);c.stroke();}
+  c.restore();
+}
+
+// ════════════════════════════════════════════
+//  PARTICLE SYSTEM
+// ════════════════════════════════════════════
+const TYPES=[
+  {draw:(c,a,col,t)=>drawDollarBill(c,a,col),     w:18, label:'bill'},
+  {draw:(c,a,col,t)=>drawGoldIngot(c,a,col),       w:14, label:'ingot'},
+  {draw:(c,a,col,t)=>drawGoldCoin(c,a,col,t),      w:20, label:'coin'},
+  {draw:(c,a,col,t)=>drawCashBundle(c,a,col),       w:16, label:'bundle'},
+  {draw:(c,a,col,t)=>drawDiamond(c,a,col),          w:14, label:'diamond'},
+  {draw:(c,a,col,t)=>drawStockChart(c,a,col,t),     w:12, label:'chart'},
+  {draw:(c,a,col,t)=>drawCoinStack(c,a,col),        w:16, label:'coins'},
+  {draw:(c,a,col,t)=>drawPiggyBank(c,a,col),        w:10, label:'piggy'},
+  {draw:(c,a,col,t)=>drawBlackCard(c,a,col),        w:16, label:'card'},
+  {draw:(c,a,col,t)=>drawMoneyBag(c,a,col),         w:14, label:'bag'},
+];
+const totalW=TYPES.reduce((s,t)=>s+t.w,0);
+function pickType(){let r=Math.random()*totalW;for(const t of TYPES){r-=t.w;if(r<=0)return t;}return TYPES[0];}
+
+function makeParticle(){
+  const type=pickType();
+  const maxLife=20+Math.random()*25;
+  return{
+    type,
+    x:Math.random()*1.1-0.05,
+    y:1.0+Math.random()*0.3,
+    vx:(Math.random()-0.5)*0.008,
+    vy:-(0.008+Math.random()*0.018),
+    sc:0.45+Math.random()*0.7,
+    rot:(Math.random()-0.5)*0.006,
+    rotation:Math.random()*TAU,
+    opacity:0.1+Math.random()*0.28,
+    life:0,maxLife,
+    coinT:Math.random()*TAU,
+  };
+}
+
+// Init pool — spread across screen at start
+let particles=[];
+for(let i=0;i<32;i++){
+  const p=makeParticle();
+  p.y=Math.random();
+  p.life=Math.random()*p.maxLife;
+  particles.push(p);
+}
+
+// Atmospheric nebula glow
+function drawNebula(pal){
+  const W=bgC.width,H=bgC.height;
+  [{x:.2,y:.25,r:.4},{x:.8,y:.65,r:.32},{x:.5,y:.5,r:.22}].forEach((b,i)=>{
+    const pulse=0.8+0.2*Math.sin(bgT*0.28+i*2.1);
+    const rd=b.r*Math.min(W,H)*pulse;
+    const g=B.createRadialGradient(b.x*W,b.y*H,0,b.x*W,b.y*H,rd);
+    g.addColorStop(0,pal.c1+'0.1)');g.addColorStop(0.5,pal.c1+'0.04)');g.addColorStop(1,pal.c1+'0)');
+    B.fillStyle=g;B.beginPath();B.arc(b.x*W,b.y*H,rd,0,TAU);B.fill();
+  });
+}
+
+function drawBase(pA,pB,bl){
+  const W=bgC.width,H=bgC.height;
+  function lh(c1,c2,t){const h1=parseInt(c1.replace('#',''),16),h2=parseInt(c2.replace('#',''),16);const r=Math.round(((h1>>16)&255)+(((h2>>16)&255)-((h1>>16)&255))*t),g=Math.round(((h1>>8)&255)+(((h2>>8)&255)-((h1>>8)&255))*t),b=Math.round((h1&255)+((h2&255)-(h1&255))*t);return`rgb(${r},${g},${b})`;}
+  const g=B.createRadialGradient(W*.38,H*.3,0,W*.5,H*.5,Math.max(W,H)*.95);
+  g.addColorStop(0,lh(pA.deep,pB.deep,bl));g.addColorStop(.5,lh(pA.dark,pB.dark,bl));g.addColorStop(1,'#030208');
+  B.fillStyle=g;B.fillRect(0,0,W,H);
+  [[0,0],[W,0],[0,H],[W,H]].forEach(([cx,cy])=>{const eg=B.createRadialGradient(cx,cy,0,cx,cy,Math.max(W,H)*.6);eg.addColorStop(0,'rgba(0,0,0,0.5)');eg.addColorStop(1,'rgba(0,0,0,0)');B.fillStyle=eg;B.fillRect(0,0,W,H);});
+}
+
+let bgT=0,bgLast=0,smoothProg=0;
+
+function renderBg(ts){
+  const dt=Math.min((ts-bgLast)/1000,.05);bgLast=ts;bgT+=dt;
+  const W=bgC.width,H=bgC.height;
+  B.clearRect(0,0,W,H);
+
+  const total=PALS.length,raw=smoothProg*(total-1),fi=Math.floor(raw),bl=ease(raw-fi);
+  const pA=PALS[Math.min(fi,total-1)],pB=PALS[Math.min(fi+1,total-1)];
+  const activePal=bl<.5?pA:pB;
+
+  drawBase(pA,pB,bl);
+  drawNebula(activePal);
+
+  // Draw particles
+  particles.forEach((p,idx)=>{
+    p.x+=p.vx*dt;p.y+=p.vy*dt;p.rotation+=p.rot;p.life+=dt;p.coinT+=dt*1.2;
+    if(p.life>p.maxLife||p.y<-0.35||p.x<-0.35||p.x>1.35){particles[idx]=makeParticle();return;}
+    const lt=p.life/p.maxLife;
+    let la=lt<0.08?lt/0.08:lt>0.85?(1-(lt-0.85)/0.15):1;
+    la=Math.max(0,la)*p.opacity;
+    const px=p.x*W,py=p.y*H;
+    B.save();B.translate(px,py);B.rotate(p.rotation);B.scale(p.sc,p.sc);
+    p.type.draw(B,la,activePal.c1,p.coinT);
+    B.restore();
+  });
+
+  // Dark vignette over everything — keeps text readable
+  const vg=B.createRadialGradient(W/2,H/2,Math.min(W,H)*.1,W/2,H/2,Math.max(W,H)*.8);
+  vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(.6,'rgba(0,0,0,.35)');vg.addColorStop(1,'rgba(0,0,0,.82)');
+  B.fillStyle=vg;B.fillRect(0,0,W,H);
+}
+
+// ════════════════════════════════════════════
+//  MORPH CANVAS
+// ════════════════════════════════════════════
+const canvas=document.getElementById('morph-canvas');
+const ctx=canvas.getContext('2d');
+function resize(){canvas.width=innerWidth;canvas.height=innerHeight;}
+resize();window.addEventListener('resize',resize);
+const N=200;
+const frames=[
+  {name:'Wealth',sub:'I · The Foundation',colorA:'#c9a84c',colorB:'#f0d98a',glowA:'rgba(201,168,76,',glowB:'rgba(240,217,138,',
+   points(t){const p=[];for(let i=0;i<N;i++){const a=(i/N)*TAU;const r=1+.04*Math.sin(a*8+t*.7)+.025*Math.cos(a*12-t*.5)+.015*Math.sin(a*20+t*1.2)+.008*Math.cos(a*4+t*.3);p.push([Math.cos(a)*r,Math.sin(a)*r]);}return p;}},
+  {name:'Growth',sub:'II · Compounding Capital',colorA:'#1a6b4a',colorB:'#2ec47a',glowA:'rgba(26,107,74,',glowB:'rgba(46,196,122,',
+   points(t){const p=[];for(let i=0;i<N;i++){const a=(i/N)*TAU;const s=6;const poly=Math.cos(Math.PI/s)/Math.cos((a%(TAU/s))-Math.PI/s);const spike=1+.22*Math.pow(Math.max(0,Math.cos(a+t*.2+Math.PI/2)),3);const r=poly*.85*spike+.06*Math.sin(a*7+t*1.1)+.03*Math.cos(a*11-t*.8);p.push([Math.cos(a)*r,Math.sin(a)*r]);}return p;}},
+  {name:'Capital',sub:'III · Preservation',colorA:'#1a3d6b',colorB:'#4d9de0',glowA:'rgba(26,61,107,',glowB:'rgba(77,157,224,',
+   points(t){const p=[];for(let i=0;i<N;i++){const a=(i/N)*TAU;const r=1+.18*Math.sin(a*3+t*.6)+.12*Math.cos(a*5-t*.9)+.09*Math.sin(a*2+t*1.3)+.05*Math.cos(a*8-t*.4)+.03*Math.sin(a*13+t*1.8);p.push([Math.cos(a)*r,Math.sin(a)*r]);}return p;}},
+  {name:'Legacy',sub:'IV · Generational Transfer',colorA:'#8a8d96',colorB:'#d4d8e0',glowA:'rgba(138,141,150,',glowB:'rgba(212,216,224,',
+   points(t){const p=[];for(let i=0;i<N;i++){const a=(i/N)*TAU;const s=8;const poly=Math.cos(Math.PI/s)/Math.cos((a%(TAU/s))-Math.PI/s);const r=poly*(1+.04*Math.sin(t*.5))*.92+.04*Math.sin(a*16+t*.6)+.02*Math.cos(a*24-t*.4);p.push([Math.cos(a)*r,Math.sin(a)*r]);}return p;}},
+  {name:'Estate',sub:'V · Global Reach',colorA:'#6b1a2a',colorB:'#e05c7a',glowA:'rgba(107,26,42,',glowB:'rgba(224,92,122,',
+   points(t){const p=[];for(let i=0;i<N;i++){const a=(i/N)*TAU;const star=.5+.55*Math.pow(Math.abs(Math.cos(a*4+t*.3)),.6);const r=star+.06*Math.sin(a*9+t*1.4)+.04*Math.cos(a*15-t)+.025*Math.sin(a*22+t*.7);p.push([Math.cos(a)*r,Math.sin(a)*r]);}return p;}},
+];
+function lerpPts(a,b,t){return a.map((p,i)=>[p[0]+(b[i][0]-p[0])*t,p[1]+(b[i][1]-p[1])*t]);}
+let scrollProg=0,animT=0,lastFIdx=-1;
+const progBar=document.getElementById('prog'),fLabel=document.getElementById('frame-label'),fTitle=document.getElementById('frame-title'),fSub=document.getElementById('frame-sub'),fdots=document.querySelectorAll('.fdot-wrap');
+function setFrame(idx){if(idx===lastFIdx)return;lastFIdx=idx;fTitle.textContent=frames[idx].name;fSub.textContent=frames[idx].sub;fLabel.classList.remove('visible');requestAnimationFrame(()=>requestAnimationFrame(()=>fLabel.classList.add('visible')));fdots.forEach((d,i)=>d.classList.toggle('active',i===idx));}
+fdots.forEach(dot=>{dot.addEventListener('click',()=>{const f=parseInt(dot.dataset.f);const dr=document.getElementById('scroll-driver');const h=dr.offsetHeight-innerHeight;window.scrollTo({top:dr.offsetTop+(f/(frames.length-1))*h,behavior:'smooth'});});});
+const panelTexts=[document.getElementById('pt1'),document.getElementById('pt2'),document.getElementById('pt3'),document.getElementById('pt4'),document.getElementById('pt5')];
+function drawShape(pts,cx,cy,R,cA,cB,glA,glB,alpha){const sc=pts.map(([x,y])=>[cx+x*R,cy+y*R]);for(let g=4;g>=1;g--){ctx.beginPath();ctx.moveTo(sc[0][0],sc[0][1]);for(let i=1;i<sc.length;i++){const[px,py]=sc[i-1],[x,y]=sc[i];ctx.quadraticCurveTo(px,py,(px+x)/2,(py+y)/2);}ctx.closePath();ctx.strokeStyle=glA+(alpha*.05*g)+')';ctx.lineWidth=g*22;ctx.stroke();}ctx.beginPath();ctx.moveTo(sc[0][0],sc[0][1]);for(let i=1;i<sc.length;i++){const[px,py]=sc[i-1],[x,y]=sc[i];ctx.quadraticCurveTo(px,py,(px+x)/2,(py+y)/2);}ctx.closePath();const g2=ctx.createRadialGradient(cx,cy,0,cx,cy,R*1.4);g2.addColorStop(0,cA+'99');g2.addColorStop(.45,cB+'44');g2.addColorStop(1,cA+'06');ctx.fillStyle=g2;ctx.globalAlpha=alpha;ctx.fill();ctx.globalAlpha=1;ctx.beginPath();ctx.moveTo(sc[0][0],sc[0][1]);for(let i=1;i<sc.length;i++){const[px,py]=sc[i-1],[x,y]=sc[i];ctx.quadraticCurveTo(px,py,(px+x)/2,(py+y)/2);}ctx.closePath();const sg=ctx.createLinearGradient(cx-R,cy-R,cx+R,cy+R);sg.addColorStop(0,cA+'dd');sg.addColorStop(.5,cB+'cc');sg.addColorStop(1,cA+'88');ctx.strokeStyle=sg;ctx.lineWidth=1.2;ctx.globalAlpha=alpha*.9;ctx.stroke();ctx.globalAlpha=1;ctx.beginPath();ctx.arc(cx-R*.12,cy-R*.18,R*.25,0,TAU);const hg=ctx.createRadialGradient(cx-R*.12,cy-R*.18,0,cx-R*.12,cy-R*.18,R*.25);hg.addColorStop(0,cB+'33');hg.addColorStop(1,cB+'00');ctx.fillStyle=hg;ctx.globalAlpha=alpha*.6;ctx.fill();ctx.globalAlpha=1;}
+function drawDots(pts,cx,cy,R,color,alpha){const step=Math.floor(N/80);ctx.globalAlpha=alpha*.55;for(let i=0;i<pts.length;i+=step){const[x,y]=pts[i];ctx.beginPath();ctx.arc(cx+x*R,cy+y*R,.8+Math.random()*1.4,0,TAU);ctx.fillStyle=color;ctx.fill();}ctx.globalAlpha=1;}
+function drawReticle(cx,cy,R,color,alpha){ctx.globalAlpha=alpha*.1;ctx.strokeStyle=color;ctx.lineWidth=.5;for(let r=1;r<=3;r++){ctx.beginPath();ctx.arc(cx,cy,R*(.3+r*.25),0,TAU);ctx.stroke();}ctx.beginPath();ctx.moveTo(cx-R*1.1,cy);ctx.lineTo(cx+R*1.1,cy);ctx.moveTo(cx,cy-R*1.1);ctx.lineTo(cx,cy+R*1.1);ctx.stroke();ctx.globalAlpha=1;}
+function render(){const W=canvas.width,H=canvas.height;ctx.clearRect(0,0,W,H);const vg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.75);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.78)');ctx.fillStyle=vg;ctx.fillRect(0,0,W,H);const cx=W/2,cy=H/2,R=Math.min(W,H)*.28;const total=frames.length,raw=smoothProg*(total-1),fi=Math.floor(raw),blend=ease(raw-fi);const fA=Math.min(fi,total-1),fB=Math.min(fi+1,total-1);const pA=frames[fA].points(animT),pB=frames[fB].points(animT),blended=lerpPts(pA,pB,blend);const cA=blend<.5?frames[fA].colorA:frames[fB].colorA,cB=blend<.5?frames[fA].colorB:frames[fB].colorB,gA=blend<.5?frames[fA].glowA:frames[fB].glowA,gB=blend<.5?frames[fA].glowB:frames[fB].glowB;if(blend>.04&&blend<.96){drawShape(pA,cx,cy,R*1.04,frames[fA].colorA,frames[fA].colorB,frames[fA].glowA,frames[fA].glowB,(1-blend)*.2);drawShape(pB,cx,cy,R*1.04,frames[fB].colorA,frames[fB].colorB,frames[fB].glowA,frames[fB].glowB,blend*.2);}for(let e=3;e>=1;e--)drawShape(blended,cx,cy,R*(1+e*.07),cA,cB,gA,gB,.03*(4-e));drawReticle(cx,cy,R,cA,1);drawShape(blended,cx,cy,R,cA,cB,gA,gB,1);drawDots(blended,cx,cy,R,cB,.7);setFrame(Math.min(Math.round(raw),total-1));}
+window.addEventListener('scroll',()=>{const dr=document.getElementById('scroll-driver');const h=dr.offsetHeight-innerHeight;scrollProg=Math.max(0,Math.min(1,(scrollY-dr.offsetTop)/h));progBar.style.width=(scrollY/(document.body.scrollHeight-innerHeight)*100)+'%';panelTexts.forEach(pt=>{if(!pt)return;const r=pt.getBoundingClientRect();pt.classList.toggle('visible',r.top<innerHeight*.68&&r.bottom>0);});});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+let lastT=0;
+function loop(ts){const dt=Math.min((ts-lastT)/1000,.05);lastT=ts;animT+=dt*.55;smoothProg=lerp(smoothProg,scrollProg,.04);renderBg(ts);const rx=(mx/innerWidth-.5)*.3,ry=(my/innerHeight-.5)*.3;canvas.style.transform=`perspective(1200px) rotateY(${rx}deg) rotateX(${-ry}deg)`;render();requestAnimationFrame(loop);}
+requestAnimationFrame(loop);
+fLabel.classList.add('visible');
+setTimeout(()=>window.dispatchEvent(new Event('scroll')),100);
+</script>
+</body>
+</html>

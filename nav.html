@@ -1,0 +1,110 @@
+<!-- ══════════════════════════════════════════════════════
+     EPM WEALTH — NAV HTML
+     Paste this block into every page (after shared.css loads).
+     shared.css handles ALL styling — no extra <style> needed.
+══════════════════════════════════════════════════════ -->
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-head">
+    <span style="font-family:var(--font-display);font-size:20px;letter-spacing:2px;text-transform:uppercase;color:var(--char)">EPM Wealth</span>
+    <span class="mobile-close" onclick="EPM.closeMobileMenu()"><i class="fa fa-times"></i></span>
+  </div>
+
+  <a href="index.html" onclick="EPM.closeMobileMenu()">Home</a>
+  <a href="About.html" onclick="EPM.closeMobileMenu()">About</a>
+
+  <span class="mob-group-label">Wealth Management</span>
+  <a href="wealth-creation.html"        class="mob-sub" onclick="EPM.closeMobileMenu()">Wealth Creation</a>
+  <a href="portfolio-consultation.html" class="mob-sub" onclick="EPM.closeMobileMenu()">Portfolio Consultation</a>
+  <a href="#"                           class="mob-sub" onclick="EPM.closeMobileMenu()">Wealth Protection</a>
+  <a href="#"                           class="mob-sub" onclick="EPM.closeMobileMenu()">Other Services</a>
+
+  <span class="mob-group-label">Asset Management</span>
+  <a href="#" class="mob-sub" onclick="EPM.closeMobileMenu()">Discretionary PMS</a>
+  <a href="#" class="mob-sub" onclick="EPM.closeMobileMenu()">Fund of Funds</a>
+  <a href="#" class="mob-sub" onclick="EPM.closeMobileMenu()">Smart Beta</a>
+  <a href="#" class="mob-sub" onclick="EPM.closeMobileMenu()">Global Investments</a>
+
+  <a href="#contact" onclick="EPM.closeMobileMenu()" style="color:var(--warm)">Contact</a>
+</div>
+
+<!-- NAV BAR -->
+<div class="nav-outer" id="navOuter">
+  <nav id="mainNav">
+ 
+    <!-- LEFT -->
+    <div class="nav-left">
+ 
+      <!-- About — no dropdown -->
+      <div class="nav-item">
+        <b><a href="index.html" class="nav-a">Home</a></b>
+      </div>
+ 
+     <!-- About — no dropdown -->
+      <div class="nav-item">
+        <b><a href="About.html" class="nav-a">About</a></b>
+      </div>
+ 
+      <!-- Wealth Management ▾ -->
+      <div class="nav-item">
+        <b><a href="#" class="nav-a">
+          Solution
+          <svg class="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a></b>
+        <div class="nav-dropdown">
+          <a href="wealth-creation.html">Wealth Creation</a>
+          <a href="portfolio-consultation.html">Portfolio Consultation</a>
+          <a href="wealth-protection.html">Wealth Protection</a>
+          <a href="other-services.html">Other Services</a>
+        </div>
+      </div>
+ 
+      <!-- Asset Management ▾ -->
+      
+   <div class="nav-item">
+        <b><a href="#" class="nav-a">
+          Financial Literacy
+          <svg class="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a></b>
+        <div class="nav-dropdown">
+          <a href="seminar-webinar.html">Seminar & Webinar</a>
+         
+          <a href="book-free-session.html">Book A Free Session</a>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- CENTER -->
+    <div class="nav-center">
+      <a href="#home" class="nav-logo-wrap">
+        <img class="nav-logo-img" src="logo-emp.png" alt="EPM Wealth"
+             onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';"/>
+        <span id="logoFallback" style="display:none;align-items:center;gap:8px;">
+          <svg viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="30">
+            <path d="M4 8 L12 32 L24 16 L36 32 L44 8" stroke="#1c2540" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="4" y1="8" x2="44" y2="8" stroke="#1c2540" stroke-width="1.2" opacity="0.4"/>
+          </svg>
+          <span class="nav-logo-text">EPM Wealth</span>
+        </span>
+      </a>
+    </div>
+ 
+    <!-- RIGHT -->
+    <div class="nav-right">
+      <a href="#vault" class="nav-uhnw">
+        <span class="nav-badge"><b>New</b></span>
+        <b>UHNW Event Calendar 2026</b>
+      </a>
+      <a href="#contact" class="nav-contact"><b>Contact</b></a>
+      <div class="nav-hamburger" id="hamburger" onclick="EPM.openMobileMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+ 
+  </nav>
+</div>
