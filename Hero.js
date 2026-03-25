@@ -196,7 +196,7 @@ export const HERO_STYLES = /* css */`
 }
 .stat-item { flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:0 24px; }
 .stat-sep  { width:1px;height:40px;background:rgba(0,0,0,0.12);flex-shrink:0; }
-.stat-number { font-family:var(--font-display);font-size:clamp(22px,3vw,36px);font-weight:500;color:var(--color-dark);letter-spacing:0.02em;line-height:1; }
+.stat-number { font-size: 16px; color: #000; }
 .stat-label  { font-family:var(--font-body);font-size:11px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted); }
 
 /* Video modal */

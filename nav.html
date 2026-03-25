@@ -1,10 +1,155 @@
 <!-- ══════════════════════════════════════════════════════
-     EPM WEALTH — NAV HTML
-     Paste this block into every page (after shared.css loads).
-     shared.css handles ALL styling — no extra <style> needed.
+     EPM WEALTH — NAV HTML (Logo Left · Links Right · No Event)
 ══════════════════════════════════════════════════════ -->
 
-<!-- MOBILE DRAWER -->
+<style>
+  /* ── Nav layout override: logo left, everything right ── */
+  #mainNav {
+    display: flex !important;
+    grid-template-columns: unset !important;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* ── Social Media Dropdown ── */
+  .nav-social-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-social-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: var(--char, #1c2540);
+    font-size: 13px;
+    font-family: inherit;
+    transition: background 0.2s;
+  }
+
+  .nav-social-btn:hover {
+    background: rgba(0,0,0,0.06);
+  }
+
+  .nav-social-btn svg.social-icon-grid {
+    width: 18px;
+    height: 18px;
+    opacity: 0.75;
+  }
+
+  .nav-social-btn .soc-chevron {
+    width: 10px;
+    height: 6px;
+    transition: transform 0.25s ease;
+    color: var(--char, #1c2540);
+  }
+  .nav-social-wrap.open .nav-social-btn .soc-chevron {
+    transform: rotate(180deg);
+  }
+
+  .nav-social-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+    padding: 10px;
+    min-width: 180px;
+    max-width: 220px;
+    width: 200px;
+    z-index: 9999;
+    flex-direction: column;
+    gap: 4px;
+    overflow: hidden;
+  }
+
+  .nav-social-wrap.open .nav-social-dropdown {
+    display: flex;
+  }
+
+  .nav-social-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--char, #1c2540);
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: background 0.18s, color 0.18s;
+    white-space: nowrap;
+    height: 38px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .nav-social-dropdown a:hover {
+    background: var(--warm-light, #fdf3ec);
+    color: var(--warm, #c8714a);
+  }
+
+  .nav-social-dropdown a svg {
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px !important;
+    max-width: 18px !important;
+    min-height: 18px !important;
+    max-height: 18px !important;
+    flex-shrink: 0;
+    display: inline-block;
+  }
+
+  .soc-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #aaa;
+    padding: 6px 12px 2px;
+    font-family: inherit;
+  }
+
+  /* ── Nav text style ── */
+  .nav-a {
+    color: var(--char, #1c2540);
+    font-weight: 400;
+    text-decoration: none;
+  }
+  .nav-a::after { display: none; }
+  .nav-a:hover,
+  .nav-item:hover > .nav-a,
+  .nav-item:focus-within > .nav-a {
+    color: var(--warm, #c8714a);
+    text-decoration: none;
+  }
+  .nav-chevron {
+    opacity: .4;
+    transition: transform .24s cubic-bezier(.22,1,.36,1), opacity .2s;
+  }
+  .nav-item:hover > .nav-a .nav-chevron,
+  .nav-item:focus-within > .nav-a .nav-chevron {
+    transform: rotate(180deg);
+    opacity: .85;
+  }
+  .nav-uhnw, .nav-contact {
+    color: var(--char, #1c2540);
+    font-weight: 400;
+  }
+  .nav-uhnw:hover, .nav-contact:hover {
+    color: var(--warm, #c8714a);
+  }
+</style>
+
+<!-- ══ MOBILE DRAWER ══ -->
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-head">
     <span style="font-family:var(--font-display);font-size:20px;letter-spacing:2px;text-transform:uppercase;color:var(--char)">EPM Wealth</span>
@@ -17,36 +162,56 @@
   <span class="mob-group-label">Wealth Management</span>
   <a href="wealth-creation.html"        class="mob-sub" onclick="EPM.closeMobileMenu()">Wealth Creation</a>
   <a href="portfolio-consultation.html" class="mob-sub" onclick="EPM.closeMobileMenu()">Portfolio Consultation</a>
-  <a href="#"                           class="mob-sub" onclick="EPM.closeMobileMenu()">Wealth Protection</a>
-  <a href="#"                           class="mob-sub" onclick="EPM.closeMobileMenu()">Other Services</a>
+  <a href="wealth-protection.html"      class="mob-sub" onclick="EPM.closeMobileMenu()">Wealth Protection</a>
+  <a href="other-services.html"         class="mob-sub" onclick="EPM.closeMobileMenu()">Other Services</a>
 
-  <span class="mob-group-label">Asset Management</span>
-  <a href="#" class="mob-sub" onclick="EPM.closeMobileMenu()">Discretionary PMS</a>
-  <a href="#" class="mob-sub" onclick="EPM.closeMobileMenu()">Fund of Funds</a>
-  <a href="#" class="mob-sub" onclick="EPM.closeMobileMenu()">Smart Beta</a>
-  <a href="#" class="mob-sub" onclick="EPM.closeMobileMenu()">Global Investments</a>
+  <span class="mob-group-label">Financial Literacy</span>
+  <a href="seminar-webinar.html"   class="mob-sub" onclick="EPM.closeMobileMenu()">Seminar &amp; Webinar</a>
+  <a href="book-free-session.html" class="mob-sub" onclick="EPM.closeMobileMenu()">Book A Free Session</a>
+
+  <span class="mob-group-label">Follow Us</span>
+  <a href="https://www.linkedin.com/company/epmwealth" target="_blank" class="mob-sub" onclick="EPM.closeMobileMenu()">LinkedIn</a>
+  <a href="https://www.instagram.com/epmwealth"        target="_blank" class="mob-sub" onclick="EPM.closeMobileMenu()">Instagram</a>
+  <a href="https://www.facebook.com/epmwealth"         target="_blank" class="mob-sub" onclick="EPM.closeMobileMenu()">Facebook</a>
+  <a href="https://twitter.com/epmwealth"              target="_blank" class="mob-sub" onclick="EPM.closeMobileMenu()">X (Twitter)</a>
+  <a href="https://www.youtube.com/@epmwealth"         target="_blank" class="mob-sub" onclick="EPM.closeMobileMenu()">YouTube</a>
 
   <a href="#contact" onclick="EPM.closeMobileMenu()" style="color:var(--warm)">Contact</a>
 </div>
 
-<!-- NAV BAR -->
+<!-- ══ NAV BAR ══ -->
 <div class="nav-outer" id="navOuter">
   <nav id="mainNav">
- 
-    <!-- LEFT -->
-    <div class="nav-left">
- 
-      <!-- About — no dropdown -->
+
+    <!-- ── LEFT: LOGO ONLY ── -->
+    <div class="nav-left" style="flex:0 0 auto;">
+      <a href="index.html" class="nav-logo-wrap">
+        <img class="nav-logo-img" src="logo-emp.png" alt="EPM Wealth"
+             onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';"/>
+        <span id="logoFallback" style="display:none;align-items:center;gap:8px;">
+          <svg viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="30">
+            <path d="M4 8 L12 32 L24 16 L36 32 L44 8" stroke="#1c2540" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="4" y1="8" x2="44" y2="8" stroke="#1c2540" stroke-width="1.2" opacity="0.4"/>
+          </svg>
+          <span class="nav-logo-text">EPM Wealth</span>
+        </span>
+      </a>
+    </div>
+
+    <!-- ── RIGHT: ALL LINKS + SOCIAL + CONTACT + HAMBURGER ── -->
+    <div class="nav-right" style="display:flex;align-items:center;gap:28px;flex:1;justify-content:flex-end;">
+
+      <!-- Home -->
       <div class="nav-item">
         <b><a href="index.html" class="nav-a">Home</a></b>
       </div>
- 
-     <!-- About — no dropdown -->
+
+      <!-- About -->
       <div class="nav-item">
         <b><a href="About.html" class="nav-a">About</a></b>
       </div>
- 
-      <!-- Wealth Management ▾ -->
+
+      <!-- Solution ▾ -->
       <div class="nav-item">
         <b><a href="#" class="nav-a">
           Solution
@@ -61,10 +226,9 @@
           <a href="other-services.html">Other Services</a>
         </div>
       </div>
- 
-      <!-- Asset Management ▾ -->
-      
-   <div class="nav-item">
+
+      <!-- Financial Literacy ▾ -->
+      <div class="nav-item">
         <b><a href="#" class="nav-a">
           Financial Literacy
           <svg class="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
@@ -72,39 +236,92 @@
           </svg>
         </a></b>
         <div class="nav-dropdown">
-          <a href="seminar-webinar.html">Seminar & Webinar</a>
-         
+          <a href="seminar-webinar.html">Seminar &amp; Webinar</a>
           <a href="book-free-session.html">Book A Free Session</a>
         </div>
       </div>
-    </div>
- 
-    <!-- CENTER -->
-    <div class="nav-center">
-      <a href="#home" class="nav-logo-wrap">
-        <img class="nav-logo-img" src="logo-emp.png" alt="EPM Wealth"
-             onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';"/>
-        <span id="logoFallback" style="display:none;align-items:center;gap:8px;">
-          <svg viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="30">
-            <path d="M4 8 L12 32 L24 16 L36 32 L44 8" stroke="#1c2540" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="4" y1="8" x2="44" y2="8" stroke="#1c2540" stroke-width="1.2" opacity="0.4"/>
+
+      <!-- Social Media Dropdown -->
+      <div class="nav-social-wrap" id="socialWrap">
+        <button class="nav-social-btn" onclick="EPM.toggleSocialMenu()" aria-label="Follow us on social media" aria-expanded="false" id="socialBtn">
+          <svg class="social-icon-grid" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="4"  cy="4"  r="2"/>
+            <circle cx="10" cy="4"  r="2"/>
+            <circle cx="16" cy="4"  r="2"/>
+            <circle cx="4"  cy="10" r="2"/>
+            <circle cx="10" cy="10" r="2"/>
+            <circle cx="16" cy="10" r="2"/>
+            <circle cx="4"  cy="16" r="2"/>
+            <circle cx="10" cy="16" r="2"/>
+            <circle cx="16" cy="16" r="2"/>
           </svg>
-          <span class="nav-logo-text">EPM Wealth</span>
-        </span>
-      </a>
-    </div>
- 
-    <!-- RIGHT -->
-    <div class="nav-right">
-      <a href="#vault" class="nav-uhnw">
-        <span class="nav-badge"><b>New</b></span>
-        <b>UHNW Event Calendar 2026</b>
-      </a>
+          <svg class="soc-chevron" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div class="nav-social-dropdown" id="socialDropdown" role="menu">
+          <span class="soc-label">Follow Us</span>
+
+          <a href="https://www.linkedin.com/company/epmwealth" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.23 0z"/></svg>
+            LinkedIn
+          </a>
+
+          <a href="https://www.instagram.com/epmwealth" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.516 2.497 5.783 2.225 7.15 2.163 8.416 2.105 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.333.013 7.053.072 5.197.157 3.355.673 2.014 2.014.673 3.355.157 5.197.072 7.053.013 8.333 0 8.741 0 12c0 3.259.013 3.668.072 4.948.085 1.856.601 3.698 1.942 5.038 1.341 1.341 3.183 1.857 5.038 1.942C8.333 23.987 8.741 24 12 24s3.668-.013 4.948-.072c1.856-.085 3.698-.601 5.038-1.942 1.341-1.341 1.857-3.183 1.942-5.038.059-1.28.072-1.689.072-4.948 0-3.259-.013-3.667-.072-4.947-.085-1.856-.601-3.698-1.942-5.038C20.646.673 18.804.157 16.948.072 15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            Instagram
+          </a>
+
+          <a href="https://www.facebook.com/epmwealth" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.404 18.627 0 12 0S0 5.404 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+            Facebook
+          </a>
+
+          <a href="https://twitter.com/epmwealth" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            X (Twitter)
+          </a>
+
+          <a href="https://www.youtube.com/@epmwealth" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            YouTube
+          </a>
+        </div>
+      </div>
+      <!-- ── END SOCIAL MEDIA DROPDOWN ── -->
+
+      <!-- Contact -->
       <a href="#contact" class="nav-contact"><b>Contact</b></a>
+
+      <!-- Hamburger (mobile only) -->
       <div class="nav-hamburger" id="hamburger" onclick="EPM.openMobileMenu()">
         <span></span><span></span><span></span>
       </div>
+
     </div>
- 
+
   </nav>
 </div>
+
+<script>
+  (function () {
+    window.EPM = window.EPM || {};
+
+    EPM.toggleSocialMenu = function () {
+      const wrap = document.getElementById('socialWrap');
+      const btn  = document.getElementById('socialBtn');
+      const isOpen = wrap.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen);
+    };
+
+    document.addEventListener('click', function (e) {
+      const wrap = document.getElementById('socialWrap');
+      if (wrap && !wrap.contains(e.target)) {
+        wrap.classList.remove('open');
+        const btn = document.getElementById('socialBtn');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>

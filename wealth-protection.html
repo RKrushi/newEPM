@@ -31,7 +31,7 @@ img{max-width:100%;display:block}
 
 .label{font-size:9px;letter-spacing:3.5px;text-transform:uppercase;font-weight:600;color:var(--warm);display:block;margin-bottom:14px}
 .h2{font-family:var(--font-display);font-size:clamp(32px,4.5vw,58px);font-weight:400;line-height:1.1;color:var(--char)}
-.h2 em{font-style:italic;color:var(--warm)}
+.h2 em{font-style:none;color:var(--warm)}
 .body-text{font-size:14px;color:var(--muted);line-height:1.9}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s ease}
 .reveal.visible{opacity:1;transform:none}
@@ -75,7 +75,7 @@ nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.18)}
 .hero-eyebrow-line{flex:0 0 44px;height:1px;background:rgba(196,154,90,.6);}
 .hero-eyebrow-text{font-size:10px;letter-spacing:3.5px;text-transform:uppercase;font-weight:600;color:var(--gold2);}
 .hero-h1{font-family:var(--font-display);font-size:clamp(44px,6vw,80px);font-weight:300;color:#fff;line-height:1.02;letter-spacing:.02em;opacity:0;animation:fadeUp .8s .28s cubic-bezier(.22,1,.36,1) forwards;}
-.hero-h1 em{font-style:italic;color:var(--gold2);}
+.hero-h1 em{font-style:none;color:var(--gold2);}
 .hero-sub{font-size:14px;color:rgba(255,255,255,.5);line-height:1.8;margin-top:20px;max-width:520px;opacity:0;animation:fadeUp .7s .42s cubic-bezier(.22,1,.36,1) forwards;}
 .hero-ctas{display:flex;gap:16px;margin-top:36px;opacity:0;animation:fadeUp .7s .55s cubic-bezier(.22,1,.36,1) forwards;flex-wrap:wrap;}
 .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;background:var(--warm);color:#fff;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;transition:background .2s,gap .2s;border-radius:2px;}
@@ -88,8 +88,8 @@ nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.18)}
 .ticker-inner{display:flex;align-items:stretch;max-width:1200px;margin:0 auto;}
 .ticker-item{flex:1;padding:32px 0;display:flex;flex-direction:column;align-items:center;gap:6px;border-right:1px solid rgba(255,255,255,.08);}
 .ticker-item:last-child{border-right:none;}
-.ticker-num{font-family:var(--font-display);font-size:clamp(28px,3.5vw,46px);font-weight:400;color:#fff;line-height:1;}
-.ticker-num em{font-style:italic;color:var(--gold2);}
+.ticker-num{font-size: 35px; color: #e6e2e2;}
+.ticker-num em{font-style:none;color:var(--gold2);}
 .ticker-label{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.35);font-weight:500;}
 
 /* ══ OVERVIEW ══ */
@@ -120,8 +120,8 @@ nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.18)}
 .stat-banner-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .stat-banner-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.93) 0%,rgba(0,0,0,.7) 55%,rgba(0,0,0,.25) 100%);}
 .stat-banner-content{position:relative;z-index:2;padding:80px 7%;max-width:640px;}
-.stat-big{font-family:var(--font-display);font-size:clamp(60px,9vw,120px);font-weight:300;color:#fff;line-height:.9;letter-spacing:-.02em;}
-.stat-big em{font-style:italic;color:var(--gold2);}
+.stat-big { font-family: 'Jost', sans-serif; font-size: clamp(60px,9vw,120px); font-weight: 300; color: #fff; line-height: .9; font-style: normal; }
+.stat-big em{font-style:none;color:var(--gold2);}
 .stat-banner-title{font-family:var(--font-display);font-size:clamp(24px,3vw,40px);font-weight:400;color:#fff;margin:16px 0 20px;line-height:1.15;}
 .stat-banner-body{font-size:14px;color:rgba(255,255,255,.5);line-height:1.85;margin-bottom:32px;}
 
@@ -132,8 +132,8 @@ nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.18)}
 .why-card:hover{box-shadow:0 12px 48px rgba(0,0,0,.08);}
 .why-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--gold);transform:scaleX(0);transition:transform .35s cubic-bezier(.22,1,.36,1);transform-origin:left;}
 .why-card:hover::after{transform:scaleX(1);}
-.why-card-num{font-family:var(--font-display);font-size:56px;font-weight:300;color:var(--border);line-height:1;margin-bottom:16px;}
-.why-card-title{font-family:var(--font-display);font-size:21px;font-weight:500;color:var(--char);margin-bottom:12px;}
+.why-card-num { font-family: 'Jost', sans-serif; font-size: 56px; font-weight: 300; color: var(--border); line-height: 1; margin-bottom: 16px; font-style: normal; }
+.why-card-title { font-family: 'Jost', sans-serif; font-size: 18px; font-weight: 600; color: var(--char); margin-bottom: 12px; font-style: normal; }
 .why-card-text{font-size:13px;color:var(--muted);line-height:1.85;}
 
 /* ══ PROCESS ══ */
@@ -141,22 +141,22 @@ nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.18)}
 .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(255,255,255,.06);max-width:1200px;margin:48px auto 0;}
 .process-step{padding:44px 28px;border:1px solid rgba(255,255,255,.06);cursor:pointer;transition:background .25s;}
 .process-step:hover{background:rgba(196,154,90,.08);}
-.process-step-num{font-family:var(--font-display);font-size:48px;font-weight:300;color:rgba(255,255,255,.12);line-height:1;margin-bottom:16px;}
+.process-step-num { font-family: 'Jost', sans-serif; font-size: 48px; font-weight: 300; color: rgba(255,255,255,.12); line-height: 1; margin-bottom: 16px; font-style: normal; }
 .process-step-icon{font-size:28px;margin-bottom:16px;}
-.process-step-title{font-family:var(--font-display);font-size:20px;font-weight:500;color:#fff;margin-bottom:10px;}
+.process-step-title { font-family: 'Jost', sans-serif; font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 10px; font-style: normal; }
 .process-step-text{font-size:13px;color:rgba(255,255,255,.4);line-height:1.8;}
 
 /* ══ CTA BAND ══ */
 .cta-band{background:var(--blush);padding:88px 7%;text-align:center;border-top:1px solid var(--border);}
 .cta-band h2{font-family:var(--font-display);font-size:clamp(32px,4.5vw,58px);font-weight:300;color:var(--char);margin-bottom:16px;}
-.cta-band h2 em{font-style:italic;color:var(--warm);}
+.cta-band h2 em{font-style:none;color:var(--warm);}
 .cta-band p{font-size:14px;color:var(--muted);max-width:500px;margin:0 auto 36px;line-height:1.85;}
 
 /* ══ FOOTER ══ */
 footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--border)}
 .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
 .footer-brand{font-family:var(--font-display);font-size:24px;font-weight:400;color:var(--char);margin-bottom:8px;letter-spacing:1px}
-.footer-brand span{font-style:italic;color:var(--warm)}
+.footer-brand span{font-style:none;color:var(--warm)}
 .footer-tagline{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted2);margin-bottom:14px}
 .footer-about{font-size:12.5px;color:var(--muted2);line-height:1.9;max-width:240px}
 .footer-badges{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
@@ -298,7 +298,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
       <span class="hero-eyebrow-line"></span>
       <span class="hero-eyebrow-text">EPM Wealth — Insurance &amp; Protection</span>
     </div>
-    <h1 class="hero-h1">Secure Your <em>Tomorrow,</em><br>Today</h1>
+    <h1 class="hero-h1">Secure Your Tomorrow,<br>Today</h1>
     <p class="hero-sub">Protect the life you've built and the future you've imagined. With expert guidance and a tailored approach, we help you find the perfect protection solution for your unique needs.</p>
     <div class="hero-ctas">
       <a href="book-free-session.html" class="btn-primary">Start Your Journey <i class="fa fa-arrow-right"></i></a>
@@ -310,10 +310,10 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 <!-- STAT TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-inner">
-    <div class="ticker-item"><div class="ticker-num">80<em>%</em></div><div class="ticker-label">Indians Underinsured</div></div>
-    <div class="ticker-item"><div class="ticker-num">4<em>+</em></div><div class="ticker-label">Protection Products</div></div>
-    <div class="ticker-item"><div class="ticker-num">15<em>+</em></div><div class="ticker-label">Years Advisory</div></div>
-    <div class="ticker-item"><div class="ticker-num">1000<em>+</em></div><div class="ticker-label">Families Protected</div></div>
+    <div class="ticker-item"><div class="ticker-num">80</div><div class="ticker-label">Indians Underinsured</div></div>
+    <div class="ticker-item"><div class="ticker-num">4</div><div class="ticker-label">Protection Products</div></div>
+    <div class="ticker-item"><div class="ticker-num">15</div><div class="ticker-label">Years Advisory</div></div>
+    <div class="ticker-item"><div class="ticker-num">1000</div><div class="ticker-label">Families Protected</div></div>
   </div>
 </div>
 
@@ -322,7 +322,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
   <div class="overview-grid">
     <div class="reveal-left">
       <span class="label">One Stop Solution</span>
-      <h2 class="h2" style="margin-bottom:20px;">While protecting &amp; creating wealth, we <em>have your back</em></h2>
+      <h2 class="h2" style="margin-bottom:20px;">While protecting &amp; creating wealth, we have your back</h2>
       <p class="body-text">While protecting and creating wealth, there are a few things you might worry about. But worry not, for we have your back. At EPM Wealth, we help you secure your future with the peace of mind that comprehensive insurance brings.</p>
       <p class="body-text" style="margin-top:16px">Don't leave yourself open to the risks of life. Take control and protect what matters most to you — your health, your home, your legacy, and your loved ones' future.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px;">
@@ -376,8 +376,8 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 
           <!-- Center hub overlay -->
           <circle cx="240" cy="240" r="72" fill="#1c2540"/>
-          <text x="240" y="232" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="13" fill="rgba(255,255,255,.9)" font-style="italic">Complete</text>
-          <text x="240" y="252" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="13" fill="rgba(255,255,255,.9)" font-style="italic">Protection</text>
+          <text x="240" y="232" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="13" fill="rgba(255,255,255,.9)" font-style="none">Complete</text>
+          <text x="240" y="252" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="13" fill="rgba(255,255,255,.9)" font-style="none">Protection</text>
 
           <!-- Inner labels -->
           <text x="240" y="175" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="#fff" font-weight="600" letter-spacing="0.5">Term Plan</text>
@@ -406,7 +406,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
   <div class="coverage-header reveal">
     <div>
       <span class="label">Our Products</span>
-      <h2 class="h2">Protection solutions <em>built for you</em></h2>
+      <h2 class="h2">Protection solutions built for you</h2>
     </div>
     <div>
       <p class="body-text">Comprehensive insurance coverage across every aspect of your life — from health to home to legacy planning.</p>
@@ -453,7 +453,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
   <img class="stat-banner-bg" src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1400&q=80&auto=format&fit=crop" alt=""/>
   <div class="stat-banner-overlay"></div>
   <div class="stat-banner-content reveal-left">
-    <div class="stat-big">80<em>%</em></div>
+    <div class="stat-big">80%</div>
     <div class="stat-banner-title">Of Indians Are Underinsured</div>
     <p class="stat-banner-body">We at EPM Wealth, with our expert guidance and tailored approach, help you find the perfect insurance solution for your unique needs. We help you secure your future with the peace of mind that insurance brings. Don't leave yourself open to the risks of life. Take control and protect what matters most to you.</p>
     <a href="book-free-session.html" class="btn-primary">Start Your Journey <i class="fa fa-arrow-right"></i></a>
@@ -464,7 +464,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 <section class="why-section">
   <div style="max-width:1200px;margin:0 auto;" class="reveal">
     <span class="label">Why It Matters</span>
-    <h2 class="h2" style="max-width:600px;">Three reasons you <em>can't afford to wait</em></h2>
+    <h2 class="h2" style="max-width:600px;">Three reasons you can't afford to wait</h2>
   </div>
   <div class="why-grid reveal">
     <div class="why-card">
@@ -504,7 +504,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 <section class="process-section">
   <div style="max-width:1200px;margin:0 auto;text-align:center;" class="reveal">
     <span class="label" style="color:rgba(255,255,255,.35);display:block;text-align:center;">Simple, Guided</span>
-    <h2 class="h2" style="color:#fff;text-align:center;">Our <em style="color:var(--gold2)">protection</em> process</h2>
+    <h2 class="h2" style="color:#fff;text-align:center;">Our <span style="color:var(--gold2);font-style:normal;">protection process</span></h2>
   </div>
   <div class="process-grid reveal">
     <div class="process-step">
@@ -537,7 +537,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 <!-- CTA -->
 <section class="cta-band">
   <div class="reveal">
-    <h2>Don't leave your future <em>to chance</em></h2>
+    <h2>Don't leave your future to chance</h2>
     <p>Connect with an EPM Wealth advisor today for a free, no-obligation protection review tailored to your needs.</p>
     <a href="book-free-session.html" class="btn-primary" style="display:inline-flex;">Start Your Journey <i class="fa fa-arrow-right" style="margin-left:8px"></i></a>
   </div>

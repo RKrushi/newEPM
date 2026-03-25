@@ -6,6 +6,7 @@
  * Provides:
  *  • EPM.openMobileMenu()   — open mobile nav drawer
  *  • EPM.closeMobileMenu()  — close mobile nav drawer
+ *  • EPM.toggleSocialMenu() — toggle social media dropdown
  *  • Nav sticky-scroll behaviour
  *  • Scroll-reveal (IntersectionObserver)
  *  • Escape-key modal close hook
@@ -29,6 +30,36 @@
     if (menu) { menu.classList.remove('open'); document.body.style.overflow = ''; }
   };
 
+  /* ══ SOCIAL MEDIA DROPDOWN ══ */
+  EPM.toggleSocialMenu = function () {
+    var dropdown = document.getElementById('socialDropdown');
+    var btn      = document.getElementById('socialBtn');
+    var wrap     = document.getElementById('socialWrap');
+    if (!dropdown) return;
+
+    var isOpen = dropdown.classList.contains('open');
+
+    /* Close first (handles toggling) */
+    dropdown.classList.remove('open');
+    if (btn)  btn.setAttribute('aria-expanded', 'false');
+    if (wrap) wrap.classList.remove('active');
+
+    if (!isOpen) {
+      dropdown.classList.add('open');
+      if (btn)  btn.setAttribute('aria-expanded', 'true');
+      if (wrap) wrap.classList.add('active');
+    }
+  };
+
+  EPM.closeSocialMenu = function () {
+    var dropdown = document.getElementById('socialDropdown');
+    var btn      = document.getElementById('socialBtn');
+    var wrap     = document.getElementById('socialWrap');
+    if (dropdown) dropdown.classList.remove('open');
+    if (btn)      btn.setAttribute('aria-expanded', 'false');
+    if (wrap)     wrap.classList.remove('active');
+  };
+
   /* ══ NAV STICKY SCROLL ══ */
   function initNavScroll() {
     var nav      = document.getElementById('mainNav');
@@ -48,13 +79,12 @@
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // run once on load
+    onScroll();
   }
 
   /* ══ SCROLL REVEAL ══ */
   function initScrollReveal() {
     if (!('IntersectionObserver' in window)) {
-      /* Fallback: just show everything */
       document.querySelectorAll('.reveal, .reveal-left').forEach(function (el) {
         el.classList.add('visible');
       });
@@ -75,23 +105,27 @@
     });
   }
 
-  /* ══ ESCAPE KEY — close any open modal / menu ══ */
+  /* ══ ESCAPE KEY ══ */
   function initEscapeKey() {
     document.addEventListener('keydown', function (e) {
       if (e.key !== 'Escape') return;
-
-      /* Close mobile menu */
       EPM.closeMobileMenu();
+      EPM.closeSocialMenu();
+      if (typeof EPM.closeVideoModal === 'function') EPM.closeVideoModal();
+    });
+  }
 
-      /* Close video modal if present on this page */
-      if (typeof EPM.closeVideoModal === 'function') {
-        EPM.closeVideoModal();
+  /* ══ CLICK OUTSIDE — close social dropdown ══ */
+  function initClickOutside() {
+    document.addEventListener('click', function (e) {
+      var wrap = document.getElementById('socialWrap');
+      if (wrap && !wrap.contains(e.target)) {
+        EPM.closeSocialMenu();
       }
     });
   }
 
-  /* ══ STATS COUNTER ANIMATION ══
-     Add id="statsStrip" to your stats section to enable counter-up effect. */
+  /* ══ STATS COUNTER ANIMATION ══ */
   function initStatsCounter() {
     var strip = document.getElementById('statsStrip');
     if (!strip || !('IntersectionObserver' in window)) return;
@@ -126,10 +160,9 @@
           var formatted = Number.isInteger(numeric)
             ? Math.round(numeric * ease).toLocaleString('en-IN')
             : (numeric * ease).toFixed(1);
-
           el.textContent = prefix + formatted + suffix;
           if (progress < 1) requestAnimationFrame(step);
-          else              el.textContent = raw; // restore exact original
+          else              el.textContent = raw;
         }
 
         requestAnimationFrame(step);
@@ -137,8 +170,7 @@
     }
   }
 
-  /* ══ CONTACT FORM ══
-     Works on any <form onsubmit="EPM.submitForm(event)"> with id="formOk" confirmation div. */
+  /* ══ CONTACT FORM ══ */
   EPM.submitForm = function (e) {
     e.preventDefault();
     var ok = document.getElementById('formOk');
@@ -146,9 +178,7 @@
     if (e.target) e.target.reset();
   };
 
-  /* ══ SIP CALCULATOR ══
-     Requires inputs: #sipAmt #sipYrs #sipFreq #sipRate #sipInfl
-     Outputs:         #sInv   #sGain  #sTotal  #sipRes  */
+  /* ══ SIP CALCULATOR ══ */
   EPM.calcSip = function () {
     var P = parseFloat(document.getElementById('sipAmt').value)  || 0;
     var n = parseInt(document.getElementById('sipFreq').value)   || 12;
@@ -171,8 +201,7 @@
     document.getElementById('sipRes').classList.add('show');
   };
 
-  /* ══ AWARD YEAR SWITCHER ══
-     Used on index/recognition section. */
+  /* ══ AWARD YEAR SWITCHER ══ */
   EPM.switchYear = function (el, name, source, icon) {
     document.querySelectorAll('.award-year').forEach(function (y) {
       y.classList.remove('active');
@@ -190,8 +219,7 @@
     if (iconEl)   iconEl.textContent   = icon;
   };
 
-  /* ══ CAREERS COLLAGE SLIDER ══
-     Self-contained; looks for #collageSlider and related elements. */
+  /* ══ CAREERS COLLAGE SLIDER ══ */
   function initCollageSlider() {
     var slides   = document.querySelectorAll('.collage-slide');
     var thumbs   = document.querySelectorAll('.collage-thumb');
@@ -270,11 +298,10 @@
     startAuto();
   }
 
-  /* ══ VIDEO MODAL (homepage) ══
-     Requires: #videoModal  #modalVideo  #modalClose  #modalBackdrop  #playBtn */
+  /* ══ VIDEO MODAL ══ */
   function initVideoModal() {
-    var modal   = document.getElementById('videoModal');
-    var vid     = document.getElementById('modalVideo');
+    var modal    = document.getElementById('videoModal');
+    var vid      = document.getElementById('modalVideo');
     var closeBtn = document.getElementById('modalClose');
     var backdrop = document.getElementById('modalBackdrop');
     var playBtn  = document.getElementById('playBtn');
@@ -297,11 +324,12 @@
     if (playBtn)  playBtn.addEventListener('click',  EPM.openVideoModal);
   }
 
-  /* ══ INIT — run after DOM is ready ══ */
+  /* ══ INIT ══ */
   function init() {
     initNavScroll();
     initScrollReveal();
     initEscapeKey();
+    initClickOutside();
     initStatsCounter();
     initCollageSlider();
     initVideoModal();
@@ -315,13 +343,13 @@
 
 })();
 
+/* ══ NAV DROPDOWN KEYBOARD ACCESSIBILITY ══ */
 (function () {
-  /* Keyboard: Enter/ArrowDown opens dropdown; Escape closes */
   document.querySelectorAll('.nav-item').forEach(function (item) {
     var trigger  = item.querySelector('.nav-a');
     var dropdown = item.querySelector('.nav-dropdown');
     if (!trigger || !dropdown) return;
- 
+
     trigger.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
         e.preventDefault();
@@ -329,7 +357,7 @@
         if (first) first.focus();
       }
     });
- 
+
     var links = Array.from(dropdown.querySelectorAll('a'));
     links.forEach(function (link, i) {
       link.addEventListener('keydown', function (e) {

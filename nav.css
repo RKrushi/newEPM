@@ -1,0 +1,407 @@
+/* ══════════════════════════════════════════════════════
+   EPM Wealth — nav.css
+   All nav styles in one place. Load AFTER shared.css.
+══════════════════════════════════════════════════════ */
+
+/* ── Outer wrapper ── */
+.nav-outer {
+  position: relative;
+  z-index: 600;
+  padding: 10px 32px;
+  margin-bottom: -78px;
+}
+/* ── MATCH NAV DROPDOWN ITEMS TO SOCIAL DROPDOWN ── */
+.nav-dropdown a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 9px 12px !important;
+  border-radius: 8px !important;
+  font-family: var(--font-display);
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: var(--char);
+  text-decoration: none;
+  white-space: nowrap !important;
+  height: 38px !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  transition: background 0.18s, color 0.18s;
+}
+/* ── Nav bar ── */
+#mainNav {
+  background: rgba(240, 232, 218, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(180, 162, 138, 0.5);
+  border-radius: 6px;
+  height: 52px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+#mainNav.scrolled {
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.18);
+}
+
+/* ── Sections ── */
+.nav-left {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 28px;
+  flex: 1;
+}
+
+/* ── Logo ── */
+.nav-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo-img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+   padding-left: 20px;
+}
+
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: var(--char);
+  text-transform: uppercase;
+
+}
+
+/* ── Nav items (dropdown wrappers) ── */
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Nav links ── */
+.nav-a {
+  font-size: 18px; /* ← was 15px */
+}
+
+.nav-a::after {
+  display: none; /* remove any global underline animation */
+}
+
+.nav-a:hover,
+.nav-item:hover > .nav-a,
+.nav-item:focus-within > .nav-a {
+  color: var(--warm);
+  text-decoration: none;
+}
+
+/* ── Dropdown chevron ── */
+.nav-chevron {
+  opacity: 0.4;
+  transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s;
+  flex-shrink: 0;
+}
+
+.nav-item:hover > .nav-a .nav-chevron,
+.nav-item:focus-within > .nav-a .nav-chevron {
+  transform: rotate(180deg);
+  opacity: 0.85;
+}
+
+/* ── Dropdown panel ── */
+.nav-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 0;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  padding: 8px;
+  min-width: 200px;
+  z-index: 9999;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-item:hover .nav-dropdown,
+.nav-item:focus-within .nav-dropdown {
+  display: flex;
+}
+
+/* ── MATCH NAV DROPDOWN ITEMS TO SOCIAL DROPDOWN ── */
+.nav-dropdown a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 9px 12px !important;
+  border-radius: 8px !important;
+  font-family: var(--font-display);
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: var(--char);
+  text-decoration: none;
+  white-space: nowrap !important;
+  height: 38px !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  transition: background 0.18s, color 0.18s;
+}
+
+.nav-dropdown a:hover {
+  background: var(--warm-light, #fdf3ec);
+  color: var(--warm);
+}
+
+/* ── Contact link ── */
+.nav-contact {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--char);
+  font-weight: 400;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.nav-contact:hover {
+  color: var(--warm);
+}
+
+/* ── Hamburger (mobile only) ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.nav-hamburger span {
+  width: 22px;
+  height: 1.5px;
+  background: var(--char);
+  display: block;
+}
+
+/* ════════════════════════════════════════
+   SOCIAL MEDIA DROPDOWN
+════════════════════════════════════════ */
+.nav-social-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-social-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: var(--char, #1c2540);
+  font-size: 13px;
+  font-family: inherit;
+  transition: background 0.2s;
+  line-height: 1;
+}
+
+.nav-social-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+/* The 3×3 dots grid icon */
+.nav-social-btn .social-icon-grid {
+  width: 18px !important;
+  height: 18px !important;
+  opacity: 0.75;
+  flex-shrink: 0;
+}
+
+/* Chevron inside the button */
+.nav-social-btn .soc-chevron {
+  width: 10px !important;
+  height: 6px !important;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+  color: var(--char, #1c2540);
+}
+
+.nav-social-wrap.open .nav-social-btn .soc-chevron {
+  transform: rotate(180deg);
+}
+
+/* Dropdown panel */
+.nav-social-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  padding: 10px;
+  width: 200px;
+  min-width: 200px;
+  max-width: 200px;
+  z-index: 9999;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.nav-social-wrap.open .nav-social-dropdown {
+  display: flex;
+}
+
+/* "Follow Us" label */
+.soc-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #aaa;
+  padding: 6px 12px 2px;
+  font-family: inherit;
+  display: block;
+}
+
+/* Individual social link row */
+.nav-social-dropdown a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 9px 12px !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  color: var(--char, #1c2540) !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  height: 38px !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  transition: background 0.18s, color 0.18s !important;
+}
+
+.nav-social-dropdown a:hover {
+  background: var(--warm-light, #fdf3ec) !important;
+  color: var(--warm, #c8714a) !important;
+}
+
+/* ── CRITICAL: Lock all SVGs inside the dropdown to 18px ── */
+.nav-social-dropdown a svg,
+.nav-social-dropdown a svg * {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  max-width: 18px !important;
+  min-height: 18px !important;
+  max-height: 18px !important;
+  flex-shrink: 0 !important;
+  display: inline-block !important;
+}
+
+/* ════════════════════════════════════════
+   MOBILE MENU
+════════════════════════════════════════ */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--white, #fff);
+  z-index: 700;
+  flex-direction: column;
+  padding: 24px 5%;
+  overflow-y: auto;
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+.mobile-menu-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.mobile-close {
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--muted, #888);
+}
+
+.mob-group-label {
+  font-size: 10px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #aaa;
+  padding: 18px 0 6px;
+  display: block;
+  font-family: var(--font-display);
+}
+
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--char);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border, #eee);
+  display: block;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mobile-menu a.mob-sub {
+  font-size: 16px;
+  padding: 10px 0 10px 12px;
+  color: var(--muted, #555);
+}
+
+.mobile-menu a:hover {
+  color: var(--warm);
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .nav-right .nav-item,
+  .nav-right .nav-contact,
+  .nav-right .nav-social-wrap {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-outer {
+    padding: 8px 16px;
+  }
+}

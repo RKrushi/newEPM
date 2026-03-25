@@ -12,6 +12,7 @@
     --ghost: rgba(255,255,255,0.06);
     --text-primary: #e8e0d5; --text-muted: rgba(232,224,213,0.4);
     --serif: 'Cormorant Garamond', serif; --mono: 'Space Mono', monospace; --caps: 'Syncopate', sans-serif;
+    --font-ui: 'Jost', sans-serif;
   }
   html { scroll-behavior: smooth; overflow-x: hidden; }
   body { background: var(--void); color: var(--text-primary); font-family: var(--serif); font-size: 18px; line-height: 1.7; cursor: none; overflow-x: hidden; }
@@ -71,7 +72,7 @@
   #stats { padding:100px 10vw; background:rgba(5,9,15,.97); display:grid; grid-template-columns:repeat(4,1fr); gap:1px; border-top:1px solid rgba(255,255,255,.04); border-bottom:1px solid rgba(255,255,255,.04); }
   .stat-item { padding:60px 40px; border-right:1px solid rgba(255,255,255,.04); text-align:center; }
   .stat-item:last-child { border-right:none; }
-  .stat-number { font-family:var(--caps); font-size:clamp(44px,6vw,88px); font-weight:700; line-height:1; background:linear-gradient(135deg,var(--text-primary),var(--ember)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; display:block; margin-bottom:16px; }
+  .stat-number { font-size: 16px; color: #000; display: block; margin-bottom: 8px; }
   .stat-label { font-family:var(--mono); font-size:9px; letter-spacing:.35em; color:var(--text-muted); text-transform:uppercase; }
   #process { padding:140px 10vw; background:rgba(5,9,15,.95); }
   .process-header { display:grid; grid-template-columns:1fr 1fr; gap:80px; margin-bottom:100px; align-items:end; }
@@ -128,6 +129,54 @@
     .process-steps{grid-template-columns:1fr;} footer{flex-direction:column;gap:24px;text-align:center;}
     .cta-form{flex-direction:column;} .cta-input{border-right:1px solid rgba(255,255,255,.12);border-bottom:none;}
   }
+.label,
+.eyebrow-text,
+.info-tag,
+.info-cta,
+.stat-label,
+.play-label-text,
+.arrow-link,
+.vault-card-cat,
+.vault-card-date,
+.press-source,
+.press-date,
+.wm-card-invest,
+.wm-card-link,
+.am-card-min,
+.am-card-link,
+.am-card-desc,
+.wm-card-desc,
+.risk-card-word,
+.risk-card-desc,
+.careers-list li,
+.ci-lbl,
+.ci-val,
+.form-label,
+.form-inp,
+.form-textarea,
+.form-select,
+.form-submit,
+.form-radio-item,
+.sip-label-t,
+.sip-inp,
+.sip-btn,
+.sip-rl,
+.vault-sub-btn,
+.vault-inp,
+.video-modal-close,
+.footer-tagline,
+.footer-about,
+.footer-col h4,
+.footer-col a,
+.footer-bottom,
+.footer-badge,
+.recog-desc,
+.recog-award-source,
+.nav-hamburger,
+.mob-group-label,
+.mob-sub {
+  font-family: var(--font-ui);
+}
 </style>
 </head>
 <body>
@@ -167,7 +216,7 @@
 <section id="statement">
   <div class="statement-inner reveal">
     <span class="statement-number">— 001 —</span>
-    <p class="statement-text">We are entering an era where digital space has <em>no boundaries</em>—where your product can exist simultaneously in every dimension, seen from every angle, understood at every scale.</p>
+    <p class="statement-text">We are entering an era where digital space has no boundaries—where your product can exist simultaneously in every dimension, seen from every angle, understood at every scale.</p>
     <div class="statement-divider"></div>
     <p class="statement-footnote">Real-time rendering · Adaptive geometry · Quantum-grade precision<br>Built for the next decade of spatial computing</p>
   </div>

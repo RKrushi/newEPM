@@ -7,6 +7,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <link rel="stylesheet" href="shared.css"/>
+<link rel="stylesheet" href="nav.css"/>
+<script src="nav.js" defer></script>
 <style>
 :root{
   --cream:#f5ede0;--cream2:#ede4d6;--cream3:#faf4ec;
@@ -38,31 +40,6 @@ img{max-width:100%;display:block}
 .reveal-left{opacity:0;transform:translateX(-26px);transition:opacity .75s ease,transform .75s ease}
 .reveal-left.visible{opacity:1;transform:none}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
-
-/* ══ NAV ══ */
-.nav-outer{position:relative;z-index:600;padding:10px 32px;}
-nav{background:rgba(240,232,218,0.96);backdrop-filter:blur(14px);border:1px solid rgba(180,162,138,.5);border-radius:6px;height:52px;padding:0 24px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;box-shadow:0 2px 24px rgba(0,0,0,.1);transition:box-shadow .3s;}
-nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.18)}
-.nav-left{display:flex;align-items:center;gap:34px}
-.nav-center{display:flex;align-items:center;justify-content:center}
-.nav-right{display:flex;align-items:center;justify-content:flex-end;gap:20px}
-.nav-a{font-family:var(--font-display);font-size:15.5px;color:var(--char);font-weight:400;transition:color .2s;white-space:nowrap;}
-.nav-a:hover,.nav-a.active{color:var(--warm)}
-.nav-logo-img{height:32px;width:auto;display:block;}
-.nav-logo-wrap{display:flex;align-items:center;gap:10px;}
-.nav-logo-text{font-family:var(--font-display);font-size:17px;font-weight:500;letter-spacing:3px;color:var(--char);text-transform:uppercase;}
-.nav-badge{background:var(--warm);color:#fff;font-size:8px;letter-spacing:.8px;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:20px;margin-right:4px;}
-.nav-uhnw{display:flex;align-items:center;gap:5px;font-family:var(--font-display);font-size:15px;color:var(--char);transition:color .2s;white-space:nowrap;}
-.nav-uhnw:hover{color:var(--warm)}
-.nav-contact{font-family:var(--font-display);font-size:15px;color:var(--char);transition:color .2s;}
-.nav-contact:hover{color:var(--warm)}
-.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
-.nav-hamburger span{width:22px;height:1.5px;background:var(--char)}
-.mobile-menu{display:none;position:fixed;inset:0;background:var(--white);z-index:700;flex-direction:column;padding:24px 5%}
-.mobile-menu.open{display:flex}
-.mobile-menu-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
-.mobile-menu a{font-size:28px;font-family:var(--font-display);font-weight:400;color:var(--char);padding:16px 0;border-bottom:1px solid var(--border);display:block}
-.mobile-close{font-size:22px;cursor:pointer;color:var(--muted)}
 
 /* ══ HERO ══ */
 .page-hero{background:var(--char);position:relative;overflow:hidden;padding:88px 7% 80px;min-height:400px;display:flex;align-items:center;}
@@ -221,24 +198,47 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
   <a href="index.html#contact">Contact</a>
 </div>
 
-<!-- NAV -->
+<div class="sf">
+  <a href="https://www.instagram.com/epm_wealth/" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.youtube.com/@epmwealth101" target="_blank"><i class="fab fa-youtube"></i></a>
+  <a href="https://www.linkedin.com/company/epm-wealth/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+  <a href="https://www.facebook.com/epmwealthadvisor" target="_blank"><i class="fab fa-facebook-f"></i></a>
+</div>
+<a href="https://wa.me/919999939333" class="wa-btn" target="_blank">💬</a>
+<!-- MOBILE MENU -->
+<!-- ══ NAV BAR ══ -->
 <div class="nav-outer" id="navOuter">
   <nav id="mainNav">
- 
-    <!-- LEFT -->
-    <div class="nav-left">
- 
-      <!-- About — no dropdown -->
+
+    <!-- ── LEFT: LOGO ONLY ── -->
+    <div class="nav-left" style="flex:0 0 auto;">
+      <a href="index.html" class="nav-logo-wrap">
+        <img class="nav-logo-img" src="logo-emp.png" alt="EPM Wealth"
+             onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';"/>
+        <span id="logoFallback" style="display:none;align-items:center;gap:8px;">
+          <svg viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="30">
+            <path d="M4 8 L12 32 L24 16 L36 32 L44 8" stroke="#1c2540" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="4" y1="8" x2="44" y2="8" stroke="#1c2540" stroke-width="1.2" opacity="0.4"/>
+          </svg>
+          <span class="nav-logo-text">EPM Wealth</span>
+        </span>
+      </a>
+    </div>
+
+    <!-- ── RIGHT: ALL LINKS + SOCIAL + CONTACT + HAMBURGER ── -->
+    <div class="nav-right" style="display:flex;align-items:center;gap:28px;flex:1;justify-content:flex-end;">
+
+      <!-- Home -->
       <div class="nav-item">
         <b><a href="index.html" class="nav-a">Home</a></b>
       </div>
- 
-     <!-- About — no dropdown -->
+
+      <!-- About -->
       <div class="nav-item">
         <b><a href="About.html" class="nav-a">About</a></b>
       </div>
- 
-      <!-- Wealth Management ▾ -->
+
+      <!-- Solution ▾ -->
       <div class="nav-item">
         <b><a href="#" class="nav-a">
           Solution
@@ -253,10 +253,9 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
           <a href="other-services.html">Other Services</a>
         </div>
       </div>
- 
-      <!-- Asset Management ▾ -->
-      
-   <div class="nav-item">
+
+      <!-- Financial Literacy ▾ -->
+      <div class="nav-item">
         <b><a href="#" class="nav-a">
           Financial Literacy
           <svg class="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
@@ -264,40 +263,71 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
           </svg>
         </a></b>
         <div class="nav-dropdown">
-          <a href="seminar-webinar.html">Seminar & Webinar</a>
-         
+          <a href="seminar-webinar.html">Seminar &amp; Webinar</a>
           <a href="book-free-session.html">Book A Free Session</a>
         </div>
       </div>
-    </div>
- 
-    <!-- CENTER -->
-    <div class="nav-center">
-      <a href="#home" class="nav-logo-wrap">
-        <img class="nav-logo-img" src="logo-emp.png" alt="EPM Wealth"
-             onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';"/>
-        <span id="logoFallback" style="display:none;align-items:center;gap:8px;">
-          <svg viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="30">
-            <path d="M4 8 L12 32 L24 16 L36 32 L44 8" stroke="#1c2540" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="4" y1="8" x2="44" y2="8" stroke="#1c2540" stroke-width="1.2" opacity="0.4"/>
+<a href="#contact" class="nav-contact">Contact</a>
+      <!-- Social Media Dropdown -->
+      <div class="nav-social-wrap" id="socialWrap">
+        <button class="nav-social-btn" onclick="EPM.toggleSocialMenu()" aria-label="Follow us on social media" aria-expanded="false" id="socialBtn">
+          <svg class="social-icon-grid" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="4"  cy="4"  r="2"/>
+            <circle cx="10" cy="4"  r="2"/>
+            <circle cx="16" cy="4"  r="2"/>
+            <circle cx="4"  cy="10" r="2"/>
+            <circle cx="10" cy="10" r="2"/>
+            <circle cx="16" cy="10" r="2"/>
+            <circle cx="4"  cy="16" r="2"/>
+            <circle cx="10" cy="16" r="2"/>
+            <circle cx="16" cy="16" r="2"/>
           </svg>
-          <span class="nav-logo-text">EPM Wealth</span>
-        </span>
-      </a>
-    </div>
- 
-    <!-- RIGHT -->
-    <div class="nav-right">
-      <a href="#vault" class="nav-uhnw">
-        <span class="nav-badge"><b>New</b></span>
-        <b>UHNW Event Calendar 2026</b>
-      </a>
-      <a href="#contact" class="nav-contact"><b>Contact</b></a>
+          <svg class="soc-chevron" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div class="nav-social-dropdown" id="socialDropdown" role="menu">
+          <span class="soc-label">Follow Us</span>
+
+          <a href="https://www.linkedin.com/company/epmwealth" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.23 0z"/></svg>
+            LinkedIn
+          </a>
+
+          <a href="https://www.instagram.com/epmwealth" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.516 2.497 5.783 2.225 7.15 2.163 8.416 2.105 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.333.013 7.053.072 5.197.157 3.355.673 2.014 2.014.673 3.355.157 5.197.072 7.053.013 8.333 0 8.741 0 12c0 3.259.013 3.668.072 4.948.085 1.856.601 3.698 1.942 5.038 1.341 1.341 3.183 1.857 5.038 1.942C8.333 23.987 8.741 24 12 24s3.668-.013 4.948-.072c1.856-.085 3.698-.601 5.038-1.942 1.341-1.341 1.857-3.183 1.942-5.038.059-1.28.072-1.689.072-4.948 0-3.259-.013-3.667-.072-4.947-.085-1.856-.601-3.698-1.942-5.038C20.646.673 18.804.157 16.948.072 15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            Instagram
+          </a>
+
+          <a href="https://www.facebook.com/epmwealth" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.404 18.627 0 12 0S0 5.404 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+            Facebook
+          </a>
+
+          <a href="https://twitter.com/epmwealth" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            X (Twitter)
+          </a>
+
+          <a href="https://www.youtube.com/@epmwealth" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            YouTube
+          </a>
+        </div>
+      </div>
+      <!-- ── END SOCIAL MEDIA DROPDOWN ── -->
+
+      <!-- Contact -->
+      
+
+      <!-- Hamburger (mobile only) -->
       <div class="nav-hamburger" id="hamburger" onclick="EPM.openMobileMenu()">
         <span></span><span></span><span></span>
       </div>
+
     </div>
- 
+
   </nav>
 </div>
 
@@ -310,7 +340,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
       <span class="hero-eyebrow-line"></span>
       <span class="hero-eyebrow-text">EPM Wealth — Advisory Solutions</span>
     </div>
-    <h1 class="hero-h1">One Stop <em>Solution</em></h1>
+    <h1 class="hero-h1">One Stop Solution</h1>
     <p class="hero-sub">While protecting and creating wealth, there are a few things you might worry about. But worry not, for we have your back — with Estate Planning, Tax Planning, and Goal Planning under one roof.</p>
     <div class="hero-ctas">
       <a href="index.html#contact" class="btn-primary">Let's Talk <i class="fa fa-arrow-right"></i></a>
@@ -322,7 +352,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 <!-- INTRO BAND -->
 <div class="intro-band">
   <div class="intro-band-inner reveal">
-    <p class="intro-band-quote">"While protecting and creating wealth, there are a few things you might worry about. But worry not, <em>for we have your back.</em>"</p>
+    <p class="intro-band-quote">"While protecting and creating wealth, there are a few things you might worry about. But worry not, for we have your back."</p>
   </div>
 </div>
 
@@ -331,7 +361,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
   <div class="services-header reveal">
     <div>
       <span class="label">Our Advisory Solutions</span>
-      <h2 class="h2">Three pillars of <em>complete</em> financial wellness</h2>
+      <h2 class="h2">Three pillars of complete financial wellness</h2>
     </div>
     <div>
       <p class="body-text">Beyond wealth creation and protection, true financial peace of mind requires expert guidance across estate planning, tax optimisation, and goal achievement.</p>
@@ -446,7 +476,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 <section class="compare-section">
   <div style="max-width:1200px;margin:0 auto;" class="reveal">
     <span class="label">At a Glance</span>
-    <h2 class="h2" style="margin-bottom:8px;">What each service <em>includes</em></h2>
+    <h2 class="h2" style="margin-bottom:8px;">What each service includes</h2>
     <p class="body-text" style="max-width:560px;margin-top:12px;">A quick reference of what you get with each of our three specialist advisory services.</p>
   </div>
   <div class="compare-table reveal">
@@ -505,7 +535,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 <section class="process-section">
   <div style="max-width:1200px;margin:0 auto;text-align:center;" class="reveal">
     <span class="label" style="color:rgba(255,255,255,.3);display:block;text-align:center;">How We Work</span>
-    <h2 class="h2" style="color:#fff;text-align:center;">Your journey with <em style="color:var(--gold2)">EPM Wealth</em></h2>
+    <h2 class="h2" style="color:#fff;text-align:center;">Your journey with EPM Wealth</h2>
   </div>
   <div class="process-grid reveal">
     <div class="process-step">
@@ -541,7 +571,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
   <div class="faq-grid">
     <div>
       <span class="label">Common Questions</span>
-      <h2 class="h2" style="margin-bottom:8px;">Frequently <em>asked</em></h2>
+      <h2 class="h2" style="margin-bottom:8px;">Frequently asked</h2>
       <p class="body-text" style="margin-top:12px;max-width:480px;">Everything you need to know about our advisory services.</p>
       <div class="faq-list reveal">
         <div class="faq-item">
@@ -584,7 +614,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 
     <div class="faq-visual reveal">
       <div class="faq-visual-card">
-        <div class="faq-visual-title">Ready to take the <em style="font-style:italic;color:var(--gold2)">next step?</em></div>
+        <div class="faq-visual-title">Ready to take the next step?</div>
         <p class="faq-visual-sub">Talk to an EPM Wealth advisor today — no obligation, no pressure. Just expert guidance tailored to your situation.</p>
         <div class="faq-contact-item">
           <div class="faq-contact-icon">📞</div>
@@ -596,7 +626,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
         </div>
         <div class="faq-contact-item">
           <div class="faq-contact-icon">📍</div>
-          <div class="faq-contact-text">612-A, 6th Floor, Wave Silver Tower, Sector-18, Noida UP 201301</div>
+          <div class="faq-contact-text">Wave Silver Tower, 814, Noida Sector 18, Uttar Pradesh 201301, IN</div>
         </div>
         <a href="index.html#contact" class="btn-primary" style="margin-top:28px;display:inline-flex;">Let's Talk <i class="fa fa-arrow-right" style="margin-left:8px"></i></a>
       </div>
@@ -607,7 +637,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 <!-- CTA BAND -->
 <section class="cta-band">
   <div class="reveal">
-    <h2>One firm for <em>everything</em> that matters</h2>
+    <h2>One firm for everything that matters</h2>
     <p>Estate. Tax. Goals. Wealth. Protection. — All under one roof, guided by advisors who put your interests first.</p>
     <a href="index.html#contact" class="btn-primary" style="display:inline-flex;">Let's Talk <i class="fa fa-arrow-right" style="margin-left:8px"></i></a>
   </div>

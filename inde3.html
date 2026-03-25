@@ -12,6 +12,7 @@
   --gold:#c9a84c; --gold2:#e8d5a3; --gold3:#7a5c1e;
   --platinum:#b8bcc4; --emerald2:#2ec47a; --sapphire2:#4d9de0; --ruby2:#e05c7a;
   --serif:'Cormorant Garamond',serif; --display:'Cinzel',serif; --mono:'DM Mono',monospace;
+  --font-ui:'Jost',sans-serif;
 }
 html{scroll-behavior:auto}
 body{background:#07060a;color:var(--ink);font-family:var(--serif);overflow-x:hidden;cursor:none;}
@@ -53,7 +54,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .pt-heading em{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--gold2);display:block;font-size:1.15em;letter-spacing:.02em;}
 .pt-body{font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--ink2);line-height:2;max-width:360px;}
 .pt-stat{margin-top:2rem;display:flex;gap:2rem;}
-.stat-num{font-family:var(--display);font-size:1.6rem;letter-spacing:.05em;color:var(--gold);display:block;}
+.stat-num{font-size: 16px; color: #000; display: block;}
 .stat-label{font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;}
 .pt-badge{display:inline-flex;align-items:center;gap:.6rem;margin-top:2rem;font-family:var(--display);font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid;}
 .badge-gold{border-color:rgba(201,168,76,.3);color:var(--gold);}
@@ -80,7 +81,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .svc-badge{display:inline-block;margin-top:1.8rem;font-family:var(--mono);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);padding:.3rem .8rem;border:1px solid rgba(201,168,76,.2);}
 #numbers{position:relative;z-index:5;padding:5rem 4rem;background:rgba(7,6,10,.97);border-top:1px solid rgba(201,168,76,.06);border-bottom:1px solid rgba(201,168,76,.06);display:grid;grid-template-columns:repeat(4,1fr);gap:1px;}
 .num-item{text-align:center;padding:2.5rem 1rem;}
-.num-item span{font-family:var(--display);font-size:clamp(2rem,3.5vw,3rem);letter-spacing:.06em;color:var(--gold);display:block;margin-bottom:.5rem;}
+.num-item span{font-size: 16px; color: #000; display: block;margin-bottom:.5rem;}
 .num-item p{font-family:var(--mono);font-size:.6rem;letter-spacing:.25em;color:var(--muted);text-transform:uppercase;}
 .reveal{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform .9s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
@@ -112,6 +113,54 @@ footer{position:relative;z-index:5;background:rgba(4,3,7,0.99);padding:3rem 4rem
 .scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease-in-out infinite;}
 @keyframes scrollPulse{0%,100%{opacity:.3;height:36px}50%{opacity:1;height:48px}}
 @media(max-width:900px){nav{padding:1.4rem 2rem;}.nav-links{display:none;}.services-grid{grid-template-columns:1fr;}#numbers{grid-template-columns:repeat(2,1fr);}.foot-links{display:none;}#services,#final{padding:6rem 2rem;}#frame-dots{right:1rem;}#scroll-indicator{left:2rem;}footer{padding:2.5rem 2rem;}.foot-top{flex-direction:column;gap:2rem;}}
+.label,
+.eyebrow-text,
+.info-tag,
+.info-cta,
+.stat-label,
+.play-label-text,
+.arrow-link,
+.vault-card-cat,
+.vault-card-date,
+.press-source,
+.press-date,
+.wm-card-invest,
+.wm-card-link,
+.am-card-min,
+.am-card-link,
+.am-card-desc,
+.wm-card-desc,
+.risk-card-word,
+.risk-card-desc,
+.careers-list li,
+.ci-lbl,
+.ci-val,
+.form-label,
+.form-inp,
+.form-textarea,
+.form-select,
+.form-submit,
+.form-radio-item,
+.sip-label-t,
+.sip-inp,
+.sip-btn,
+.sip-rl,
+.vault-sub-btn,
+.vault-inp,
+.video-modal-close,
+.footer-tagline,
+.footer-about,
+.footer-col h4,
+.footer-col a,
+.footer-bottom,
+.footer-badge,
+.recog-desc,
+.recog-award-source,
+.nav-hamburger,
+.mob-group-label,
+.mob-sub {
+  font-family: var(--font-ui);
+}
 </style>
 </head>
 <body>
@@ -136,15 +185,15 @@ footer{position:relative;z-index:5;background:rgba(4,3,7,0.99);padding:3rem 4rem
 </div>
 <div id="scroll-driver"></div>
 <div id="panels-wrap">
-  <div class="scroll-panel"><div class="panel-text" id="pt1"><p class="pt-roman">I · Foundation</p><h2 class="pt-heading">Where<br><em>Wealth Begins</em></h2><p class="pt-body">Every great fortune starts with a single, irreducible truth: gold endures. Our foundation strategy preserves purchasing power across generations, immune to inflation and uncertainty.</p><div class="pt-stat"><div class="stat-item"><span class="stat-num">XXX</span><span class="stat-label">Years Proven</span></div><div class="stat-item"><span class="stat-num">I</span><span class="stat-label">Core Mandate</span></div></div><span class="pt-badge badge-gold">Store of Value · Hard Assets</span></div></div>
-  <div class="scroll-panel"><div class="panel-text right" id="pt2"><p class="pt-roman">II · Growth</p><h2 class="pt-heading">Capital<br><em>That Compounds</em></h2><p class="pt-body">Growth is not speculation — it is the disciplined deployment of capital into compounding systems. We identify asymmetric opportunities before they are priced into the market.</p><div class="pt-stat"><div class="stat-item"><span class="stat-num">18%</span><span class="stat-label">Avg. Annual Return</span></div><div class="stat-item"><span class="stat-num">12yr</span><span class="stat-label">Track Record</span></div></div><span class="pt-badge badge-em">Equity · Private Markets</span></div></div>
-  <div class="scroll-panel"><div class="panel-text" id="pt3"><p class="pt-roman">III · Preservation</p><h2 class="pt-heading">Protecting<br><em>What You Built</em></h2><p class="pt-body">Capital preservation is the most sophisticated act in finance. Our liquid strategies maintain purchasing power while navigating volatility — calm when markets are not.</p><div class="pt-stat"><div class="stat-item"><span class="stat-num">0.3</span><span class="stat-label">Max Drawdown</span></div><div class="stat-item"><span class="stat-num">AAA</span><span class="stat-label">Credit Profile</span></div></div><span class="pt-badge badge-sa">Fixed Income · Alternatives</span></div></div>
-  <div class="scroll-panel"><div class="panel-text right" id="pt4"><p class="pt-roman">IV · Legacy</p><h2 class="pt-heading">Wealth Across<br><em>Generations</em></h2><p class="pt-body">True wealth is measured not in years but in dynasties. Our legacy planning structures your assets through trust architecture, family offices, and generational transfer.</p><div class="pt-stat"><div class="stat-item"><span class="stat-num">3</span><span class="stat-label">Generations Served</span></div><div class="stat-item"><span class="stat-num">$2B+</span><span class="stat-label">Assets Transferred</span></div></div><span class="pt-badge badge-pl">Trust · Estate · Family Office</span></div></div>
-  <div class="scroll-panel"><div class="panel-text" id="pt5"><p class="pt-roman">V · Global Estate</p><h2 class="pt-heading">Borders Are<br><em>Irrelevant</em></h2><p class="pt-body">Wealth has no nationality. Our global estate division manages international real assets, cross-border structures, and residency strategies across 40 jurisdictions.</p><div class="pt-stat"><div class="stat-item"><span class="stat-num">40</span><span class="stat-label">Jurisdictions</span></div><div class="stat-item"><span class="stat-num">6</span><span class="stat-label">Continents Active</span></div></div><span class="pt-badge badge-ru">Real Assets · Global Structures</span></div></div>
+  <div class="scroll-panel"><div class="panel-text" id="pt1"><p class="pt-roman">I · Foundation</p><h2 class="pt-heading">Where<br>Wealth Begins</h2><p class="pt-body">Every great fortune starts with a single, irreducible truth: gold endures. Our foundation strategy preserves purchasing power across generations, immune to inflation and uncertainty.</p><div class="pt-stat"><div class="stat-item"><span class="stat-num">XXX</span><span class="stat-label">Years Proven</span></div><div class="stat-item"><span class="stat-num">I</span><span class="stat-label">Core Mandate</span></div></div><span class="pt-badge badge-gold">Store of Value · Hard Assets</span></div></div>
+  <div class="scroll-panel"><div class="panel-text right" id="pt2"><p class="pt-roman">II · Growth</p><h2 class="pt-heading">Capital<br>That Compounds</h2><p class="pt-body">Growth is not speculation — it is the disciplined deployment of capital into compounding systems. We identify asymmetric opportunities before they are priced into the market.</p><div class="pt-stat"><div class="stat-item"><span class="stat-num">18%</span><span class="stat-label">Avg. Annual Return</span></div><div class="stat-item"><span class="stat-num">12yr</span><span class="stat-label">Track Record</span></div></div><span class="pt-badge badge-em">Equity · Private Markets</span></div></div>
+  <div class="scroll-panel"><div class="panel-text" id="pt3"><p class="pt-roman">III · Preservation</p><h2 class="pt-heading">Protecting<br>What You Built</h2><p class="pt-body">Capital preservation is the most sophisticated act in finance. Our liquid strategies maintain purchasing power while navigating volatility — calm when markets are not.</p><div class="pt-stat"><div class="stat-item"><span class="stat-num">0.3</span><span class="stat-label">Max Drawdown</span></div><div class="stat-item"><span class="stat-num">AAA</span><span class="stat-label">Credit Profile</span></div></div><span class="pt-badge badge-sa">Fixed Income · Alternatives</span></div></div>
+  <div class="scroll-panel"><div class="panel-text right" id="pt4"><p class="pt-roman">IV · Legacy</p><h2 class="pt-heading">Wealth Across<br>Generations</h2><p class="pt-body">True wealth is measured not in years but in dynasties. Our legacy planning structures your assets through trust architecture, family offices, and generational transfer.</p><div class="pt-stat"><div class="stat-item"><span class="stat-num">3</span><span class="stat-label">Generations Served</span></div><div class="stat-item"><span class="stat-num">$2B+</span><span class="stat-label">Assets Transferred</span></div></div><span class="pt-badge badge-pl">Trust · Estate · Family Office</span></div></div>
+  <div class="scroll-panel"><div class="panel-text" id="pt5"><p class="pt-roman">V · Global Estate</p><h2 class="pt-heading">Borders Are<br>Irrelevant</h2><p class="pt-body">Wealth has no nationality. Our global estate division manages international real assets, cross-border structures, and residency strategies across 40 jurisdictions.</p><div class="pt-stat"><div class="stat-item"><span class="stat-num">40</span><span class="stat-label">Jurisdictions</span></div><div class="stat-item"><span class="stat-num">6</span><span class="stat-label">Continents Active</span></div></div><span class="pt-badge badge-ru">Real Assets · Global Structures</span></div></div>
 </div>
 <div class="ornament reveal">✦ &nbsp;&nbsp; AURUM &nbsp;&nbsp; ✦</div>
 <section id="services">
-  <p class="sec-eyebrow reveal">Our Mandate</p><h2 class="reveal rd1">Private <em>Wealth Services</em></h2>
+  <p class="sec-eyebrow reveal">Our Mandate</p><h2 class="reveal rd1">Private Wealth Services</h2>
   <p class="sec-sub reveal rd2">Six pillars of comprehensive wealth stewardship, designed for individuals and families with assets above $10 million.</p>
   <div class="services-grid">
     <div class="svc-card reveal rd1"><div class="svc-num">I</div><div class="svc-icon">⬡</div><div class="svc-title">Portfolio Architecture</div><p class="svc-desc">Bespoke multi-asset portfolios constructed around your risk profile, time horizon, and legacy objectives.</p><span class="svc-badge">Bespoke Allocation</span></div>
@@ -163,7 +212,7 @@ footer{position:relative;z-index:5;background:rgba(4,3,7,0.99);padding:3rem 4rem
 </div>
 <section id="final">
   <div class="final-ornament">A</div>
-  <h2 class="reveal">Begin Your<br><em>Private Relationship</em></h2>
+  <h2 class="reveal">Begin Your<br>Private Relationship</h2>
   <div class="final-line reveal rd1"></div>
   <p class="reveal rd2">We accept a limited number of new client relationships each year. Introductions are by referral or direct application.</p>
   <div class="btn-row reveal rd3"><button class="btn-gold">Request Introduction</button><button class="btn-outline">View Philosophy →</button></div>

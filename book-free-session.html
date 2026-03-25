@@ -7,6 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <link rel="stylesheet" href="shared.css"/>
+
+<link rel="stylesheet" href="nav.css"/>
+<script src="nav.js" defer></script>
 <style>
 :root{
   --cream:#f5ede0;--cream2:#ede4d6;--cream3:#faf4ec;
@@ -18,6 +21,7 @@
   --white:#ffffff;--blush:#f5ede0;
   --color-accent:#b8965a;
   --font-display:'Cormorant Garamond',Georgia,serif;
+  --font-ui:'Jost',sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:17px;scroll-behavior:smooth}
@@ -31,7 +35,7 @@ img{max-width:100%;display:block}
 /* ══ UTILS ══ */
 .label{font-size:9px;letter-spacing:3.5px;text-transform:uppercase;font-weight:600;color:var(--warm);display:block;margin-bottom:14px}
 .h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4.5vw,58px);font-weight:400;line-height:1.1;color:var(--char)}
-.h2 em{font-style:italic;color:var(--warm)}
+.h2 em{font-style:none;color:var(--warm)}
 .body-text{font-size:14px;color:var(--muted);line-height:1.9}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s ease}
 .reveal.visible{opacity:1;transform:none}
@@ -39,31 +43,7 @@ img{max-width:100%;display:block}
 .reveal-left.visible{opacity:1;transform:none}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
 
-/* ══ NAV ══ */
-.nav-outer{position:relative;z-index:600;padding:10px 32px;margin-bottom:0;}
-nav{
-  background:rgba(240,232,218,0.96);backdrop-filter:blur(14px);
-  border:1px solid rgba(180,162,138,.5);border-radius:6px;
-  height:52px;padding:0 24px;
-  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
-  box-shadow:0 2px 24px rgba(0,0,0,.1);transition:box-shadow .3s;
-}
-nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.18)}
-.nav-left{display:flex;align-items:center;gap:34px}
-.nav-center{display:flex;align-items:center;justify-content:center}
-.nav-right{display:flex;align-items:center;justify-content:flex-end;gap:20px}
-.nav-a{font-family:'Cormorant Garamond',serif;font-size:15.5px;color:var(--char);font-weight:400;transition:color .2s;white-space:nowrap;}
-.nav-a:hover,.nav-a.active{color:var(--warm)}
-.nav-logo-img{height:32px;width:auto;object-fit:contain;display:block;}
-.nav-logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;letter-spacing:3px;color:var(--char);text-transform:uppercase;}
-.nav-badge{background:var(--warm);color:#fff;font-size:8px;letter-spacing:.8px;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:20px;margin-right:4px;}
-.nav-uhnw{display:flex;align-items:center;gap:5px;font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--char);transition:color .2s;white-space:nowrap;}
-.nav-uhnw:hover{color:var(--warm)}
-.nav-contact{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--char);transition:color .2s;}
-.nav-contact:hover{color:var(--warm)}
-.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
-.nav-hamburger span{width:22px;height:1.5px;background:var(--char)}
+
 
 /* ══ PAGE HERO ══ */
 .page-hero{
@@ -86,7 +66,7 @@ nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.18)}
 .page-hero-eyebrow-text{font-size:10px;letter-spacing:3.5px;text-transform:uppercase;font-weight:600;color:var(--gold2);}
 .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,76px);font-weight:300;color:#fff;line-height:1.05;letter-spacing:0.02em;
   opacity:0;transform:translateY(16px);animation:fadeUp 0.8s 0.28s cubic-bezier(0.22,1,0.36,1) forwards;}
-.page-hero h1 em{font-style:italic;color:var(--gold2);}
+.page-hero h1 em{font-style:none;color:var(--gold2);}
 .page-hero-sub{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.8;margin-top:20px;max-width:500px;
   opacity:0;transform:translateY(12px);animation:fadeUp 0.7s 0.42s cubic-bezier(0.22,1,0.36,1) forwards;}
 
@@ -97,7 +77,7 @@ nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.18)}
 /* ══ LEFT PANEL — info ══ */
 .info-panel{}
 .info-panel-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,46px);font-weight:400;line-height:1.15;color:var(--char);margin-bottom:18px;}
-.info-panel-title em{font-style:italic;color:var(--warm);}
+.info-panel-title em{font-style:none;color:var(--warm);}
 .info-panel p{font-size:14px;color:var(--muted);line-height:1.9;margin-bottom:28px;}
 
 /* Sessions list */
@@ -113,12 +93,30 @@ nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.18)}
 /* Trust badges */
 .trust-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border2);margin-top:32px;}
 .trust-item{background:var(--cream3);padding:20px 16px;text-align:center;}
-.trust-num{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--char);}
+.trust-num {
+  font-family: 'Jost', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  font-style: normal;
+  color: var(--char);
+  letter-spacing: 0.5px;
+}
 .trust-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--warm);font-weight:600;margin-top:4px;}
 
 /* ══ RIGHT PANEL — form ══ */
 .form-panel{background:var(--char);padding:48px 44px;}
-.form-panel-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:#fff;margin-bottom:6px;}
+.form-panel-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 400;
+  font-style: normal;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.form-panel-title em {
+  font-style: normal;
+  color: var(--gold2);
+}
 .form-panel-sub{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:32px;line-height:1.7;}
 
 .form-group{margin-bottom:16px;}
@@ -167,7 +165,7 @@ nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.18)}
 .form-success h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:#fff;margin-bottom:12px;}
 .form-success p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;}
 
-.form-note{font-size:10px;color:rgba(255,255,255,.25);margin-top:14px;line-height:1.7;font-style:italic;}
+.form-note{font-size:10px;color:rgba(255,255,255,.25);margin-top:14px;line-height:1.7;font-style:none;}
 
 /* ══ PROCESS SECTION ══ */
 .process-section{background:var(--blush);padding:88px 7%;}
@@ -199,7 +197,7 @@ nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.18)}
 footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--border)}
 .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
 .footer-brand{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--char);margin-bottom:8px;letter-spacing:1px}
-.footer-brand span{font-style:italic;color:var(--warm)}
+.footer-brand span{font-style:none;color:var(--warm)}
 .footer-tagline{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted2);margin-bottom:14px}
 .footer-about{font-size:12.5px;color:var(--muted2);line-height:1.9;max-width:240px}
 .footer-badges{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
@@ -242,6 +240,54 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 }
 @media(max-width:768px){.nav-left,.nav-right .nav-uhnw,.nav-right .nav-contact{display:none}.nav-hamburger{display:flex}.sf,.wa-btn{display:none}}
 @media(max-width:480px){.form-row,.session-radio-group,.topics-grid,.footer-top,.footer-legal,.process-steps{grid-template-columns:1fr}.form-panel{padding:32px 24px}}
+.label,
+.eyebrow-text,
+.info-tag,
+.info-cta,
+.stat-label,
+.play-label-text,
+.arrow-link,
+.vault-card-cat,
+.vault-card-date,
+.press-source,
+.press-date,
+.wm-card-invest,
+.wm-card-link,
+.am-card-min,
+.am-card-link,
+.am-card-desc,
+.wm-card-desc,
+.risk-card-word,
+.risk-card-desc,
+.careers-list li,
+.ci-lbl,
+.ci-val,
+.form-label,
+.form-inp,
+.form-textarea,
+.form-select,
+.form-submit,
+.form-radio-item,
+.sip-label-t,
+.sip-inp,
+.sip-btn,
+.sip-rl,
+.vault-sub-btn,
+.vault-inp,
+.video-modal-close,
+.footer-tagline,
+.footer-about,
+.footer-col h4,
+.footer-col a,
+.footer-bottom,
+.footer-badge,
+.recog-desc,
+.recog-award-source,
+.nav-hamburger,
+.mob-group-label,
+.mob-sub {
+  font-family: var(--font-ui);
+}
 </style>
 </head>
 <body>
@@ -268,24 +314,48 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
   <a href="index.html#contact">Contact</a>
 </div>
 
-<!-- ══ NAV ══ -->
+
+<div class="sf">
+  <a href="https://www.instagram.com/epm_wealth/" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.youtube.com/@epmwealth101" target="_blank"><i class="fab fa-youtube"></i></a>
+  <a href="https://www.linkedin.com/company/epm-wealth/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+  <a href="https://www.facebook.com/epmwealthadvisor" target="_blank"><i class="fab fa-facebook-f"></i></a>
+</div>
+<a href="https://wa.me/919999939333" class="wa-btn" target="_blank">💬</a>
+<!-- MOBILE MENU -->
+<!-- ══ NAV BAR ══ -->
 <div class="nav-outer" id="navOuter">
   <nav id="mainNav">
- 
-    <!-- LEFT -->
-    <div class="nav-left">
- 
-      <!-- About — no dropdown -->
+
+    <!-- ── LEFT: LOGO ONLY ── -->
+    <div class="nav-left" style="flex:0 0 auto;">
+      <a href="index.html" class="nav-logo-wrap">
+        <img class="nav-logo-img" src="logo-emp.png" alt="EPM Wealth"
+             onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';"/>
+        <span id="logoFallback" style="display:none;align-items:center;gap:8px;">
+          <svg viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="30">
+            <path d="M4 8 L12 32 L24 16 L36 32 L44 8" stroke="#1c2540" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="4" y1="8" x2="44" y2="8" stroke="#1c2540" stroke-width="1.2" opacity="0.4"/>
+          </svg>
+          <span class="nav-logo-text">EPM Wealth</span>
+        </span>
+      </a>
+    </div>
+
+    <!-- ── RIGHT: ALL LINKS + SOCIAL + CONTACT + HAMBURGER ── -->
+    <div class="nav-right" style="display:flex;align-items:center;gap:28px;flex:1;justify-content:flex-end;">
+
+      <!-- Home -->
       <div class="nav-item">
         <b><a href="index.html" class="nav-a">Home</a></b>
       </div>
- 
-     <!-- About — no dropdown -->
+
+      <!-- About -->
       <div class="nav-item">
         <b><a href="About.html" class="nav-a">About</a></b>
       </div>
- 
-      <!-- Wealth Management ▾ -->
+
+      <!-- Solution ▾ -->
       <div class="nav-item">
         <b><a href="#" class="nav-a">
           Solution
@@ -300,10 +370,9 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
           <a href="other-services.html">Other Services</a>
         </div>
       </div>
- 
-      <!-- Asset Management ▾ -->
-      
-   <div class="nav-item">
+
+      <!-- Financial Literacy ▾ -->
+      <div class="nav-item">
         <b><a href="#" class="nav-a">
           Financial Literacy
           <svg class="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
@@ -311,40 +380,71 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
           </svg>
         </a></b>
         <div class="nav-dropdown">
-          <a href="seminar-webinar.html">Seminar & Webinar</a>
-         
+          <a href="seminar-webinar.html">Seminar &amp; Webinar</a>
           <a href="book-free-session.html">Book A Free Session</a>
         </div>
       </div>
-    </div>
- 
-    <!-- CENTER -->
-    <div class="nav-center">
-      <a href="#home" class="nav-logo-wrap">
-        <img class="nav-logo-img" src="logo-emp.png" alt="EPM Wealth"
-             onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';"/>
-        <span id="logoFallback" style="display:none;align-items:center;gap:8px;">
-          <svg viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="30">
-            <path d="M4 8 L12 32 L24 16 L36 32 L44 8" stroke="#1c2540" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="4" y1="8" x2="44" y2="8" stroke="#1c2540" stroke-width="1.2" opacity="0.4"/>
+<a href="#contact" class="nav-contact">Contact</a>
+      <!-- Social Media Dropdown -->
+      <div class="nav-social-wrap" id="socialWrap">
+        <button class="nav-social-btn" onclick="EPM.toggleSocialMenu()" aria-label="Follow us on social media" aria-expanded="false" id="socialBtn">
+          <svg class="social-icon-grid" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="4"  cy="4"  r="2"/>
+            <circle cx="10" cy="4"  r="2"/>
+            <circle cx="16" cy="4"  r="2"/>
+            <circle cx="4"  cy="10" r="2"/>
+            <circle cx="10" cy="10" r="2"/>
+            <circle cx="16" cy="10" r="2"/>
+            <circle cx="4"  cy="16" r="2"/>
+            <circle cx="10" cy="16" r="2"/>
+            <circle cx="16" cy="16" r="2"/>
           </svg>
-          <span class="nav-logo-text">EPM Wealth</span>
-        </span>
-      </a>
-    </div>
- 
-    <!-- RIGHT -->
-    <div class="nav-right">
-      <a href="#vault" class="nav-uhnw">
-        <span class="nav-badge"><b>New</b></span>
-        <b>UHNW Event Calendar 2026</b>
-      </a>
-      <a href="#contact" class="nav-contact"><b>Contact</b></a>
+          <svg class="soc-chevron" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div class="nav-social-dropdown" id="socialDropdown" role="menu">
+          <span class="soc-label">Follow Us</span>
+
+          <a href="https://www.linkedin.com/company/epmwealth" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.23 0z"/></svg>
+            LinkedIn
+          </a>
+
+          <a href="https://www.instagram.com/epmwealth" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.516 2.497 5.783 2.225 7.15 2.163 8.416 2.105 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.333.013 7.053.072 5.197.157 3.355.673 2.014 2.014.673 3.355.157 5.197.072 7.053.013 8.333 0 8.741 0 12c0 3.259.013 3.668.072 4.948.085 1.856.601 3.698 1.942 5.038 1.341 1.341 3.183 1.857 5.038 1.942C8.333 23.987 8.741 24 12 24s3.668-.013 4.948-.072c1.856-.085 3.698-.601 5.038-1.942 1.341-1.341 1.857-3.183 1.942-5.038.059-1.28.072-1.689.072-4.948 0-3.259-.013-3.667-.072-4.947-.085-1.856-.601-3.698-1.942-5.038C20.646.673 18.804.157 16.948.072 15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            Instagram
+          </a>
+
+          <a href="https://www.facebook.com/epmwealth" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.404 18.627 0 12 0S0 5.404 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+            Facebook
+          </a>
+
+          <a href="https://twitter.com/epmwealth" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            X (Twitter)
+          </a>
+
+          <a href="https://www.youtube.com/@epmwealth" target="_blank" rel="noopener noreferrer" role="menuitem">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            YouTube
+          </a>
+        </div>
+      </div>
+      <!-- ── END SOCIAL MEDIA DROPDOWN ── -->
+
+      <!-- Contact -->
+      
+
+      <!-- Hamburger (mobile only) -->
       <div class="nav-hamburger" id="hamburger" onclick="EPM.openMobileMenu()">
         <span></span><span></span><span></span>
       </div>
+
     </div>
- 
+
   </nav>
 </div>
 
@@ -355,7 +455,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
       <span class="page-hero-line"></span>
       <span class="page-hero-eyebrow-text">Providing Financial Literacy &amp; Empowerment</span>
     </div>
-    <h1>Book a <em>Free Session</em></h1>
+    <h1>Book a Free Session</h1>
     <p class="page-hero-sub">So everyone can access a better financial future. Choose your session type and get started — zero cost, complete value.</p>
   </div>
 </section>
@@ -367,7 +467,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
     <!-- LEFT: Info -->
     <div class="info-panel reveal-left">
       <span class="label">Start Your Journey</span>
-      <h2 class="info-panel-title">Choose the <em>session</em> that's right for you</h2>
+      <h2 class="info-panel-title">Choose the session that's right for you</h2>
       <p>Whether you're an individual looking to take control of your finances, or an organisation seeking to empower your workforce — we have a session designed for you.</p>
 
       <div class="sessions-list">
@@ -426,7 +526,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
     <!-- RIGHT: Form -->
     <div class="form-panel reveal">
       <div id="formContent">
-        <div class="form-panel-title">Book Your <em style="font-style:italic;color:var(--gold2);">Free Session</em></div>
+        <div class="form-panel-title">Book Your Free Session</div>
         <p class="form-panel-sub">Fill in your details below and our team will confirm your session within 24 hours.</p>
 
         <form id="bookingForm" onsubmit="submitBooking(event)">
@@ -527,7 +627,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 <section class="process-section">
   <div style="text-align:center;max-width:640px;margin:0 auto;" class="reveal">
     <span class="label" style="display:block;text-align:center;">Simple Process</span>
-    <h2 class="h2" style="text-align:center;">How it <em>works</em></h2>
+    <h2 class="h2" style="text-align:center;">How it works</h2>
   </div>
   <div class="process-steps reveal">
     <div class="process-step">
@@ -557,7 +657,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 <section class="topics-section">
   <div style="max-width:1200px;margin:0 auto;" class="reveal">
     <span class="label">Session Content</span>
-    <h2 class="h2" style="margin-bottom:8px;">What you'll <em>learn</em></h2>
+    <h2 class="h2" style="margin-bottom:8px;">What you'll learn</h2>
     <p class="body-text" style="max-width:520px;margin-top:12px;">Each session is packed with practical, actionable financial knowledge delivered by SEBI-registered advisors.</p>
   </div>
   <div class="topics-grid reveal">
@@ -623,15 +723,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 
 <script>
 /* NAV */
-var nav = document.getElementById('mainNav');
-var navOuter = document.getElementById('navOuter');
-window.addEventListener('scroll', function() {
-  var scrolled = window.scrollY > 60;
-  nav.classList.toggle('scrolled', scrolled);
-  navOuter.style.cssText = scrolled
-    ? 'position:fixed;top:0;left:0;right:0;z-index:600;padding:8px 28px;margin-bottom:0'
-    : 'position:relative;z-index:600;padding:10px 32px;margin-bottom:0';
-}, { passive: true });
+
 
 /* Scroll reveal */
 var io = new IntersectionObserver(function(entries) {

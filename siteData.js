@@ -71,7 +71,7 @@ export const heroData = {
 /* ── Intro / About ── */
 export const introData = {
   label:    'Solutions',
-  heading:  'Helping you create an <em>enduring legacy</em>',
+  heading:  'Helping you create an enduring legacy',
   cta:      { label: 'Start the conversation', href: '#contact' },
   paragraphs: [
     "Wealth Advisory is beyond just building a portfolio. By serving some of India's most prominent business families since 2011, we have learnt the importance of taking a holistic, global yet personalised approach to meeting our clients' wealth management needs.",
@@ -158,7 +158,7 @@ export const assetCards = [
 /* ── Vault (Insights) ── */
 export const vaultData = {
   label:    'Vault',
-  heading:  'Your access to<br><em>rich insights</em>',
+  heading:  'Your access to<br>rich insights',
   body:     "From experienced partners at the forefront of today's financial trends and beyond. Trusted by the top 0.01% of the country.",
   cta:      { label: 'Explore Vault', href: '#contact' },
   subscribe: {
@@ -273,7 +273,7 @@ export const pressData = {
 /* ── Careers ── */
 export const careersData = {
   label:    'Careers',
-  heading:  'If ethics and integrity<br>drive you,<br><em>look no further</em>',
+  heading:  'If ethics and integrity<br>drive you,<br>look no further',
   body:     "Some of the most prominent business families in India place their trust in our wealth advisory services.",
   cta:      { label: 'View Open Positions', href: '#contact' },
   perks: [
@@ -298,7 +298,7 @@ export const careersData = {
 /* ── CSR / ESG ── */
 export const csrData = {
   label:   'Responsible Investing',
-  heading: 'Our responsible vision for a better & <em style="color:var(--gold2);font-style:italic">brighter future</em>',
+  heading: 'Our responsible vision for a better & <em style="color:var(--gold2);font-style:italic">brighter future',
   body:    'As capital allocators, we recognize the impact of our investment advice on the world around us. We are committed to enabling our clients to allocate their capital in a manner that fully optimises opportunities and minimizes risks to environmental, social, and governance (ESG) factors.',
   cta:     { label: 'Explore ESG', href: '#contact' },
   bgImg:   'https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&q=80&auto=format&fit=crop',
@@ -307,7 +307,7 @@ export const csrData = {
 /* ── Core Values (RISK) ── */
 export const valuesData = {
   label:   'Core Values',
-  heading: 'We believe in <em>RISK</em>',
+  heading: 'We believe in RISK',
   body:    'Our four core values form the foundation of every client relationship and every investment decision we make.',
   cards: [
     {
@@ -359,8 +359,8 @@ export const whyEpmData = {
 
 /* ── Contact ── */
 export const contactData = {
-  heading: 'Your legacy <em>awaits here</em>',
-  address:     '612-A, 6th Floor, Wave Silver Tower,\nSector-18, Noida, UP 201301',
+  heading: 'Your legacy awaits here',
+  address:     'Wave Silver Tower, 814,\nNoida Sector 18, Uttar Pradesh 201301, IN',
   phones:      ['+91 0120 426 4717', '+91 9899939333'],
   emails:      ['info@epmwealth.com', 'careers@epmwealth.com'],
   careerEmail: 'careers@epmwealth.com',

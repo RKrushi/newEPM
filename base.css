@@ -114,7 +114,7 @@ video { display: block; max-width: 100%; }
   color: var(--char);
 }
 .h2.light { color: var(--white); }
-.h2 em    { font-style: italic; color: var(--warm); }
+.h2 em    { color: var(--warm); }
 
 /* Body copy
    Usage: <p class="body-text">…</p>
