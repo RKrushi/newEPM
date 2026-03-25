@@ -1,0 +1,367 @@
+/* ══════════════════════════════════════════
+   EPM Wealth — Mobile Responsive Fixes
+   Add this AFTER nav.css in your <head>
+══════════════════════════════════════════ */
+
+/* ── Fix 1: Remove right-side empty space ── */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ── Fix 2: Social floating sidebar on mobile ── */
+.sf {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sf a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(28,37,64,0.85);
+  color: #fff;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+.sf a:hover { background: var(--warm, #c49a5a); }
+
+/* ── Fix 3: Hero section full width ── */
+.hero-section {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  overflow: hidden;
+}
+
+.hero-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+}
+
+/* ── Fix 4: Hero pseudo-elements hidden on mobile ── */
+@media (max-width: 768px) {
+  .hero-section::before,
+  .hero-section::after {
+    display: none !important;
+  }
+}
+
+/* ── Fix 5: Video block full width ── */
+.video-wrapper,
+.video-block {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ── Fix 6: Info block stacked on mobile ── */
+@media (max-width: 768px) {
+  .info-block {
+    grid-template-columns: 1fr !important;
+  }
+
+  .info-divider {
+    width: 80%;
+    height: 1px !important;
+    margin: 0 auto !important;
+  }
+
+  .info-col {
+    padding: 28px 20px !important;
+  }
+}
+
+/* ── Fix 7: Stats strip on mobile ── */
+@media (max-width: 640px) {
+  .stats-strip {
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 28px 16px;
+    margin-top: 24px;
+  }
+
+  .stat-sep { display: none; }
+
+  .stat-item {
+    flex: 0 0 calc(50% - 20px);
+    align-items: center;
+  }
+
+  .stat-number { font-size: 26px; }
+}
+
+/* ── Fix 8: Eyebrow padding on mobile ── */
+@media (max-width: 640px) {
+  .hero-eyebrow {
+    padding: 20px 16px 0 !important;
+    margin-bottom: 16px;
+    gap: 10px;
+  }
+
+  .eyebrow-text { font-size: 9px; letter-spacing: 0.14em; }
+}
+
+/* ══════════════════════════════════════════
+   NAV DROPDOWN — MOBILE FIX
+   The dropdown needs tap support on mobile
+══════════════════════════════════════════ */
+
+/* Make nav items tappable on touch devices */
+@media (max-width: 900px) {
+  /* Hide desktop nav items */
+  .nav-right .nav-item,
+  .nav-right .nav-contact,
+  .nav-right .nav-social-wrap {
+    display: none !important;
+  }
+
+  .nav-hamburger {
+    display: flex !important;
+  }
+}
+
+/* Mobile menu dropdown accordion */
+.mobile-menu .mob-acc-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.mobile-menu .mob-acc-body {
+  display: none;
+  padding-left: 16px;
+}
+
+.mobile-menu .mob-acc-body.open {
+  display: block;
+}
+
+.mob-acc-arrow {
+  font-size: 12px;
+  color: var(--warm, #c49a5a);
+  transition: transform 0.2s;
+  display: inline-block;
+}
+
+.mob-acc-arrow.open {
+  transform: rotate(180deg);
+}
+
+/* ══════════════════════════════════════════
+   GENERAL PAGE SECTIONS — MOBILE
+══════════════════════════════════════════ */
+
+/* Intro grid */
+@media (max-width: 768px) {
+  .intro-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  .intro-h { font-size: clamp(26px, 6vw, 36px) !important; }
+}
+
+/* Wealth management cards */
+@media (max-width: 768px) {
+  .wm-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .wm-card { min-height: 320px; }
+
+  .wm-card-body {
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 24px 20px !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(18,12,6,0.78) !important;
+  }
+}
+
+/* Asset management cards */
+@media (max-width: 768px) {
+  .am-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .am-card { min-height: 280px; }
+}
+
+/* Vault grid */
+@media (max-width: 768px) {
+  .vault-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  .vault-small-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .vault-small-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* UHNW Banner */
+@media (max-width: 768px) {
+  .uhnw-banner {
+    grid-template-columns: 1fr !important;
+  }
+
+  .uhnw-left {
+    flex-direction: column !important;
+    padding: 40px 5% !important;
+  }
+
+  .uhnw-thumb {
+    width: 100% !important;
+    height: 200px !important;
+  }
+
+  .uhnw-right { min-height: 280px; }
+}
+
+/* Founder section */
+@media (max-width: 768px) {
+  .founder-wrap {
+    grid-template-columns: 1fr !important;
+    padding: 48px 5% !important;
+    gap: 32px !important;
+  }
+
+  .founder-left { padding: 0 !important; }
+
+  .founder-right {
+    width: 100% !important;
+    height: 320px !important;
+    margin: 0 !important;
+  }
+}
+
+/* Risk/Values grid */
+@media (max-width: 768px) {
+  .risk-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .risk-header {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .risk-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* SIP + Values */
+@media (max-width: 768px) {
+  .sip-values-wrap {
+    grid-template-columns: 1fr !important;
+  }
+
+  .sip-left {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border, #e0d4c0);
+    padding-bottom: 48px;
+  }
+}
+
+/* Press grid */
+@media (max-width: 768px) {
+  .press-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Careers */
+@media (max-width: 768px) {
+  .careers-wrap {
+    grid-template-columns: 1fr !important;
+  }
+
+  .careers-right {
+    min-height: 360px;
+  }
+}
+
+/* Contact grid */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Recognition stats row */
+@media (max-width: 640px) {
+  .recog-wrap > div[style*="gap:80px"] {
+    gap: 32px !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+}
+
+/* Award years tab overflow */
+.award-years {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.award-years::-webkit-scrollbar { display: none; }
+
+/* Footer */
+@media (max-width: 768px) {
+  .footer-top {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+/* WhatsApp button */
+.wa-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 16px;
+  z-index: 500;
+  font-size: 28px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  .wa-btn { bottom: 16px; right: 12px; font-size: 26px; }
+}
+
+/* Section padding on mobile */
+@media (max-width: 640px) {
+  .section    { padding: 48px 5% !important; }
+  .section-sm { padding: 36px 5% !important; }
+  .press-wrap { padding: 48px 5% !important; }
+  .contact-wrap { padding: 48px 5% !important; }
+  .csr-content { padding: 60px 5% !important; }
+  .risk-wrap { padding: 48px 5% !important; }
+}

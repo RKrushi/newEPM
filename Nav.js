@@ -95,10 +95,10 @@
     bindSocialEscKey();
 
     /* Wire hamburger */
-    const hamburger = document.getElementById('hamburger');
-    if (hamburger) {
-      hamburger.addEventListener('click', EPM.openMobileMenu);
-    }
+  const hamburger = document.getElementById('hamburger');
+if (hamburger) {
+  hamburger.addEventListener('click', EPM.openMobileMenu);
+}
 
     /* Wire mobile close button */
     const mobileClose = document.querySelector('.mobile-close');
