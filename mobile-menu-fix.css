@@ -1,0 +1,588 @@
+
+hi
+
+4:25 PM
+Hi! How can I help you today?
+
+
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"/> <meta name="viewport" content="width=device-width,initial-scale=1.0"/> <title>Other Services — EPM Wealth</title> <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,40
+
+PASTED
+
+
+/* ══════════════════════════════════════════════════════ EPM WEALTH — SHARED CSS Import this on every page: <link rel="stylesheet" href="shared.css"/> Also requires: <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Cormorant+G
+
+PASTED
+
+/* ══════════════════════════════════════════
+   EPM Wealth — Footer Responsive Fix
+   Add to your shared.css or mobile-fixes.css
+══════════════════════════════════════════ */
+
+/* ── Footer legal grid fix ── */
+.footer-legal {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  padding: 32px 7%;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted2, #7a6a54);
+}
+
+.footer-legal-head {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--char, #1c2540);
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* ── Footer top grid fix ── */
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding: 64px 7% 40px;
+}
+
+/* ── Footer bottom fix ── */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 7%;
+  font-size: 11px;
+  color: var(--muted2, #7a6a54);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-bottom a {
+  margin-left: 20px;
+  color: var(--muted2, #7a6a54);
+  transition: color 0.2s;
+}
+
+.footer-bottom a:hover { color: var(--warm, #c49a5a); }
+
+.footer-rule {
+  border: none;
+  border-top: 1px solid var(--border, #e0d4c0);
+  margin: 0 7%;
+}
+
+/* ══════════════════════════════════════════
+   TABLET  ≤ 1023px
+══════════════════════════════════════════ */
+@media (max-width: 1023px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    padding: 48px 5% 32px;
+  }
+
+  .footer-legal {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 28px 5%;
+  }
+
+  .footer-bottom {
+    padding: 16px 5%;
+  }
+
+  .footer-rule { margin: 0 5%; }
+}
+
+/* ══════════════════════════════════════════
+   MOBILE  ≤ 768px
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    padding: 40px 5% 28px;
+  }
+
+  /* Brand column takes full width */
+  .footer-top > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .footer-legal {
+    grid-template-columns: 1fr;   /* ← STACK all 3 columns */
+    gap: 24px;
+    padding: 24px 5%;
+    font-size: 12px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 16px 5%;
+    font-size: 11px;
+  }
+
+  .footer-bottom div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .footer-bottom a { margin-left: 0; margin-right: 12px; }
+
+  .footer-rule { margin: 0 5%; }
+}
+
+/* ══════════════════════════════════════════
+   MOBILE SMALL  ≤ 480px
+══════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .footer-top {
+    grid-template-columns: 1fr;   /* ← single column */
+    padding: 32px 4% 24px;
+    gap: 24px;
+  }
+
+  .footer-top > div:first-child {
+    grid-column: auto;
+  }
+
+  .footer-legal {
+    padding: 20px 4%;
+    gap: 20px;
+  }
+
+  .footer-bottom {
+    padding: 14px 4%;
+    font-size: 10.5px;
+  }
+
+  .footer-rule { margin: 0 4%; }
+
+  /* Social icons row */
+  .footer-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+}"<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-head">
+    <img src="logo-emp.png" style="height:28px"/>
+    <button class="mobile-close" onclick="EPM.closeMobileMenu()">✕</button>
+  </div>
+  <div class="mobile-menu-body">
+    <a href="index.html">Home</a>
+    <a href="About.html">About</a>
+    <span class="mob-group-label">Solution</span>
+    <a href="wealth-creation.html" class="mob-sub">Wealth Creation</a>
+    <a href="portfolio-consultation.html" class="mob-sub">Portfolio Consultation</a>
+    <a href="wealth-protection.html" class="mob-sub">Wealth Protection</a>
+    <a href="other-services.html" class="mob-sub">Other Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>""the above other sevice page is not responsive for the mobiel view only provide upaded code"
+Show more
+4:56 PM
+
+Reading frontend design skill
+Reading frontend design skill
+The issue is clear — the other-services.html page needs mobile responsiveness fixes. I'll provide only the CSS additions/overrides you need to add (either into shared.css or a mobile-fixes.css file).
+
+
+Created a file, read a file
+Created a file, read a file
+Add this one line to your other-services.html <head>, after your existing shared.css link:
+
+html
+<link rel="stylesheet" href="other-services-mobile.css"/>
+Here's what the file fixes across three breakpoints:
+
+≤ 1023px (Tablet) — Services header goes single-column, service cards stack (image on top, content below), process grid becomes 3-column, FAQ stacks vertically.
+
+≤ 768px (Mobile) — Hero text scales down, CTA buttons go full-width and stack, floating social icons are hidden, service card padding tightens, comparison table gets horizontal scroll, process grid goes 2-column, footer brand takes full width.
+
+≤ 480px (Small Mobile) — Everything goes single-column, process steps switch to a horizontal icon+text row layout, comparison table shows a scroll hint label, all padding reduces to 4%.
+
+Other services mobile
+Code · CSS 
+
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"/> <meta name="viewport" content="width=device-width,initial-scale=1.0"/> <title>Other Services — EPM Wealth</title> <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,40
+
+PASTED
+
+logo is not visible on the mobile view
+
+5:27 PM
+Looking at your code, the issue is that the mobile menu uses EPM.closeMobileMenu() but your inline script defines closeMobileMenu() (without the EPM namespace). Also the logo <img> in the mobile menu head needs a fallback. Let me fix both the logo visibility and the mobile menu button conflict.
+
+
+Ran 2 commands, created a file, read a file
+Ran 2 commands, created a file, read a file
+
+Fixed mobile menu with logo visibility and correct close button
+mobile-menu-fix.css
+
+Create mobile menu fix CSS
+
+Script
+
+Copy to outputs
+
+Script
+
+Presented file
+Done
+Now make two small changes in your other-services.html:
+
+1. Replace your mobile menu HTML with this corrected version (fixes logo + close button):
+
+html
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-head">
+    <img class="mobile-logo-img" src="logo-emp.png" alt="EPM Wealth"
+         onerror="this.style.display='none';document.getElementById('mobileLogoFallback').style.display='flex';" />
+    <span id="mobileLogoFallback" class="mobile-logo-fallback">EPM <span>Wealth</span></span>
+    <button class="mobile-close" onclick="closeMobileMenu()">✕</button>
+  </div>
+  <div class="mobile-menu-body">
+    <a href="index.html">Home</a>
+    <a href="About.html">About</a>
+    <span class="mob-group-label">Solution</span>
+    <a href="wealth-creation.html" class="mob-sub">Wealth Creation</a>
+    <a href="portfolio-consultation.html" class="mob-sub">Portfolio Consultation</a>
+    <a href="wealth-protection.html" class="mob-sub">Wealth Protection</a>
+    <a href="other-services.html" class="mob-sub">Other Services</a>
+    <span class="mob-group-label">Financial Literacy</span>
+    <a href="seminar-webinar.html" class="mob-sub">Seminar &amp; Webinar</a>
+    <a href="book-free-session.html" class="mob-sub">Book A Free Session</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+2. Add the CSS link in <head> after nav.css:
+
+html
+<link rel="stylesheet" href="mobile-menu-fix.css"/>
+The key fixes: the close button now calls closeMobileMenu() (matching your inline script, not EPM.closeMobileMenu()), the logo has the class .mobile-logo-img so it gets the correct sizing styles, and there's a text fallback (EPM Wealth) that shows automatically if logo-emp.png fails to load.
+
+Mobile menu fix
+Code · CSS 
+1774440558966_image.png
+1774440567450_image.png
+1774440587090_image.png
+this both are not set properly and nav logo is not visibilve
+
+5:39 PM
+I can see 3 issues from your screenshots:
+
+Nav bar — logo missing, only hamburger shows
+Process section — steps misaligned (number and title split apart)
+Compare table — only showing 2 columns, cut off on mobile
+
+Ran 2 commands, created a file, read a file
+Ran 2 commands, created a file, read a file
+
+Create comprehensive mobile fixes CSS
+
+Script
+
+Test directory
+
+Script
+
+All mobile fixes CSS for EPM Wealth other-services page
+mobile-all-fixes.css
+
+Presented file
+Done
+Step 1 — Add this single link at the very end of your <head>, after all other CSS:
+
+html
+<link rel="stylesheet" href="mobile-all-fixes.css"/>
+Step 2 — You can remove footer-fix.css, other-services-mobile.css, and mobile-fixes.css from your <head> — this file replaces all of them.
+
+Here's exactly what each fix does:
+
+Nav logo (Image 3) — Forces .nav-left to always display: flex on mobile. Your shared.css was hiding it at ≤640px. The logo image gets height: 30px, and if logo-emp.png fails to load, #logoFallback shows "EPM Wealth" as text instead.
+
+Process steps (Image 1) — Switches each .process-step from text-align: center to a 2-column grid: the circle number on the left spanning both rows, and the title + description stacked on the right. Also adds a faint vertical connecting line between steps.
+
+Comparison table (Image 2) — Sets fixed pixel widths (155px + 85px × 3) on the grid columns so all 4 columns render inside a horizontally scrollable container. A "swipe to see all columns" hint appears on phones under 480px.
+
+Mobile all fixes
+Code · CSS 
+
+
+
+
+
+Claude is AI and can make mistakes. Please double-check responses.
+Mobile all fixes · CSS
+Copy
+
+/* ══════════════════════════════════════════════════════
+   EPM WEALTH — Complete Mobile Fix
+   Save as: mobile-all-fixes.css
+   Add LAST in <head>, after all other CSS links
+   ══════════════════════════════════════════════════════ */
+ 
+ 
+/* ════════════════════════════════════════
+   1.  NAV BAR — show logo on all mobile
+   ════════════════════════════════════════ */
+@media (max-width: 768px) {
+ 
+  .nav-outer {
+    padding: 8px 14px !important;
+    margin-bottom: -60px;
+  }
+ 
+  nav {
+    /* Two columns: logo | hamburger */
+    grid-template-columns: auto 1fr !important;
+    height: 52px;
+    padding: 0 14px;
+  }
+ 
+  /* ALWAYS show the logo column */
+  .nav-left {
+    display: flex !important;
+    align-items: center;
+    flex: 0 0 auto;
+  }
+ 
+  .nav-logo-wrap {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    padding-right: 0;
+  }
+ 
+  .nav-logo-img {
+    height: 30px !important;
+    width: auto !important;
+    display: block !important;
+  }
+ 
+  /* Text fallback when image fails */
+  #logoFallback {
+    display: flex !important;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: var(--char, #1c2540);
+  }
+ 
+  /* Right side: hide all links, keep only hamburger */
+  .nav-right .nav-item,
+  .nav-right .nav-contact,
+  .nav-right .nav-uhnw,
+  .nav-right .nav-social-wrap {
+    display: none !important;
+  }
+ 
+  .nav-right {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+  }
+ 
+  .nav-hamburger {
+    display: flex !important;
+  }
+}
+ 
+ 
+/* ════════════════════════════════════════
+   2.  PROCESS SECTION — fix broken layout
+   ════════════════════════════════════════ */
+@media (max-width: 768px) {
+ 
+  .process-section {
+    padding: 52px 5%;
+  }
+ 
+  /* Stack all 5 steps vertically */
+  .process-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    margin-top: 36px;
+  }
+ 
+  .process-grid::before {
+    display: none !important;
+  }
+ 
+  /* Each step: icon left, title + text right */
+  .process-step {
+    display: grid !important;
+    grid-template-columns: 64px 1fr !important;
+    grid-template-rows: auto auto !important;
+    column-gap: 16px !important;
+    row-gap: 4px !important;
+    align-items: start !important;
+    text-align: left !important;
+    padding: 20px 0 !important;
+    border-bottom: 1px solid rgba(196,154,90,.13);
+    position: relative;
+  }
+ 
+  .process-step:last-child {
+    border-bottom: none;
+  }
+ 
+  /* Circle number spans both rows */
+  .process-num {
+    grid-column: 1 !important;
+    grid-row: 1 / 3 !important;
+    width: 52px !important;
+    height: 52px !important;
+    font-size: 18px !important;
+    margin: 0 !important;
+    align-self: start;
+  }
+ 
+  .process-step-title {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    font-size: 16px !important;
+    margin-bottom: 0 !important;
+    padding-top: 2px;
+  }
+ 
+  .process-step-text {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    font-size: 12px !important;
+    text-align: left !important;
+  }
+ 
+  /* Thin connecting line between steps */
+  .process-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 74px;
+    bottom: -1px;
+    width: 1px;
+    background: rgba(196,154,90,.18);
+  }
+}
+ 
+ 
+/* ════════════════════════════════════════
+   3.  COMPARISON TABLE — all columns visible
+   ════════════════════════════════════════ */
+@media (max-width: 768px) {
+ 
+  .compare-section {
+    padding: 52px 5% 44px;
+  }
+ 
+  /* Make table horizontally scrollable */
+  .compare-table {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+  }
+ 
+  /* Use fixed pixel widths so all 4 cols fit in scroll */
+  .compare-head,
+  .compare-row {
+    grid-template-columns: 155px 85px 85px 85px !important;
+    min-width: 420px !important;
+    padding: 12px 10px !important;
+  }
+ 
+  .compare-head-cell {
+    font-size: 8.5px !important;
+    letter-spacing: 1px !important;
+    line-height: 1.4 !important;
+    word-break: break-word;
+  }
+ 
+  .compare-cell {
+    font-size: 11.5px !important;
+  }
+ 
+  .compare-check {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 9px !important;
+  }
+}
+ 
+/* Swipe hint on small phones */
+@media (max-width: 480px) {
+  .compare-section::after {
+    content: 'swipe table to see all columns';
+    display: block;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted2, #7a6a54);
+    margin-top: 10px;
+    opacity: 0.55;
+  }
+}
+ 
+ 
+/* ════════════════════════════════════════
+   4.  GENERAL section padding + cards
+   ════════════════════════════════════════ */
+@media (max-width: 768px) {
+ 
+  .page-hero {
+    padding: 80px 5% 52px;
+    min-height: 340px;
+  }
+  .hero-h1  { font-size: clamp(32px, 9vw, 48px) !important; }
+  .hero-sub { font-size: 13px; }
+  .hero-ctas { flex-direction: column; gap: 12px; }
+  .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+ 
+  .intro-band { padding: 28px 5%; }
+  .intro-band-quote { font-size: clamp(16px, 4vw, 22px) !important; }
+ 
+  .services-section  { padding: 48px 5%; }
+  .services-header   { grid-template-columns: 1fr !important; gap: 14px; margin-bottom: 24px; }
+ 
+  .svc-card          { grid-template-columns: 1fr !important; }
+  .svc-card-visual   { min-height: 200px !important; }
+  .svc-card-body     { padding: 24px 18px !important; }
+  .svc-card-title    { font-size: clamp(22px, 6vw, 32px) !important; }
+  .svc-card-icon-badge { width: 50px !important; height: 50px !important; font-size: 20px !important; }
+ 
+  .faq-section   { padding: 48px 5%; }
+  .faq-grid      { grid-template-columns: 1fr !important; gap: 36px; }
+  .faq-visual    { position: static !important; }
+  .faq-visual-card { padding: 28px 20px; }
+  .faq-question  { font-size: 15px; padding: 14px 16px; }
+ 
+  .cta-band { padding: 56px 5%; }
+ 
+  footer { padding: 44px 5% 24px; }
+  .footer-top {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px;
+  }
+  .footer-top > div:first-child { grid-column: 1 / -1; }
+  .footer-legal  { grid-template-columns: 1fr !important; gap: 18px; font-size: 11px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .footer-bottom a { margin-left: 0; margin-right: 12px; }
+}
+ 
+@media (max-width: 480px) {
+  .footer-top { grid-template-columns: 1fr !important; }
+  .footer-top > div:first-child { grid-column: auto; }
+}
+ 

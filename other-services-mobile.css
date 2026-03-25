@@ -1,0 +1,196 @@
+/* ══════════════════════════════════════════════════════
+   EPM WEALTH — other-services.html  |  Mobile Fix CSS
+   Add <link rel="stylesheet" href="other-services-mobile.css"/>
+   AFTER your existing <link rel="stylesheet" href="shared.css"/>
+   ══════════════════════════════════════════════════════ */
+
+
+/* ══════════════════════════════════════════════════════
+   TABLET  ≤ 1023px
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 1023px) {
+
+  /* Hero */
+  .page-hero { padding: 72px 5% 64px; }
+  .hero-h1   { font-size: clamp(36px, 6vw, 60px); }
+
+  /* Services header 2-col → 1-col */
+  .services-header { grid-template-columns: 1fr; gap: 20px; }
+
+  /* Service cards: image on top, body below */
+  .svc-card         { grid-template-columns: 1fr; }
+  .svc-card-visual  { min-height: 260px; }
+  .svc-card-body    { padding: 36px 32px; }
+
+  /* Comparison table: allow horizontal scroll */
+  .compare-section  { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare-table    { min-width: 640px; }
+
+  /* Process: 3 cols */
+  .process-grid { grid-template-columns: repeat(3, 1fr); }
+  .process-grid::before { display: none; }
+
+  /* FAQ: stack */
+  .faq-grid { grid-template-columns: 1fr; gap: 40px; }
+  .faq-visual { position: static; }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   MOBILE  ≤ 768px
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── NAV ── */
+  .nav-left,
+  .nav-right .nav-uhnw,
+  .nav-right .nav-contact  { display: none; }
+  .nav-hamburger           { display: flex; }
+  .nav-outer               { padding: 10px 16px; }
+
+  /* ── Floating social + WhatsApp ── */
+  .sf, .wa-btn { display: none; }
+
+  /* ── Hero ── */
+  .page-hero { padding: 80px 5% 52px; min-height: 360px; }
+  .hero-h1   { font-size: clamp(36px, 9vw, 52px); line-height: 1.05; }
+  .hero-sub  { font-size: 13px; }
+  .hero-ctas { flex-direction: column; gap: 12px; }
+  .btn-primary,
+  .btn-outline { width: 100%; justify-content: center; padding: 14px 20px; }
+
+  /* ── Intro band ── */
+  .intro-band         { padding: 32px 5%; }
+  .intro-band-quote   { font-size: clamp(17px, 4vw, 22px); }
+
+  /* ── Services section ── */
+  .services-section { padding: 56px 5%; }
+  .services-header  { margin-bottom: 32px; }
+  .svc-grid         { gap: 1px; }
+
+  .svc-card         { grid-template-columns: 1fr; }
+  .svc-card-visual  { min-height: 220px; }
+  .svc-card-body    { padding: 28px 22px; }
+  .svc-card-title   { font-size: clamp(22px, 5vw, 32px); }
+  .svc-card-desc    { font-size: 13px; }
+
+  .svc-card-icon-badge {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+    bottom: 16px;
+    left: 16px;
+  }
+
+  /* ── Comparison table ── */
+  .compare-section { padding: 56px 5%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare-table   { min-width: 580px; }
+  .compare-head,
+  .compare-row     { padding: 14px 16px; font-size: 12px; }
+
+  /* ── Process ── */
+  .process-section { padding: 56px 5%; }
+  .process-grid    { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+  .process-grid::before { display: none; }
+  .process-num     { width: 56px; height: 56px; font-size: 20px; }
+
+  /* ── FAQ ── */
+  .faq-section  { padding: 56px 5%; }
+  .faq-grid     { grid-template-columns: 1fr; gap: 40px; }
+  .faq-visual   { position: static; }
+  .faq-visual-card { padding: 32px 24px; }
+
+  .faq-question { font-size: 15px; padding: 16px 18px; }
+  .faq-answer-inner { padding: 0 18px 16px; font-size: 13px; }
+
+  /* ── CTA band ── */
+  .cta-band { padding: 64px 5%; }
+  .cta-band .btn-primary {
+    display: inline-flex;
+    width: auto;
+    margin-top: 4px;
+  }
+
+  /* ── Footer ── */
+  footer { padding: 48px 5% 24px; }
+
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  /* Brand column full width */
+  .footer-top > div:first-child { grid-column: 1 / -1; }
+
+  .footer-legal {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    font-size: 11px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 10.5px;
+  }
+  .footer-bottom div { display: flex; flex-wrap: wrap; gap: 4px; }
+  .footer-bottom a   { margin-left: 0; margin-right: 14px; }
+
+  /* FAQ contact items wrap nicely */
+  .faq-contact-item { align-items: flex-start; }
+  .faq-contact-icon { margin-top: 2px; }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   MOBILE SMALL  ≤ 480px
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+
+  /* Hero */
+  .page-hero { padding: 72px 4% 44px; }
+  .hero-h1   { font-size: clamp(32px, 9vw, 44px); }
+
+  /* Services */
+  .services-section { padding: 40px 4%; }
+  .svc-card-body    { padding: 24px 16px; }
+  .svc-card-features { gap: 8px; }
+
+  /* Process: single column */
+  .process-section { padding: 44px 4%; }
+  .process-grid    { grid-template-columns: 1fr; gap: 28px; }
+  .process-step    { display: grid; grid-template-columns: 56px 1fr; gap: 16px; text-align: left; align-items: start; }
+  .process-num     { margin: 0; }
+
+  /* Compare */
+  .compare-section { padding: 40px 4%; }
+
+  /* FAQ */
+  .faq-section  { padding: 40px 4%; }
+  .faq-visual-card { padding: 24px 18px; }
+  .faq-visual-title { font-size: 22px; }
+
+  /* CTA */
+  .cta-band { padding: 48px 4%; }
+
+  /* Footer */
+  footer { padding: 40px 4% 20px; }
+  .footer-top { grid-template-columns: 1fr; gap: 24px; }
+  .footer-top > div:first-child { grid-column: auto; }
+  .footer-badges { flex-wrap: wrap; }
+  .footer-socials { flex-wrap: wrap; }
+  .footer-legal { padding: 0; }
+
+  /* Comparison table scroll hint */
+  .compare-section::after {
+    content: '← Scroll to see full table →';
+    display: block;
+    text-align: center;
+    font-size: 10px;
+    color: var(--muted2);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    opacity: 0.6;
+  }
+}

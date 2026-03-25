@@ -8,8 +8,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <link rel="stylesheet" href="shared.css"/>
 <link rel="stylesheet" href="nav.css"/>
+<link rel="stylesheet" href="wealth-creation-mobile-fix.css"/>
+<link rel="stylesheet" href="wealth-creation-desktop-fix.css"/> 
+ <link rel="stylesheet" href="mobile-fixes.css"/>
 
 <script src="nav.js" defer></script>
+<link rel="stylesheet" href="footer-fix.css"/> 
+
+
 <style>
 :root{
   --cream:#f5ede0;--cream2:#ede4d6;--cream3:#faf4ec;
@@ -231,8 +237,12 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 
 @media(max-width:1100px){.footer-top{grid-template-columns:1fr 1fr}}
 @media(max-width:900px){.hero-top{grid-template-columns:1fr;padding-top:80px}.hero-right-visual{display:none}.philosophy-grid,.sip-main-grid,.avenues-header{grid-template-columns:1fr}.avenues-grid{grid-template-columns:1fr}.testi-grid{grid-template-columns:1fr}.hero-bottom-inner{flex-wrap:wrap}.hb-item{flex:0 0 50%;border-right:none;border-bottom:1px solid rgba(255,255,255,.06);}}
-@media(max-width:768px){.nav-left,.nav-right .nav-uhnw,.nav-right .nav-contact{display:none}.nav-hamburger{display:flex}.sf,.wa-btn{display:none}}
-@media(max-width:480px){.footer-top,.footer-legal{grid-template-columns:1fr}.hb-item{flex:0 0 100%}}
+@media (max-width: 768px) {
+  /* Show the logo wrapper */
+  .nav-left {
+    display: flex !important;
+    align-items: center;
+  }@media(max-width:480px){.footer-top,.footer-legal{grid-template-columns:1fr}.hb-item{flex:0 0 100%}}
 .label,
 .eyebrow-text,
 .info-tag,
@@ -302,6 +312,42 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 </div>
 <a href="https://wa.me/919999939333" class="wa-btn" target="_blank">💬</a>
 <!-- MOBILE MENU -->
+ <div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-head">
+    <img src="logo-emp.png" style="height:28px"/>
+    <button class="mobile-close" onclick="EPM.closeMobileMenu()">✕</button>
+  </div>
+  <div class="mobile-menu-body">
+<!-- MOBILE MENU -->
+ <div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-head">
+    <img src="logo-emp.png" style="height:28px"/>
+    <button class="mobile-close" onclick="EPM.closeMobileMenu()">✕</button>
+  </div>
+  <div class="mobile-menu-body">
+    <a href="index.html">Home</a>
+    <a href="About.html">About</a>
+    <span class="mob-group-label">Solution</span>
+    <a href="wealth-creation.html" class="mob-sub">Wealth Creation</a>
+    <a href="portfolio-consultation.html" class="mob-sub">Portfolio Consultation</a>
+    <a href="wealth-protection.html" class="mob-sub">Wealth Protection</a>
+    <a href="other-services.html" class="mob-sub">Other Services</a>
+    <span class="mob-group-label">Financial Literacy</span>
+    <a href="seminar-webinar.html" class="mob-sub">Seminar & Webinar</a>
+    <a href="book-free-session.html" class="mob-sub">Book A Free Session</a>
+    <a href="#contact">Contact</a>
+    
+  </div>
+</div>    <a href="index.html">Home</a>
+    <a href="About.html">About</a>
+    <span class="mob-group-label">Solution</span>
+    <a href="wealth-creation.html" class="mob-sub">Wealth Creation</a>
+    <a href="portfolio-consultation.html" class="mob-sub">Portfolio Consultation</a>
+    <a href="wealth-protection.html" class="mob-sub">Wealth Protection</a>
+    <a href="other-services.html" class="mob-sub">Other Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
 <!-- ══ NAV BAR ══ -->
 <div class="nav-outer" id="navOuter">
   <nav id="mainNav">
@@ -418,7 +464,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
       
 
       <!-- Hamburger (mobile only) -->
-      <div class="nav-hamburger" id="hamburger" onclick="EPM.openMobileMenu()">
+      <div class="nav-hamburger" id="hamburger" >
         <span></span><span></span><span></span>
       </div>
 

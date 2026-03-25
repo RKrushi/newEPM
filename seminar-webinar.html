@@ -225,7 +225,12 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 /* ══ RESPONSIVE ══ */
 @media(max-width:1100px){.topics-grid{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:1fr 1fr}}
 @media(max-width:900px){.intro-grid,.gallery-header,.why-grid,.events-grid,.testi-grid{grid-template-columns:1fr}.stats-band{flex-wrap:wrap;gap:28px}.stat-sep{display:none}.stat-item{flex:0 0 calc(50% - 28px)}}
-@media(max-width:768px){.nav-left,.nav-right .nav-uhnw,.nav-right .nav-contact{display:none}.nav-hamburger{display:flex}.sf,.wa-btn{display:none}.topics-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width: 768px) {
+  /* Show the logo wrapper */
+  .nav-left {
+    display: flex !important;
+    align-items: center;
+  }
 @media(max-width:480px){.topics-grid{grid-template-columns:1fr}.footer-top,.footer-legal{grid-template-columns:1fr}.slide{flex:0 0 calc(100% - 12px)}}
 </style>
 </head>
@@ -239,20 +244,27 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
   <a href="https://www.facebook.com/epmwealthadvisor" target="_blank"><i class="fab fa-facebook-f"></i></a>
 </div>
 <a href="https://wa.me/919999939333" class="wa-btn" target="_blank" title="WhatsApp">💬</a>
-
 <!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
+ <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-head">
-    <span style="font-family:'Cormorant Garamond',serif;font-size:20px;letter-spacing:2px;text-transform:uppercase;color:var(--char)">EPM Wealth</span>
-    <span class="mobile-close" onclick="closeMobileMenu()"><i class="fa fa-times"></i></span>
+    <img src="logo-emp.png" style="height:28px"/>
+    <button class="mobile-close" onclick="EPM.closeMobileMenu()">✕</button>
   </div>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="seminar-webinar.html" style="color:var(--warm)">Seminar &amp; Webinar</a>
-  <a href="book-free-session.html">Book Free Session</a>
-  <a href="index.html#contact" style="color:var(--warm)">Contact</a>
+  <div class="mobile-menu-body">
+    <a href="index.html">Home</a>
+    <a href="About.html">About</a>
+    <span class="mob-group-label">Solution</span>
+    <a href="wealth-creation.html" class="mob-sub">Wealth Creation</a>
+    <a href="portfolio-consultation.html" class="mob-sub">Portfolio Consultation</a>
+    <a href="wealth-protection.html" class="mob-sub">Wealth Protection</a>
+    <a href="other-services.html" class="mob-sub">Other Services</a>
+    <span class="mob-group-label">Financial Literacy</span>
+    <a href="seminar-webinar.html" class="mob-sub">Seminar & Webinar</a>
+    <a href="book-free-session.html" class="mob-sub">Book A Free Session</a>
+    <a href="#contact">Contact</a>
+    
+  </div>
 </div>
-
 
 
 <div class="sf">

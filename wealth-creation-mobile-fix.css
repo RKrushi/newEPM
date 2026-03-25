@@ -1,0 +1,214 @@
+/* ══════════════════════════════════════════
+   wealth-creation.html — Mobile Fixes
+   Paste inside the <style> tag of the page
+   AFTER all existing styles
+══════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+
+  /* ── Fix 1: Hero layout ── */
+  .page-hero {
+    min-height: auto;
+  }
+
+  .hero-top {
+    grid-template-columns: 1fr !important;
+    padding: 80px 5% 40px !important;
+    gap: 32px !important;
+  }
+
+  /* ── Fix 2: Hide the dark bg shape — it cuts off text ── */
+  .hero-bg-shape {
+    display: none !important;
+  }
+
+  /* ── Fix 3: Hero text color fix (was white-on-white) ── */
+  .hero-h1 {
+    color: var(--char) !important;
+    font-size: clamp(36px, 8vw, 56px) !important;
+  }
+
+  .hero-sub {
+    color: var(--muted) !important;
+    max-width: 100% !important;
+  }
+
+  /* ── Fix 4: Hide chart visual on mobile ── */
+  .hero-right-visual {
+    display: none !important;
+  }
+
+  /* ── Fix 5: Hero bottom stats wrap ── */
+  .hero-bottom {
+    padding: 0 5% !important;
+  }
+
+  .hero-bottom-inner {
+    flex-wrap: wrap !important;
+  }
+
+  .hb-item {
+    flex: 0 0 50% !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,.06) !important;
+    padding: 24px 0 !important;
+  }
+
+  /* ── Fix 6: Philosophy section empty space ── */
+  .philosophy-section {
+    padding: 56px 5% !important;
+  }
+
+  .philosophy-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  /* Returns table on mobile */
+  .returns-table-head,
+  .returns-row {
+    grid-template-columns: 1.2fr 0.8fr 0.8fr !important;
+    font-size: 11px !important;
+    padding: 10px 12px !important;
+  }
+
+  .rt-cell { font-size: 11px !important; }
+
+  /* ── Fix 7: Avenues section ── */
+  .avenues-section {
+    padding: 56px 5% !important;
+  }
+
+  .avenues-header {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    margin-bottom: 32px !important;
+  }
+
+  .avenues-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .avenue-body {
+    padding: 24px 20px !important;
+  }
+
+  /* ── Fix 8: SIP section ── */
+  .sip-section {
+    padding: 56px 5% !important;
+  }
+
+  .sip-main-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  .sip-calc {
+    padding: 28px 20px !important;
+  }
+
+  .sip-row {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+
+  /* ── Fix 9: Testimonials ── */
+  .testi-section {
+    padding: 56px 5% !important;
+  }
+
+  .testi-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .testi-card {
+    padding: 28px 20px !important;
+  }
+
+  /* ── Fix 10: CTA section ── */
+  .cta-content {
+    padding: 60px 5% !important;
+    max-width: 100% !important;
+  }
+
+  .cta-h {
+    font-size: clamp(28px, 6vw, 44px) !important;
+  }
+
+  .cta-btns {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .btn-primary,
+  .btn-outline-light {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .hero-top {
+    padding: 70px 4% 32px !important;
+  }
+
+  .hero-h1 {
+    font-size: clamp(32px, 9vw, 44px) !important;
+  }
+
+  .hb-item {
+    flex: 0 0 100% !important;
+  }
+
+  .hb-num {
+    font-size: 28px !important;
+  }
+
+  .philosophy-principles {
+    gap: 0 !important;
+  }
+
+  .principle-item {
+    padding: 18px 16px !important;
+    gap: 12px !important;
+  }
+
+  .principle-num {
+    font-size: 24px !important;
+  }
+
+  .principle-title {
+    font-size: 16px !important;
+  }
+
+  .avenue-metrics {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Footer on this page */
+  .footer-top {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .footer-legal {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .footer-bottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  .footer-bottom div a {
+    margin-left: 0 !important;
+    margin-right: 12px !important;
+  }
+}
+
+/* ── Also fix the mobile menu missing on this page ── */
+/* This page is missing the mobile menu HTML entirely */
+/* Add id="mobileMenu" to your mobile-menu div */

@@ -1,0 +1,83 @@
+/* ══════════════════════════════════════════
+   wealth-creation — Desktop Layout Restore
+   Add this AFTER wealth-creation-mobile-fix.css
+   in your <head>
+══════════════════════════════════════════ */
+
+/* ── Restore desktop two-column layouts ── */
+@media (min-width: 901px) {
+
+  .hero-top {
+    grid-template-columns: 1fr 1fr !important;
+    padding: 100px 7% 60px !important;
+    gap: 60px !important;
+  }
+
+  .hero-bg-shape {
+    display: block !important;
+  }
+
+  .hero-right-visual {
+    display: block !important;
+  }
+
+  .hero-h1 {
+    color: var(--char) !important;
+  }
+
+  .philosophy-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 80px !important;
+  }
+
+  .sip-main-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 72px !important;
+  }
+
+  .avenues-header {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 60px !important;
+    margin-bottom: 52px !important;
+  }
+
+  .avenues-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .sip-row {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+
+  .testi-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  /* Fix SIP section padding */
+  .sip-section {
+    padding: 88px 7% !important;
+  }
+
+  .philosophy-section {
+    padding: 88px 7% !important;
+  }
+
+  .avenues-section {
+    padding: 88px 7% !important;
+  }
+
+  .testi-section {
+    padding: 88px 7% !important;
+  }
+
+  /* Fix cta buttons */
+  .cta-btns {
+    flex-direction: row !important;
+  }
+
+  .btn-primary,
+  .btn-outline-light {
+    width: auto !important;
+  }
+}

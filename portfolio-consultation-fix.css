@@ -1,0 +1,262 @@
+/* ══════════════════════════════════════════
+   portfolio-consultation.html — Mobile Fixes
+   Add inside <style> tag AFTER all existing styles
+══════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+
+  /* ── Fix 1: Show nav logo on mobile ── */
+  .nav-left {
+    display: flex !important;
+  }
+
+  .nav-logo-wrap {
+    display: flex !important;
+  }
+
+  .nav-logo-img {
+    display: block !important;
+    height: 28px !important;
+  }
+
+  /* ── Fix 2: Hero layout single column ── */
+  .hero-content {
+    grid-template-columns: 1fr !important;
+    padding: 80px 5% 48px !important;
+    gap: 40px !important;
+  }
+
+  /* ── Fix 3: Show portfolio card on mobile ── */
+  .hero-right {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .portfolio-card {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 24px 20px !important;
+  }
+
+  /* ── Fix 4: Hero stats wrap ── */
+  .hero-stats {
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+
+  .hero-stat {
+    flex: 0 0 calc(50% - 16px) !important;
+  }
+
+  /* ── Fix 5: Hero buttons full width ── */
+  .hero-ctas {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .btn-primary,
+  .btn-outline-light {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* ── Fix 6: Offer grid ── */
+  .offer-section {
+    padding: 56px 5% !important;
+  }
+
+  .offer-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .offer-card {
+    padding: 32px 24px !important;
+  }
+
+  /* ── Fix 7: Consult section ── */
+  .consult-section {
+    padding: 56px 5% !important;
+  }
+
+  .consult-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .consult-card {
+    padding: 32px 24px !important;
+  }
+
+  /* ── Fix 8: Process timeline ── */
+  .process-section {
+    padding: 56px 5% !important;
+  }
+
+  .process-timeline::before {
+    left: 24px !important;
+    transform: none !important;
+  }
+
+  .timeline-item {
+    grid-template-columns: auto 1fr !important;
+    gap: 16px !important;
+  }
+
+  .timeline-item.right .timeline-content-left,
+  .timeline-item.right .timeline-dot,
+  .timeline-item.right .timeline-content-right {
+    order: unset !important;
+  }
+
+  .timeline-content-empty {
+    display: none !important;
+  }
+
+  .timeline-content-left,
+  .timeline-content-right {
+    text-align: left !important;
+    padding: 20px 16px !important;
+  }
+
+  /* ── Fix 9: Analysis section ── */
+  .analysis-section {
+    padding: 56px 5% !important;
+  }
+
+  .analysis-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  .chart-visual {
+    padding: 28px 20px !important;
+  }
+
+  /* ── Fix 10: Testimonials ── */
+  .testi-section {
+    padding: 56px 5% !important;
+  }
+
+  .testi-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .testi-card {
+    padding: 28px 20px !important;
+  }
+
+  /* ── Fix 11: CTA ── */
+  .cta-content {
+    padding: 60px 5% !important;
+    max-width: 100% !important;
+  }
+
+  .cta-btns {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .hero-content {
+    padding: 70px 4% 40px !important;
+  }
+
+  .hero-h1 {
+    font-size: clamp(32px, 9vw, 48px) !important;
+  }
+
+  .hero-stat {
+    flex: 0 0 100% !important;
+  }
+
+  .hero-stat-num {
+    font-size: 24px !important;
+  }
+
+  .portfolio-card {
+    padding: 20px 16px !important;
+  }
+
+  .alloc-label {
+    width: 90px !important;
+    font-size: 11px !important;
+  }
+
+  .portfolio-returns {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .offer-card-num {
+    font-size: 60px !important;
+  }
+
+  /* Footer */
+  .footer-top {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .footer-legal {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .footer-bottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  .footer-bottom div a {
+    margin-left: 0 !important;
+    margin-right: 12px !important;
+  }
+}
+
+/* ── Desktop restore (min 901px) ── */
+@media (min-width: 901px) {
+  .hero-content {
+    grid-template-columns: 1fr 1fr !important;
+    padding: 0 7% !important;
+    padding-top: 120px !important;
+    padding-bottom: 80px !important;
+    gap: 80px !important;
+  }
+
+  .hero-right {
+    display: flex !important;
+  }
+
+  .hero-ctas {
+    flex-direction: row !important;
+  }
+
+  .btn-primary,
+  .btn-outline-light {
+    width: auto !important;
+  }
+
+  .offer-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .consult-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .analysis-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 72px !important;
+  }
+
+  .testi-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .cta-btns {
+    flex-direction: row !important;
+  }
+}
