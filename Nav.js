@@ -99,19 +99,38 @@ EPM.openMobileMenu = function () {
      INIT — call once DOM is ready
   ════════════════════════════════════════ */
   EPM.initNav = function () {
-    EPM.initNavScroll();
-    bindSocialOutsideClick();
-    bindSocialEscKey();
-    /* Wire mobile accordion group toggles */
-document.querySelectorAll('.mob-group-toggle').forEach(function (btn) {
-  btn.addEventListener('click', function () {
-    var targetId = btn.getAttribute('data-target');
-    var panel = document.getElementById(targetId);
-    if (!panel) return;
+  EPM.initNavScroll();
+  bindSocialOutsideClick();
+  bindSocialEscKey();
 
-    var isOpen = panel.classList.toggle('open');
-    btn.classList.toggle('open', isOpen);
+  /* Wire hamburger */
+  const hamburger = document.getElementById('hamburger');
+  if (hamburger) {
+    hamburger.addEventListener('click', EPM.openMobileMenu);
+  }
+
+  /* Wire mobile close button */
+  const mobileClose = document.querySelector('.mobile-close');
+  if (mobileClose) {
+    mobileClose.addEventListener('click', EPM.closeMobileMenu);
+  }
+
+  /* Wire all mobile menu links to close the menu */
+  document.querySelectorAll('#mobileMenu a').forEach(function (a) {
+    a.addEventListener('click', EPM.closeMobileMenu);
   });
+
+  // ✅ ADD THIS BLOCK — wire accordion toggles
+  document.querySelectorAll('.mob-group-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var targetId = btn.getAttribute('data-target');
+      var panel = document.getElementById(targetId);
+      if (!panel) return;
+      var isOpen = panel.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+    });
+  });
+};
 });
 
     /* Wire hamburger */
