@@ -7,9 +7,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <link rel="stylesheet" href="shared.css"/>
-
+<link rel="stylesheet" href="mobile-fixes.css"/>
+<link rel="stylesheet" href="shared.css"/>
 <link rel="stylesheet" href="nav.css"/>
 <script src="nav.js" defer></script>
+<link rel="stylesheet" href="footer-fix.css"/>
 <style>
 :root{
   --cream:#f5ede0;--cream2:#ede4d6;--cream3:#faf4ec;
@@ -245,7 +247,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
 </div>
 <a href="https://wa.me/919999939333" class="wa-btn" target="_blank" title="WhatsApp">💬</a>
 <!-- MOBILE MENU -->
- <div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-head">
     <img src="logo-emp.png" style="height:28px"/>
     <button class="mobile-close" onclick="EPM.closeMobileMenu()">✕</button>
@@ -253,19 +255,36 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
   <div class="mobile-menu-body">
     <a href="index.html">Home</a>
     <a href="About.html">About</a>
-    <span class="mob-group-label">Solution</span>
-    <a href="wealth-creation.html" class="mob-sub">Wealth Creation</a>
-    <a href="portfolio-consultation.html" class="mob-sub">Portfolio Consultation</a>
-    <a href="wealth-protection.html" class="mob-sub">Wealth Protection</a>
-    <a href="other-services.html" class="mob-sub">Other Services</a>
-    <span class="mob-group-label">Financial Literacy</span>
-    <a href="seminar-webinar.html" class="mob-sub">Seminar & Webinar</a>
-    <a href="book-free-session.html" class="mob-sub">Book A Free Session</a>
+
+    <!-- ACCORDION TOGGLE for Solutions -->
+    <button class="mob-group-toggle" data-target="mob-group-solutions">
+      Solutions
+      <svg class="mob-chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
+        <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="mob-group-panel" id="mob-group-solutions">
+      <a href="wealth-creation.html" class="mob-sub">Wealth Creation</a>
+      <a href="portfolio-consultation.html" class="mob-sub">Portfolio Consultation</a>
+      <a href="wealth-protection.html" class="mob-sub">Wealth Protection</a>
+      <a href="other-services.html" class="mob-sub">Other Services</a>
+    </div>
+
+    <!-- ACCORDION TOGGLE for Financial Literacy -->
+    <button class="mob-group-toggle" data-target="mob-group-literacy">
+      Financial Literacy
+      <svg class="mob-chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
+        <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="mob-group-panel" id="mob-group-literacy">
+      <a href="seminar-webinar.html" class="mob-sub">Seminar &amp; Webinar</a>
+      <a href="book-free-session.html" class="mob-sub">Book A Free Session</a>
+    </div>
+
     <a href="#contact">Contact</a>
-    
   </div>
 </div>
-
 
 <div class="sf">
   <a href="https://www.instagram.com/epm_wealth/" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -391,9 +410,9 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
       
 
       <!-- Hamburger (mobile only) -->
-      <div class="nav-hamburger" id="hamburger" onclick="EPM.openMobileMenu()">
-        <span></span><span></span><span></span>
-      </div>
+    <button id="hamburger" class="nav-hamburger" aria-label="Open menu" onclick="EPM.openMobileMenu()">
+  <span></span><span></span><span></span>
+</button>
 
     </div>
 
@@ -748,6 +767,25 @@ function closeMobileMenu() { document.getElementById('mobileMenu').classList.rem
 })();
 </script>
 <script src="shared.js"></script>
+<script>
+/* ── Scroll + reveal ── */
+var navOuter = document.getElementById('navOuter');
+window.addEventListener('scroll', function () {
+  var s = window.scrollY > 60;
+  var nav = document.getElementById('mainNav');
+  if (nav) nav.classList.toggle('scrolled', s);
+  if (navOuter) navOuter.style.cssText = s
+    ? 'position:fixed;top:0;left:0;right:0;z-index:600;padding:8px 28px'
+    : 'position:relative;z-index:600;padding:10px 32px';
+}, { passive: true });
+
+var io = new IntersectionObserver(function (e) {
+  e.forEach(function (x) {
+    if (x.isIntersecting) { x.target.classList.add('visible'); io.unobserve(x.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal,.reveal-left').forEach(function (el) { io.observe(el); });
+</script>
 
 </body>
-</html>
+</html>     

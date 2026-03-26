@@ -47,31 +47,6 @@ img{max-width:100%;display:block}
 @keyframes shimmer{0%{background-position:-200% 0;}100%{background-position:200% 0;}}
 @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
 
-/* ══ NAV ══ */
-.nav-outer{position:relative;z-index:600;padding:10px 32px;}
-nav{background:rgba(240,232,218,0.96);backdrop-filter:blur(14px);border:1px solid rgba(180,162,138,.5);border-radius:6px;height:52px;padding:0 24px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;box-shadow:0 2px 24px rgba(0,0,0,.1);transition:box-shadow .3s;}
-nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.18)}
-.nav-left{display:flex;align-items:center;gap:34px}
-.nav-center{display:flex;align-items:center;justify-content:center}
-.nav-right{display:flex;align-items:center;justify-content:flex-end;gap:20px}
-.nav-a{font-family:var(--font-display);font-size:15.5px;color:var(--char);font-weight:400;transition:color .2s;white-space:nowrap;}
-.nav-a:hover,.nav-a.active{color:var(--warm)}
-.nav-logo-img{height:32px;width:auto;display:block;}
-.nav-logo-wrap{display:flex;align-items:center;gap:10px;}
-.nav-logo-text{font-family:var(--font-display);font-size:17px;font-weight:500;letter-spacing:3px;color:var(--char);text-transform:uppercase;}
-.nav-badge{background:var(--warm);color:#fff;font-size:8px;letter-spacing:.8px;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:20px;margin-right:4px;}
-.nav-uhnw{display:flex;align-items:center;gap:5px;font-family:var(--font-display);font-size:15px;color:var(--char);transition:color .2s;white-space:nowrap;}
-.nav-uhnw:hover{color:var(--warm)}
-.nav-contact{font-family:var(--font-display);font-size:15px;color:var(--char);transition:color .2s;}
-.nav-contact:hover{color:var(--warm)}
-.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
-.nav-hamburger span{width:22px;height:1.5px;background:var(--char)}
-.mobile-menu{display:none;position:fixed;inset:0;background:var(--white);z-index:700;flex-direction:column;padding:24px 5%}
-.mobile-menu.open{display:flex}
-.mobile-menu-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
-.mobile-menu a{font-size:28px;font-family:var(--font-display);font-weight:400;color:var(--char);padding:16px 0;border-bottom:1px solid var(--border);display:block}
-.mobile-close{font-size:22px;cursor:pointer;color:var(--muted)}
-
 /* ══ HERO ══ */
 .page-hero{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;background:var(--char);}
 .hero-bg-full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.2;}
@@ -256,7 +231,7 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
   <a href="https://www.facebook.com/epmwealthadvisor" target="_blank"><i class="fab fa-facebook-f"></i></a>
 </div>
 <a href="https://wa.me/919999939333" class="wa-btn" target="_blank">💬</a>
-
+<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-head">
     <img src="logo-emp.png" style="height:28px"/>
@@ -265,27 +240,36 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
   <div class="mobile-menu-body">
     <a href="index.html">Home</a>
     <a href="About.html">About</a>
-    <span class="mob-group-label">Solution</span>
-    <a href="wealth-creation.html" class="mob-sub">Wealth Creation</a>
-    <a href="portfolio-consultation.html" class="mob-sub">Portfolio Consultation</a>
-    <a href="wealth-protection.html" class="mob-sub">Wealth Protection</a>
-    <a href="other-services.html" class="mob-sub">Other Services</a>
-    <span class="mob-group-label">Financial Literacy</span>
-    <a href="seminar-webinar.html" class="mob-sub">Seminar & Webinar</a>
-    <a href="book-free-session.html" class="mob-sub">Book A Free Session</a>
+
+    <!-- ACCORDION TOGGLE for Solutions -->
+    <button class="mob-group-toggle" data-target="mob-group-solutions">
+      Solutions
+      <svg class="mob-chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
+        <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="mob-group-panel" id="mob-group-solutions">
+      <a href="wealth-creation.html" class="mob-sub">Wealth Creation</a>
+      <a href="portfolio-consultation.html" class="mob-sub">Portfolio Consultation</a>
+      <a href="wealth-protection.html" class="mob-sub">Wealth Protection</a>
+      <a href="other-services.html" class="mob-sub">Other Services</a>
+    </div>
+
+    <!-- ACCORDION TOGGLE for Financial Literacy -->
+    <button class="mob-group-toggle" data-target="mob-group-literacy">
+      Financial Literacy
+      <svg class="mob-chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
+        <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="mob-group-panel" id="mob-group-literacy">
+      <a href="seminar-webinar.html" class="mob-sub">Seminar &amp; Webinar</a>
+      <a href="book-free-session.html" class="mob-sub">Book A Free Session</a>
+    </div>
+
     <a href="#contact">Contact</a>
-    
   </div>
 </div>
-
-<div class="sf">
-  <a href="https://www.instagram.com/epm_wealth/" target="_blank"><i class="fab fa-instagram"></i></a>
-  <a href="https://www.youtube.com/@epmwealth101" target="_blank"><i class="fab fa-youtube"></i></a>
-  <a href="https://www.linkedin.com/company/epm-wealth/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-  <a href="https://www.facebook.com/epmwealthadvisor" target="_blank"><i class="fab fa-facebook-f"></i></a>
-</div>
-<a href="https://wa.me/919999939333" class="wa-btn" target="_blank">💬</a>
-<!-- MOBILE MENU -->
 <!-- ══ NAV BAR ══ -->
 <div class="nav-outer" id="navOuter">
   <nav id="mainNav">
@@ -347,7 +331,12 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
           <a href="book-free-session.html">Book A Free Session</a>
         </div>
       </div>
-<a href="#contact" class="nav-contact">Contact</a>
+       <div class="nav-item">
+        <b><a href="#contact" class="nav-a">Contact</a></b>
+      </div>
+
+      
+
       <!-- Social Media Dropdown -->
       <div class="nav-social-wrap" id="socialWrap">
         <button class="nav-social-btn" onclick="EPM.toggleSocialMenu()" aria-label="Follow us on social media" aria-expanded="false" id="socialBtn">
@@ -401,15 +390,17 @@ footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--b
       <!-- Contact -->
       
 
-      <!-- Hamburger (mobile only) -->
-      <div class="nav-hamburger" id="hamburger" >
-        <span></span><span></span><span></span>
-      </div>
+     
+ <!-- FIXED -->
+<button id="hamburger" class="nav-hamburger" aria-label="Open menu" onclick="EPM.openMobileMenu()">
+  <span></span><span></span><span></span>
+</button>
 
     </div>
 
   </nav>
 </div>
+
 <!-- HERO -->
 <section class="page-hero">
   <img class="hero-bg-full" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1600&q=80&auto=format&fit=crop" alt=""/>

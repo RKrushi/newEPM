@@ -1,13 +1,6 @@
 /* ══════════════════════════════════════════════════════
    EPM Wealth — nav.js
    Handles: scroll shadow, mobile menu, social dropdown.
-
-   USAGE (plain HTML pages):
-     <link rel="stylesheet" href="nav.css">
-     <script src="nav.js" defer></script>
-
-     Then in your HTML, paste the nav markup and call:
-       EPM.initNav();
 ══════════════════════════════════════════════════════ */
 
 (function () {
@@ -39,8 +32,25 @@
       b.classList.remove('open');
     });
 
+    /* Show the menu */
     menu.classList.add('open');
     document.body.style.overflow = 'hidden';
+
+    /* ✅ Wire accordion AFTER menu is visible */
+    menu.querySelectorAll('.mob-group-toggle').forEach(function (btn) {
+      /* Clone to remove any old listeners */
+      const fresh = btn.cloneNode(true);
+      btn.parentNode.replaceChild(fresh, btn);
+
+      fresh.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const panel = document.getElementById(fresh.getAttribute('data-target'));
+        if (!panel) return;
+        const isOpen = panel.classList.toggle('open');
+        fresh.classList.toggle('open', isOpen);
+      });
+    });
   };
 
   EPM.closeMobileMenu = function () {
@@ -138,29 +148,6 @@
     document.querySelectorAll('#mobileMenu a').forEach(function (a) {
       a.addEventListener('click', EPM.closeMobileMenu);
     });
-
-    /* ✅ ACCORDION TOGGLES */
-    /* ✅ ACCORDION TOGGLES — with mobile touch support */
-document.querySelectorAll('.mob-group-toggle').forEach(function (btn) {
-  function toggleAccordion(e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    const targetId = btn.getAttribute('data-target');
-    const panel    = document.getElementById(targetId);
-    if (!panel) {
-      console.warn('Panel not found:', targetId); // debug
-      return;
-    }
-
-    const isOpen = panel.classList.toggle('open');
-    btn.classList.toggle('open', isOpen);
-    console.log('Toggled', targetId, isOpen); // debug
-  }
-
-  btn.addEventListener('click',    toggleAccordion);
-  btn.addEventListener('touchend', toggleAccordion);
-});
   };
 
   /* Auto-init */

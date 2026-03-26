@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Book a Free Session — EPM Wealth</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<style>
+:root {
+  --cream: #f5ede0;
+  --cream2: #ede4d6;
+  --cream3: #faf4ec;
+  --warm: #8b6342;
+  --warm2: #c49a5a;
+  --char: #1c2540;
+  --navy: #0d1f3c;
+  --gold: #c49a5a;
+  --gold2: #d4aa6a;
+  --border: #e0d4c0;
+  --muted: #5a4e3a;
+  --muted2: #7a6a54;
+  --white: #ffffff;
+  --green: #2d7a4f;
+  --red: #c0392b;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--cream);
+  color: var(--char);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── BACKGROUND PATTERN ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(196,154,90,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(139,99,66,0.06) 0%, transparent 50%),
+    repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(196,154,90,0.015) 40px, rgba(196,154,90,0.015) 41px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── HEADER ── */
+.site-header {
+  position: relative;
+  z-index: 10;
+  background: rgba(28,37,64,0.97);
+  backdrop-filter: blur(12px);
+  padding: 0 48px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(196,154,90,0.2);
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.logo span { color: var(--gold2); }
+
+.header-tag {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ── HERO BANNER ── */
+.hero {
+  position: relative;
+  z-index: 1;
+  background: var(--char);
+  padding: 64px 48px 56px;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(28,37,64,0.95) 0%, rgba(28,37,64,0.7) 60%, rgba(139,99,66,0.4) 100%);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -100px;
+  top: -100px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,154,90,0.12) 0%, transparent 70%);
+}
+.hero-content { position: relative; z-index: 2; max-width: 600px; }
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  opacity: 0;
+  animation: slideUp 0.7s 0.1s forwards;
+}
+.hero-line { width: 36px; height: 1px; background: var(--gold2); opacity: 0.6; }
+.hero-eyebrow-text {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold2);
+  font-weight: 600;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 5vw, 66px);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: slideUp 0.8s 0.25s forwards;
+}
+.hero h1 em { font-style: normal; color: var(--gold2); }
+.hero-sub {
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.8;
+  margin-top: 18px;
+  opacity: 0;
+  animation: slideUp 0.7s 0.4s forwards;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── MAIN LAYOUT ── */
+.main {
+  position: relative;
+  z-index: 1;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 64px 24px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* ── LEFT PANEL ── */
+.left-panel {}
+.section-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--warm);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 14px;
+}
+.panel-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 400;
+  color: var(--char);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.panel-title em { font-style: normal; color: var(--warm); }
+.panel-body {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.9;
+  margin-bottom: 32px;
+}
+
+/* Session cards */
+.sessions { display: flex; flex-direction: column; gap: 2px; background: var(--border); margin-bottom: 32px; }
+.s-card {
+  background: #fff;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: background 0.2s, border-color 0.2s;
+}
+.s-card:hover, .s-card.active { background: var(--cream2); border-left-color: var(--warm); }
+.s-icon {
+  width: 44px; height: 44px;
+  background: var(--cream2);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+  transition: background 0.2s;
+}
+.s-card:hover .s-icon, .s-card.active .s-icon { background: var(--warm); }
+.s-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--char); margin-bottom: 2px; }
+.s-desc { font-size: 11.5px; color: var(--muted2); line-height: 1.6; }
+
+/* Trust */
+.trust { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--border); }
+.trust-item { background: var(--cream3); padding: 18px 14px; text-align: center; }
+.trust-num { font-family: 'Jost', sans-serif; font-size: 26px; font-weight: 600; color: var(--char); }
+.trust-lbl { font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--warm); font-weight: 600; margin-top: 3px; }
+
+/* ── RIGHT PANEL — FORM ── */
+.form-panel {
+  background: var(--char);
+  padding: 44px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.form-panel::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,154,90,0.08), transparent 70%);
+  pointer-events: none;
+}
+
+.form-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 400;
+  color: #fff; margin-bottom: 4px;
+}
+.form-title em { font-style: normal; color: var(--gold2); }
+.form-sub { font-size: 12px; color: rgba(255,255,255,0.38); margin-bottom: 28px; line-height: 1.7; }
+
+.f-group { margin-bottom: 14px; }
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.f-label {
+  font-size: 8.5px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); font-weight: 600;
+  display: block; margin-bottom: 5px;
+}
+.f-inp, .f-select, .f-textarea {
+  width: 100%; padding: 11px 13px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff; font-family: 'Jost', sans-serif; font-size: 13px;
+  outline: none; border-radius: 2px; appearance: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.f-inp::placeholder, .f-textarea::placeholder { color: rgba(255,255,255,0.22); }
+.f-inp:focus, .f-select:focus, .f-textarea:focus {
+  border-color: var(--gold2);
+  background: rgba(255,255,255,0.09);
+}
+.f-inp.error { border-color: #e74c3c !important; }
+.f-select option { background: var(--char); color: #fff; }
+.f-textarea { min-height: 80px; resize: vertical; }
+
+/* Format radios */
+.radio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 5px; }
+.r-item { position: relative; }
+.r-item input { position: absolute; opacity: 0; width: 0; height: 0; }
+.r-item label {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer; font-size: 12px; color: rgba(255,255,255,0.6);
+  border-radius: 2px; transition: all 0.2s;
+}
+.r-item input:checked + label {
+  background: rgba(196,154,90,0.14);
+  border-color: var(--gold2);
+  color: #fff;
+}
+.r-item label span { font-size: 15px; }
+
+/* ══════════════════════
+   REAL reCAPTCHA STYLES
+══════════════════════ */
+.captcha-wrap {
+  margin: 20px 0 16px;
+}
+.captcha-label {
+  font-size: 8.5px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); font-weight: 600;
+  display: block; margin-bottom: 10px;
+}
+
+/* Container to style around the reCAPTCHA widget */
+.recaptcha-container {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 3px;
+  padding: 12px 14px;
+  display: inline-flex;
+  align-items: center;
+  transition: border-color 0.3s;
+  width: 100%;
+}
+.recaptcha-container.error-highlight {
+  border-color: rgba(192,57,43,0.8);
+  background: rgba(192,57,43,0.05);
+  animation: pulse-red 0.4s ease;
+}
+.recaptcha-container.verified {
+  border-color: rgba(45,122,79,0.7);
+  background: rgba(45,122,79,0.05);
+}
+
+@keyframes pulse-red {
+  0%,100% { transform: translateX(0); }
+  25%      { transform: translateX(-5px); }
+  75%      { transform: translateX(5px); }
+}
+
+/* Status messages */
+.captcha-status {
+  font-size: 11px;
+  margin-top: 7px;
+  padding: 0 2px;
+  min-height: 16px;
+  transition: all 0.3s;
+}
+.captcha-status.ok  { color: #5ec47a; }
+.captcha-status.err { color: #e07070; }
+
+/* ── SUBMIT BUTTON ── */
+.f-submit {
+  width: 100%; padding: 15px;
+  background: var(--warm); color: #fff; border: none; cursor: pointer;
+  font-family: 'Jost', sans-serif; font-size: 10.5px; letter-spacing: 2.5px;
+  text-transform: uppercase; font-weight: 600;
+  margin-top: 6px; border-radius: 2px;
+  transition: background 0.2s, transform 0.15s;
+  position: relative; overflow: hidden;
+}
+.f-submit:hover { background: var(--warm2); transform: translateY(-1px); }
+.f-submit:active { transform: translateY(0); }
+.f-submit:disabled { background: rgba(139,99,66,0.4); cursor: not-allowed; transform: none; }
+
+.f-submit .btn-text { transition: opacity 0.2s; }
+.f-submit.loading .btn-text { opacity: 0; }
+.f-submit.loading::after {
+  content: '';
+  position: absolute;
+  width: 18px; height: 18px;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.f-note { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 12px; line-height: 1.7; }
+
+/* ── SUCCESS STATE ── */
+.success-state {
+  display: none;
+  text-align: center;
+  padding: 48px 20px;
+  animation: fadeIn 0.5s ease;
+}
+.success-state.show { display: block; }
+.success-icon { font-size: 52px; margin-bottom: 16px; }
+.success-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px; font-weight: 400; color: #fff;
+  margin-bottom: 12px;
+}
+.success-title em { font-style: normal; color: var(--gold2); }
+.success-body { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.8; }
+.success-detail {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: rgba(196,154,90,0.1);
+  border: 1px solid rgba(196,154,90,0.25);
+  border-radius: 2px;
+  font-size: 12px;
+  color: var(--gold2);
+  line-height: 1.8;
+  text-align: left;
+}
+
+/* ── PROCESS ── */
+.process-section {
+  position: relative; z-index: 1;
+  background: #fff;
+  padding: 80px 24px;
+}
+.process-inner { max-width: 1000px; margin: 0 auto; }
+.sec-head { text-align: center; margin-bottom: 48px; }
+.sec-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--warm); font-weight: 600; display: block; margin-bottom: 10px; }
+.sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 46px); font-weight: 400; color: var(--char); }
+.sec-title em { font-style: normal; color: var(--warm); }
+
+.steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative; }
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 27px; left: 12.5%; right: 12.5%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border), var(--warm2), var(--border));
+}
+.step { text-align: center; padding: 0 16px; position: relative; z-index: 1; }
+.step-num {
+  width: 54px; height: 54px; border-radius: 50%;
+  background: #fff; border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 18px;
+  font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 500; color: var(--warm);
+  transition: all 0.3s;
+}
+.step:hover .step-num { background: var(--warm); border-color: var(--warm); color: #fff; }
+.step-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--char); margin-bottom: 8px; }
+.step-text { font-size: 12px; color: var(--muted); line-height: 1.75; }
+
+/* ── FOOTER ── */
+footer {
+  position: relative; z-index: 1;
+  background: var(--char);
+  padding: 40px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(196,154,90,0.15);
+}
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: rgba(255,255,255,0.5); letter-spacing: 2px; }
+.footer-logo span { color: var(--gold2); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--gold2); }
+.footer-copy { font-size: 10.5px; color: rgba(255,255,255,0.2); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .main { grid-template-columns: 1fr; gap: 40px; padding: 40px 20px 60px; }
+  .steps { grid-template-columns: repeat(2,1fr); }
+  .steps::before { display: none; }
+  .site-header { padding: 0 20px; }
+  .hero { padding: 48px 20px 44px; }
+  footer { flex-direction: column; gap: 20px; text-align: center; padding: 32px 20px; }
+}
+@media (max-width: 500px) {
+  .f-row, .radio-grid { grid-template-columns: 1fr; }
+  .form-panel { padding: 32px 22px; }
+  .trust { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .img-grid { grid-template-columns: repeat(3,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="logo">EPM <span>Wealth</span></div>
+  <div class="header-tag">Financial Literacy & Empowerment</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="hero-line"></span>
+      <span class="hero-eyebrow-text">Zero Cost · Complete Value</span>
+    </div>
+    <h1>Book a <em>Free</em><br>Session</h1>
+    <p class="hero-sub">Guided by SEBI-registered advisors. Choose your topic, pick your format, and get started on your financial journey today.</p>
+  </div>
+</section>
+
+<!-- MAIN GRID -->
+<section class="main">
+
+  <!-- LEFT -->
+  <div class="left-panel">
+    <span class="section-label">Choose Your Session</span>
+    <h2 class="panel-title">The right session<br>for <em>your</em> goals</h2>
+    <p class="panel-body">Whether you're starting from scratch or ready to tackle derivatives — we have a session built around your level and objectives.</p>
+
+    <div class="sessions">
+      <div class="s-card active" onclick="pickSession(this,'Financial Basics')">
+        <div class="s-icon">🐷</div>
+        <div>
+          <div class="s-title">Financial Basics</div>
+          <div class="s-desc">Budgeting, savings, emergency funds & investment fundamentals</div>
+        </div>
+      </div>
+      <div class="s-card" onclick="pickSession(this,'Financial Advance')">
+        <div class="s-icon">💰</div>
+        <div>
+          <div class="s-title">Financial Advance</div>
+          <div class="s-desc">Mutual funds, equity, debt instruments & diversified portfolios</div>
+        </div>
+      </div>
+      <div class="s-card" onclick="pickSession(this,'Portfolio Building')">
+        <div class="s-icon">📈</div>
+        <div>
+          <div class="s-title">Portfolio Building</div>
+          <div class="s-desc">Asset allocation, risk profiling & long-term wealth creation</div>
+        </div>
+      </div>
+      <div class="s-card" onclick="pickSession(this,'Futures And Options')">
+        <div class="s-icon">⚡</div>
+        <div>
+          <div class="s-title">Futures &amp; Options</div>
+          <div class="s-desc">Derivatives, hedging, F&amp;O strategies & responsible participation</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust">
+      <div class="trust-item"><div class="trust-num">150+</div><div class="trust-lbl">Sessions Held</div></div>
+      <div class="trust-item"><div class="trust-num">50K+</div><div class="trust-lbl">Participants</div></div>
+      <div class="trust-item"><div class="trust-num">Free</div><div class="trust-lbl">Zero Cost</div></div>
+    </div>
+  </div>
+
+  <!-- RIGHT — FORM -->
+  <div class="form-panel">
+    <div id="formWrap">
+      <div class="form-title">Book Your <em>Free</em> Session</div>
+      <p class="form-sub">Fill in your details — our team confirms within 24 hours.</p>
+
+      <form id="bookForm" novalidate onsubmit="handleSubmit(event)">
+
+        <div class="f-row">
+          <div class="f-group">
+            <label class="f-label">First Name *</label>
+            <input class="f-inp" id="fname" type="text" placeholder="First name" required/>
+          </div>
+          <div class="f-group">
+            <label class="f-label">Last Name *</label>
+            <input class="f-inp" id="lname" type="text" placeholder="Last name" required/>
+          </div>
+        </div>
+
+        <div class="f-group">
+          <label class="f-label">Email Address *</label>
+          <input class="f-inp" id="email" type="email" placeholder="you@example.com" required/>
+        </div>
+
+        <div class="f-group">
+          <label class="f-label">Phone Number *</label>
+          <input class="f-inp" id="phone" type="tel" placeholder="+91 XXXXX XXXXX" required/>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label class="f-label">City *</label>
+            <input class="f-inp" id="city" type="text" placeholder="Your city" required/>
+          </div>
+          <div class="f-group">
+            <label class="f-label">Organisation</label>
+            <input class="f-inp" type="text" placeholder="Company (optional)"/>
+          </div>
+        </div>
+
+        <div class="f-group">
+          <label class="f-label">Session Topic *</label>
+          <select class="f-select" id="topic" required>
+            <option value="" disabled selected>Select a topic</option>
+            <option value="Financial Basics">Financial Basics</option>
+            <option value="Financial Advance">Financial Advance</option>
+            <option value="Portfolio Building">Portfolio Building</option>
+            <option value="Futures And Options">Futures &amp; Options</option>
+            <option value="Custom / Corporate">Custom / Corporate</option>
+          </select>
+        </div>
+
+        <div class="f-group">
+          <label class="f-label">Preferred Format *</label>
+          <div class="radio-grid">
+            <div class="r-item"><input type="radio" name="fmt" id="r1" value="Online Webinar" checked/><label for="r1"><span>🌐</span> Online Webinar</label></div>
+            <div class="r-item"><input type="radio" name="fmt" id="r2" value="In-Person"/><label for="r2"><span>🏢</span> In-Person</label></div>
+            <div class="r-item"><input type="radio" name="fmt" id="r3" value="Corporate"/><label for="r3"><span>👥</span> Corporate</label></div>
+            <div class="r-item"><input type="radio" name="fmt" id="r4" value="Flexible"/><label for="r4"><span>✅</span> Flexible</label></div>
+          </div>
+        </div>
+
+        <div class="f-group">
+          <label class="f-label">Additional Notes</label>
+          <textarea class="f-textarea" placeholder="Team size, specific topics, questions..."></textarea>
+        </div>
+
+        <!-- ══ REAL GOOGLE reCAPTCHA v2 ══ -->
+        <div class="captcha-wrap">
+          <label class="captcha-label">Security Verification *</label>
+          <div class="recaptcha-container" id="recaptchaContainer">
+            <div class="g-recaptcha"
+                 data-sitekey="6LdmyJgsAAAAAF8tB8NMzkY2ygSvjkqceH-K7cQb"
+                 data-theme="dark"
+                 data-callback="onCaptchaSuccess"
+                 data-expired-callback="onCaptchaExpired">
+            </div>
+          </div>
+          <div class="captcha-status" id="captchaStatus"></div>
+        </div>
+        <!-- ══ END reCAPTCHA ══ -->
+
+        <button type="submit" class="f-submit" id="submitBtn">
+          <span class="btn-text">Start Your Journey →</span>
+        </button>
+        <p class="f-note">* Completely free. No hidden charges. By submitting you agree to be contacted by an EPM Wealth advisor.</p>
+      </form>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-state" id="successState">
+      <div class="success-icon">✅</div>
+      <h3 class="success-title">You're on your <em>way!</em></h3>
+      <p class="success-body">Thank you for booking. Our team will reach out within <strong style="color:var(--gold2)">24 hours</strong> to confirm your session details.</p>
+      <div class="success-detail" id="successDetail"></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="process-section">
+  <div class="process-inner">
+    <div class="sec-head">
+      <span class="sec-label">Simple Process</span>
+      <h2 class="sec-title">How it <em>works</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-title">Fill the Form</div><p class="step-text">Submit your details, preferred topic, and format using the booking form.</p></div>
+      <div class="step"><div class="step-num">2</div><div class="step-title">We Confirm</div><p class="step-text">Our team reviews your request and confirms within 24 hours.</p></div>
+      <div class="step"><div class="step-num">3</div><div class="step-title">Attend Session</div><p class="step-text">Join your webinar or in-person seminar at your confirmed date and time.</p></div>
+      <div class="step"><div class="step-num">4</div><div class="step-title">Start Growing</div><p class="step-text">Apply your knowledge with post-session resources and expert follow-up.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">EPM <span>Wealth</span></div>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Disclaimer</a>
+    <a href="#">SEBI Info</a>
+  </div>
+  <div class="footer-copy">© 2026 EPM Wealth · AMFI 100255 · BSE 1197501</div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════
+   SESSION SELECTOR
+══════════════════════════════════════ */
+function pickSession(el, val) {
+  document.querySelectorAll('.s-card').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  const sel = document.getElementById('topic');
+  for (let i = 0; i < sel.options.length; i++) {
+    if (sel.options[i].value === val) { sel.selectedIndex = i; break; }
+  }
+}
+
+/* ══════════════════════════════════════
+   REAL reCAPTCHA v2 CALLBACKS
+══════════════════════════════════════ */
+let captchaVerified = false;
+
+function onCaptchaSuccess(token) {
+  captchaVerified = true;
+  const container = document.getElementById('recaptchaContainer');
+  container.classList.remove('error-highlight');
+  container.classList.add('verified');
+  setStatus('✓ Verification successful — you\'re all set!', 'ok');
+}
+
+function onCaptchaExpired() {
+  captchaVerified = false;
+  const container = document.getElementById('recaptchaContainer');
+  container.classList.remove('verified');
+  setStatus('⚠ Verification expired. Please tick the box again.', 'err');
+}
+
+function setStatus(msg, type) {
+  const el = document.getElementById('captchaStatus');
+  el.textContent = msg;
+  el.className = 'captcha-status ' + (type || '');
+}
+
+/* ══════════════════════════════════════
+   FORM VALIDATION & SUBMIT
+══════════════════════════════════════ */
+function handleSubmit(e) {
+  e.preventDefault();
+
+  // Validate required fields
+  const fields = ['fname','lname','email','phone','city','topic'];
+  let valid = true;
+  fields.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) {
+      el.classList.add('error');
+      el.addEventListener('input', () => el.classList.remove('error'), { once: true });
+      valid = false;
+    }
+  });
+
+  if (!valid) {
+    setStatus('Please fill in all required fields.', 'err');
+    return;
+  }
+
+  // reCAPTCHA check
+  if (!captchaVerified) {
+    const container = document.getElementById('recaptchaContainer');
+    container.classList.add('error-highlight');
+    setTimeout(() => container.classList.remove('error-highlight'), 1500);
+    setStatus('⚠ Please complete the "I\'m not a robot" verification.', 'err');
+    return;
+  }
+
+  // Simulate submit
+  const btn = document.getElementById('submitBtn');
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  setTimeout(() => {
+    const name = document.getElementById('fname').value + ' ' + document.getElementById('lname').value;
+    const topic = document.getElementById('topic').value;
+    const fmt = document.querySelector('input[name="fmt"]:checked').value;
+
+    document.getElementById('successDetail').innerHTML =
+      `<strong style="color:rgba(255,255,255,0.7)">Booking Summary</strong><br>
+       Name: ${name}<br>
+       Topic: ${topic}<br>
+       Format: ${fmt}<br>
+       Status: <span style="color:#5ec47a">Confirmed ✓</span>`;
+
+    document.getElementById('formWrap').style.display = 'none';
+    document.getElementById('successState').classList.add('show');
+  }, 1800);
+}
+</script>
+</body>
+</html>

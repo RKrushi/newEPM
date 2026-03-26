@@ -494,3 +494,34 @@
 .mob-group-panel.open {
   display: flex !important;
 }
+
+
+/* ════════════════════════════════════════
+   MOBILE MENU BODY FIX
+════════════════════════════════════════ */
+.mobile-menu-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Ensure Home link (first child) gets same border-top as separator */
+.mobile-menu-body > a:first-child,
+.mobile-menu-body > .mob-group-toggle:first-child {
+  border-top: 1px solid var(--border, #eee);
+}
+
+/* Unify font size — remove any inline override conflicts */
+.mobile-menu-body > a,
+.mobile-menu-body > .mob-group-toggle {
+  font-size: 22px !important;
+  padding: 16px 0 !important;
+  border-bottom: 1px solid var(--border, #eee) !important;
+}
+
+/* Mobile menu header separator */
+.mobile-menu-head {
+  border-bottom: 1px solid var(--border, #eee);
+  padding-bottom: 20px;
+  margin-bottom: 0 !important;   /* let body items own their spacing */
+}
