@@ -439,13 +439,13 @@
   transform: rotate(180deg);
   opacity: 1;
 }
-
-/* Collapsed by default */
 .mob-group-panel {
   display: none;
   flex-direction: column;
+  padding-left: 12px;
 }
 
 .mob-group-panel.open {
   display: flex;
 }
+
