@@ -140,17 +140,27 @@
     });
 
     /* ✅ ACCORDION TOGGLES */
-    document.querySelectorAll('.mob-group-toggle').forEach(function (btn) {
-      btn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        const targetId = btn.getAttribute('data-target');
-        const panel    = document.getElementById(targetId);
-        if (!panel) return;
+    /* ✅ ACCORDION TOGGLES — with mobile touch support */
+document.querySelectorAll('.mob-group-toggle').forEach(function (btn) {
+  function toggleAccordion(e) {
+    e.preventDefault();
+    e.stopPropagation();
 
-        const isOpen = panel.classList.toggle('open');
-        btn.classList.toggle('open', isOpen);
-      });
-    });
+    const targetId = btn.getAttribute('data-target');
+    const panel    = document.getElementById(targetId);
+    if (!panel) {
+      console.warn('Panel not found:', targetId); // debug
+      return;
+    }
+
+    const isOpen = panel.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    console.log('Toggled', targetId, isOpen); // debug
+  }
+
+  btn.addEventListener('click',    toggleAccordion);
+  btn.addEventListener('touchend', toggleAccordion);
+});
   };
 
   /* Auto-init */
@@ -161,48 +171,3 @@
   }
 
 })();
-/* ══ MOBILE ACCORDION — must be at bottom to avoid overrides ══ */
-.mob-group-toggle {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  width: 100% !important;
-  background: none !important;
-  border: none !important;
-  border-bottom: 1px solid #eee !important;
-  padding: 12px 0 !important;
-  font-family: var(--font-display) !important;
-  font-size: 20px !important;
-  font-weight: 400 !important;
-  color: var(--char) !important;
-  cursor: pointer !important;
-  text-align: left !important;
-  box-sizing: border-box !important;
-  outline: none !important;
-  -webkit-appearance: none !important;
-}
-
-.mob-group-toggle:hover {
-  color: var(--warm) !important;
-}
-
-.mob-chevron {
-  transition: transform 0.25s ease;
-  opacity: 0.5;
-  flex-shrink: 0;
-}
-
-.mob-group-toggle.open .mob-chevron {
-  transform: rotate(180deg) !important;
-  opacity: 1 !important;
-}
-
-.mob-group-panel {
-  display: none !important;
-  flex-direction: column !important;
-  padding-left: 12px !important;
-}
-
-.mob-group-panel.open {
-  display: flex !important;
-}
