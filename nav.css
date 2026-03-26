@@ -405,3 +405,47 @@
     padding: 8px 16px;
   }
 }
+/* ════════════════════════════════════════
+   MOBILE ACCORDION GROUPS
+════════════════════════════════════════ */
+.mob-group-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border, #eee);
+  padding: 12px 0;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--char);
+  cursor: pointer;
+  text-align: left;
+}
+
+.mob-group-toggle:hover {
+  color: var(--warm);
+}
+
+.mob-chevron {
+  transition: transform 0.25s ease;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.mob-group-toggle.open .mob-chevron {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* Collapsed by default */
+.mob-group-panel {
+  display: none;
+  flex-direction: column;
+}
+
+.mob-group-panel.open {
+  display: flex;
+}

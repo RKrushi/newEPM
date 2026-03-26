@@ -34,13 +34,22 @@
   /* ════════════════════════════════════════
      MOBILE MENU
   ════════════════════════════════════════ */
-  EPM.openMobileMenu = function () {
-    const menu = document.getElementById('mobileMenu');
-    if (menu) {
-      menu.classList.add('open');
-      document.body.style.overflow = 'hidden'; // prevent background scroll
-    }
-  };
+EPM.openMobileMenu = function () {
+  const menu = document.getElementById('mobileMenu');
+  if (menu) {
+
+    // ✅ ADD THESE 6 LINES — reset accordion panels to closed every time menu opens
+    menu.querySelectorAll('.mob-group-panel').forEach(function (p) {
+      p.classList.remove('open');
+    });
+    menu.querySelectorAll('.mob-group-toggle').forEach(function (b) {
+      b.classList.remove('open');
+    });
+
+    menu.classList.add('open');
+    document.body.style.overflow = 'hidden'; // prevent background scroll
+  }
+};
 
   EPM.closeMobileMenu = function () {
     const menu = document.getElementById('mobileMenu');
@@ -93,6 +102,17 @@
     EPM.initNavScroll();
     bindSocialOutsideClick();
     bindSocialEscKey();
+    /* Wire mobile accordion group toggles */
+document.querySelectorAll('.mob-group-toggle').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var targetId = btn.getAttribute('data-target');
+    var panel = document.getElementById(targetId);
+    if (!panel) return;
+
+    var isOpen = panel.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+  });
+});
 
     /* Wire hamburger */
   const hamburger = document.getElementById('hamburger');
