@@ -449,3 +449,48 @@
   display: flex;
 }
 
+/* ══ MOBILE ACCORDION — must be at bottom to avoid overrides ══ */
+.mob-group-toggle {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  background: none !important;
+  border: none !important;
+  border-bottom: 1px solid #eee !important;
+  padding: 12px 0 !important;
+  font-family: var(--font-display) !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  color: var(--char) !important;
+  cursor: pointer !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
+  outline: none !important;
+  -webkit-appearance: none !important;
+}
+
+.mob-group-toggle:hover {
+  color: var(--warm) !important;
+}
+
+.mob-chevron {
+  transition: transform 0.25s ease;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.mob-group-toggle.open .mob-chevron {
+  transform: rotate(180deg) !important;
+  opacity: 1 !important;
+}
+
+.mob-group-panel {
+  display: none !important;
+  flex-direction: column !important;
+  padding-left: 12px !important;
+}
+
+.mob-group-panel.open {
+  display: flex !important;
+}
